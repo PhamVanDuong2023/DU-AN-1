@@ -42,18 +42,18 @@
 <body class="skin-blue">
     <div class="wrapper">
         <!-- header -->
-        <?php require_once PATH_VIEW_ADMIN."layouts/partials/header.php"  ?>
+        <?php require_once PATH_VIEW_ADMIN . "layouts/partials/header.php" ?>
         <!-- aside -->
         <aside class="main-sidebar">
-        <?php require_once PATH_VIEW_ADMIN."layouts/partials/aside.php"  ?>
+            <?php require_once PATH_VIEW_ADMIN . "layouts/partials/aside.php" ?>
         </aside>
         <!-- view -->
         <div class="content-wrapper">
-        <?php require_once PATH_VIEW_ADMIN.$view.".php"  ?>
+            <?php require_once PATH_VIEW_ADMIN . $view . ".php" ?>
         </div>
 
         <!-- footer -->
-        <?php 
+        <?php
         // require_once PATH_VIEW_ADMIN."layouts/partials/footer.php"  
         ?>
     </div>
@@ -68,8 +68,10 @@
         <!-- Sparkline -->
         <script src="../../../assets/admins/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
         <!-- jvectormap -->
-        <script src="../../../assets/admins/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-        <script src="../../../assets/admins/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+        <script src="../../../assets/admins/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"
+            type="text/javascript"></script>
+        <script src="../../../assets/admins/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"
+            type="text/javascript"></script>
         <!-- daterangepicker -->
         <script src="../../../assets/admins/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
         <!-- datepicker -->
@@ -77,7 +79,8 @@
         <!-- iCheck -->
         <script src="../../../assets/admins/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
         <!-- SlimScroll 1.3.0 -->
-        <script src="../../../assets/admins/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="../../../assets/admins/plugins/slimScroll/jquery.slimscroll.min.js"
+            type="text/javascript"></script>
         <!-- ChartJS 1.0.1 -->
         <script src="../../../assets/admins/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
 

@@ -1,15 +1,28 @@
 
+<?php
+if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']) { ?>
+<div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
+<?php
+unset($_SESSION['thong_bao']);
+}else{
+  echo "";
+}
 
+?>
 <!-- hiện thị thông báo lỗi -->
 <?php
 if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
 <div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
 <?php
-}else{
+unset($_SESSION['loi']);
+session_destroy();
+
+}
+else{
   echo "";
 }
 
- unset($_SESSION['loi']);
+ 
 ?>
 <h3 class="box-title">Thêm danh mục</h3>
 <form role="form" method="post">
