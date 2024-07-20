@@ -1,21 +1,25 @@
 <!-- hiển thị thông báo thành công -->
 <?php
-if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']) { ?>
+if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']!="") { ?>
 <div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
 <?php
+ unset($_SESSION['thong_bao']);
+
 }else{
   echo "";
 }
-unset($_SESSION['thong_bao']);
+
 ?>
 <!-- hiện thị thông báo lỗi -->
 <?php
 if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
 <div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
 <?php
+unset($_SESSION['loi']);
 }else{
   echo "";
 }
+
 ?>
 <section class="content">
   <div class="row">
@@ -36,7 +40,7 @@ if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
             <tbody>
               <?php
               $stt = 0;
-              foreach ($danh_muc as $key) {
+              foreach ($listDanhMuc as $key) {
                 $stt++;
                 ?>
                 <tr>
