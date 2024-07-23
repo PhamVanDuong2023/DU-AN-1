@@ -3,7 +3,8 @@
 if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
 <div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
 <?php
-}else{
+
+unset($_SESSION['loi']);}else{
   echo "";
 }
 

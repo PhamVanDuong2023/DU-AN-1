@@ -207,17 +207,19 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="trang_mau/AdminLTE-master/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
-                <span class="hidden-xs">Duong Van</span>
+                <img src="../../../../uploads/<?=$_SESSION['img']?>" class="user-image" alt="User Image" />
+                <span class="hidden-xs"><?=$_SESSION['user']?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
-                <li class="user-header">
-                  <img src="trang_mau/AdminLTE-master/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                <li class="user-header" style="height:auto;">
+                <img src="../../../../uploads/<?=$_SESSION['img']?>" class="img-circle" alt="User Image" />
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2012</small>
+                      <?=$_SESSION['user']?>
+                    <small>Thành viên từ 11-2023</small>
+
                   </p>
+                  <a href="<?= BASE_URL_ADMIN ?>?act=logout" class="btn btn-warning">Đăng xuất</a>
                 </li>
                 <!-- Menu Body -->
                 <li class="user-body">

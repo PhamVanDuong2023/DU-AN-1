@@ -12,13 +12,16 @@ if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']!="") { ?>
 ?>
 <!-- hiện thị thông báo lỗi -->
 <?php
-if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
-<div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
-<?php
-unset($_SESSION['loi']);
-}else{
-  echo "";
-}
+// if (isset($_SESSION['loi'])&&$_SESSION['loi']) { 
+?>
+ <!-- <div class="alert alert-danger"><?php 
+//  echo $_SESSION['loi'] 
+ ?></div> -->
+ <?php
+// unset($_SESSION['loi']);
+// }else{
+//   echo "";
+// }
 
 ?>
 <section class="content">
@@ -57,7 +60,7 @@ unset($_SESSION['loi']);
             </tbody>
           </table>
           <div>
-            <a href="<?=BASE_URL_ADMIN?>?act=danhmuc-insert" class="label label-success">Thêm Danh Mục</a>
+            <a href="<?=BASE_URL_ADMIN?>?act=danhmuc-add-form-insert" class="label label-success">Thêm Danh Mục</a>
           </div>
         </div><!-- /.box-body -->
       </div><!-- /.box -->
