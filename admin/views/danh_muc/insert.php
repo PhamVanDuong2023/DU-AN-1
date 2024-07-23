@@ -14,8 +14,10 @@ unset($_SESSION['thong_bao']);
 if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
 <div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
 <?php
+// unset($_SESSION['loi']);
+// session_destroy();
 unset($_SESSION['loi']);
-session_destroy();
+
 
 }
 else{
@@ -25,7 +27,7 @@ else{
  
 ?>
 <h3 class="box-title">Thêm danh mục</h3>
-<form role="form" method="post">
+<form role="form" method="post" action="<?=BASE_URL_ADMIN?>?act=danhmuc-insert">
     <div class="box-body">
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>

@@ -1,6 +1,5 @@
 <?php
 
-
 class AdminDanhMucController
 {
 
@@ -39,6 +38,16 @@ class AdminDanhMucController
     header('Location: ' . BASE_URL_ADMIN . "?act=danhmuc");
     exit();
   }
+  public function addform()
+  {
+    $title = "insert danh mục";
+
+    $view = "danh_muc/insert";
+
+    require_once PATH_VIEW_ADMIN . 'layouts/master.php';
+
+    // deleteSession();
+  }
 
   public function themmoidanhmuc()
   {
@@ -52,23 +61,28 @@ class AdminDanhMucController
 
       $_SESSION['thong_bao'] = "thao tác thành công";
 
-      header('Location: ' . BASE_URL_ADMIN . "?act=danhmuc-insert");
+      $_SESSION['flash'] = true;
 
+      header("location:" . BASE_URL_ADMIN . "?act=danhmuc-add-form-insert");
       exit();
 
     } else {
+
+
       $_SESSION['loi'] = "vui lòng nhập thông tin";
-      
+
+
+      $_SESSION['flash'] = true;
+
+      header("location:" . BASE_URL_ADMIN . "?act=danhmuc-add-form-insert");
+      exit();
     }
-    $title = "insert danh mục";
 
-    $view = "danh_muc/insert";
-
-    require_once PATH_VIEW_ADMIN . 'layouts/master.php';
 
   }
 
-  public function lay1Danhmuc($id) {
+  public function lay1Danhmuc($id)
+  {
 
     $danhmuc1 = $this->DanhMuc->showOneDanhmuc($id);
 
@@ -79,21 +93,33 @@ class AdminDanhMucController
     require_once PATH_VIEW_ADMIN . 'layouts/master.php';
   }
 
-  public function capnhatdanhmuc() {
-    
-    $id = $_POST['id'];
+  public function capnhatdanhmuc()
+  {
 
-    $name_danhmuc = $_POST['name_danhmuc'];
+    if (isset($_POST['name_danhmuc']) && $_POST['name_danhmuc']) {
 
-    $this->DanhMuc-> updateDanhMuc($id,$name_danhmuc);
+      $id = $_POST['id'];
 
-    $_SESSION['thong_bao'] = "thao tác thành công";
+      $name_danhmuc = $_POST['name_danhmuc'];
 
-    $title = "update danh sách";
+      $this->DanhMuc->updateDanhMuc($id, $name_danhmuc);
 
-    header('Location: ' . BASE_URL_ADMIN . "?act=danhmuc");
-    
-    exit();
+      $_SESSION['thong_bao'] = "thao tác thành công";
+
+
+      header('Location: ' . BASE_URL_ADMIN . "?act=danhmuc");
+
+      exit();
+
+
+
+    } else {
+      $id = $_POST['id'];
+      $_SESSION['loi'] = "vui lòng nhập thông tin";
+      header("location:" . BASE_URL_ADMIN . "?act=danhmuc-edit&id=" . $id);
+
+      exit();
+    }
 
   }
 

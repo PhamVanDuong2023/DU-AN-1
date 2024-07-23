@@ -70,6 +70,14 @@ function disconnect_DB()
 {
     $conn = null;
 }
+function deleteSession(){
+    if(isset($_SESSION['flash'])){
+        unset($_SESSION['loi']);
+        unset($_SESSION['thongbao']);
+        session_unset();
+        // session_destroy();
+    }
+}
 
 
 
