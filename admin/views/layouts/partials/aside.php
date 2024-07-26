@@ -56,6 +56,13 @@
                 <i class="fa fa-th"></i> <span>Danh Mục Sản Phẩm</span> 
               </a>
             </li>
+
+            <li>
+              <a href="<?=BASE_URL_ADMIN?>?act=don-hang">
+                <i class="fa fa-th"></i> <span>Đơn hàng</span> 
+              </a>
+            </li>
+
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>

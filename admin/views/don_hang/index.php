@@ -1,22 +1,22 @@
 <!-- hiển thị thông báo thành công -->
 <?php
-if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']!="") { ?>
-<div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
-<?php
- unset($_SESSION['thong_bao']);
+if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
+  <div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
+  <?php
+  unset($_SESSION['thong_bao']);
 
-}else{
+} else {
   echo "";
 }
 
 ?>
 <!-- hiện thị thông báo lỗi -->
 <?php
-if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
-<div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
-<?php
-unset($_SESSION['loi']);
-}else{
+if (isset($_SESSION['loi']) && $_SESSION['loi']) { ?>
+  <div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
+  <?php
+  unset($_SESSION['loi']);
+} else {
   echo "";
 }
 
@@ -26,7 +26,7 @@ unset($_SESSION['loi']);
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Danh sánh đơn hàng</h3>
+          <h3 class="box-title">Quản lí danh sánh đơn hàng</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
           <table id="example2" class="table table-bordered table-hover">
@@ -43,33 +43,46 @@ unset($_SESSION['loi']);
               </tr>
             </thead>
             <?php
-              $stt = 0;
-              foreach ($listDonHang as $key => $donHang) {
-                $stt++;
-                ?>
-                <tr>
-                  <td><?php echo $stt ?></td>
-                  <td><?php echo $donHang['ma_don_hang'] ?></td>
-                  <td><?php echo $donHang['ten_nguoi_nhan'] ?></td>
-                  <td><?php echo $donHang['so_dien_thoai'] ?></td>
-                  <td><?php echo $donHang['ngay_dat'] ?></td>
-                  <td><?php echo $donHang['tong_tien'] ?></td>
-                  <td><?php echo $donHang['ten_trang_thai'] ?></td>
-                  <td>
-                    <a href="<?=BASE_URL_ADMIN ."act=chi-tiet-don-hang&id_don_hang" . $sanPham['id']?>">
-                        <button class="btn btn primary"><i class="far fa-eye"></i></button>
-                    </a>
-                    <a href="<?=BASE_URL_ADMIN ."act=sua-don-hang&id_don_hang" . $sanPham['id']?>">
-                        <button class="btn btn warning"><i class="far fa-eye"></i></button>
-                    </a>
-                  </td>
-                </tr>
-                <?php
-              }
+            $stt = 0;
+            foreach ($listDonHang as $key => $donHang) {
+              $stt++;
               ?>
+              <tr>
+                <td><?php echo $stt ?></td>
+                <td><?php echo $donHang['ma_don_hang'] ?></td>
+                <td><?php echo $donHang['ten_nguoi_nhan'] ?></td>
+                <td><?php echo $donHang['sđt_nguoi_nhan'] ?></td>
+                <td><?php echo $donHang['ngay_dat'] ?></td>
+                <td><?php echo $donHang['tong_tien'] ?></td>
+                <td><?php echo $donHang['ten_trang_thai'] ?></td>
+                <td>
+                 
+                  <a href="<?= BASE_URL_ADMIN . "?act=chi-tiet-don-hang&id_don_hang=" . $donHang['id'] ?>">
+                    <button class="btn btn-primary">Chi tiết</button>
+                  </a>
+                  <a href="<?= BASE_URL_ADMIN . "?act=donhang-edit&id=" . $donHang['id'] ?>">
+                    <button class="btn btn-warning">Sửa hàng</button>
+                  </a>
+                </td>
+              </tr>
+              <?php
+            }
+            ?>
           </table>
         </div><!-- /.box-body -->
       </div><!-- /.box -->
     </div><!-- /.col -->
   </div><!-- /.row -->
 </section><!-- /
+<?php 
+                  // if ($donHang['trang_thai_id'] == 8) {
+                    ?>
+                    <a href="
+                    <?php
+                    // BASE_URL_ADMIN . "?act=delete-don-hang&id_don_hang=" . $donHang['id'] 
+                    ?>"
+                      class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa không ?')">
+                      Xóa </a>
+                    <?php
+                  //} 
+                  ?>
