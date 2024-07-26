@@ -4,8 +4,6 @@ if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']) { ?>
 <div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
 <?php
 unset($_SESSION['thong_bao']);
-}else{
-  echo "";
 }
 
 ?>

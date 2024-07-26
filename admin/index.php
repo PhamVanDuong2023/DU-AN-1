@@ -27,9 +27,7 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
 
  match($act){
 
-
     '/'=>(new DashboardControllers())->dashboard(),
-
 
     'addlogin'=>(new DashboardControllers())->addformlogin(),
     
@@ -37,7 +35,9 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
     'danhmuc' => (new  AdminDanhMucController())->danhsachdanhmuc(),
 
     'danhmuc-delete' => (new  AdminDanhMucController())-> xoadanhmuc($_GET['id']),
+
     'danhmuc-add-form-insert'=> (new AdminDanhMucController())->addform(),
+
     'danhmuc-insert' => (new AdminDanhMucController())->themmoidanhmuc(),
 
     'danhmuc-edit' => (new AdminDanhMucController())->lay1Danhmuc($_GET['id']),
@@ -46,15 +46,21 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
 
     //Login
     'login' => (new DashboardControllers())->login(),
+
     'logout' => (new DashboardControllers())->logout(),
     
-
     // Đơn hàng
-    // 'donhang' => (new AdminDonHangController())->danhsachdonhang(),
-    // 'form-donhang-edit' => (new AdminDonHangController())->formsuadonhang(),
-    // 'donhang-edit' => (new AdminDonHangController())->postsuadonhang(),
-    // 'donhang-delete' => (new AdminDonHangController())->xoadonhang(),
-    // 'donhang-chitet' => (new AdminDonHangController())->chitietdonhang(),
+     'don-hang' => (new AdminDonHangController())->danhsachdonhang(),
+
+     'donhang-update' => (new AdminDonHangController())->capnhatDonHang(),
+
+     'donhang-edit' => (new AdminDonHangController())->editDonHang($_GET['id']),
+
+     'chi-tiet-don-hang' => (new AdminDonHangController())->chitietDonHang(),
+     
+     'donhang-chitet' => (new AdminDonHangController())->chitietdonhang(),
+
+     'delete-don-hang' => (new AdminDonHangController())->xoadonhang($_GET['id_don_hang']),
 };
 
 ?>
