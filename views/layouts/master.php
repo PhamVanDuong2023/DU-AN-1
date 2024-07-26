@@ -25,8 +25,7 @@
         <!-- Customized Bootstrap Stylesheet -->
         <link href="../../assets/clients/css/style.css" rel="stylesheet">
     </head>
-
-    <>
+    
         <!-- Topbar Start -->
         <div class="container-fluid">
             <?php require_once PATH_VIEW . "layouts/partials/topbar.php" ?>

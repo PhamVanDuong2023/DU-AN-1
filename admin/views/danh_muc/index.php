@@ -1,11 +1,11 @@
 <!-- hiển thị thông báo thành công -->
 <?php
-if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']!="") { ?>
-<div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
-<?php
- unset($_SESSION['thong_bao']);
+if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
+  <div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
+  <?php
+  unset($_SESSION['thong_bao']);
 
-}else{
+} else {
   echo "";
 }
 
@@ -14,10 +14,10 @@ if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']!="") { ?>
 <?php
 // if (isset($_SESSION['loi'])&&$_SESSION['loi']) { 
 ?>
- <!-- <div class="alert alert-danger"><?php 
+<!-- <div class="alert alert-danger"><?php
 //  echo $_SESSION['loi'] 
- ?></div> -->
- <?php
+?></div> -->
+<?php
 // unset($_SESSION['loi']);
 // }else{
 //   echo "";
@@ -50,8 +50,10 @@ if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']!="") { ?>
                   <td><?php echo $stt ?></td>
                   <td><?php echo $key['name_danhmuc'] ?></td>
                   <td>
-                    <a href="<?=BASE_URL_ADMIN?>?act=danhmuc-edit&id=<?php echo $key['id'] ?>" class="label label-warning">Sửa</a>
-                    <a href="<?=BASE_URL_ADMIN?>?act=danhmuc-delete&id=<?php echo $key['id'] ?>" class="label label-danger" onclick="return confirm('Bạn có chắc muốn xóa không ?')">Xóa</a>
+                    <a href="<?= BASE_URL_ADMIN ?>?act=danhmuc-edit&id=<?php echo $key['id'] ?>"
+                      class="label label-warning">Sửa</a>
+                    <a href="<?= BASE_URL_ADMIN ?>?act=danhmuc-delete&id=<?php echo $key['id'] ?>"
+                      class="label label-danger" onclick="return confirm('Bạn có chắc muốn xóa không ?')">Xóa</a>
                   </td>
                 </tr>
                 <?php
@@ -60,10 +62,15 @@ if (isset($_SESSION['thong_bao'])&&$_SESSION['thong_bao']!="") { ?>
             </tbody>
           </table>
           <div>
-            <a href="<?=BASE_URL_ADMIN?>?act=danhmuc-add-form-insert" class="label label-success">Thêm Danh Mục</a>
+            <a href="<?= BASE_URL_ADMIN ?>?act=danhmuc-add-form-insert" class="label label-success">Thêm Danh Mục</a>
           </div>
         </div><!-- /.box-body -->
       </div><!-- /.box -->
     </div><!-- /.col -->
   </div><!-- /.row -->
-</section><!-- /
+</section>
+<script>
+  $(document).ready(function () {
+    $('#example2').DataTable();
+  });
+</script>
