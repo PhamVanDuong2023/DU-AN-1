@@ -13,10 +13,12 @@ class AdminDanhMucController
   {
 
     $listDanhMuc = $this->DanhMuc->getAlldanhmuc();
+    
 
     $title = "list danh sách";
 
     $view = "danh_muc/index";
+    
 
     require_once PATH_VIEW_ADMIN . 'layouts/master.php';
   }
