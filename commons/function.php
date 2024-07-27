@@ -16,9 +16,11 @@ function connect_DB()
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // Cài đặt chế độ trả dữ liệu
         $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        return $conn;
     } catch (PDOException $e) {
         debug("Connection failed: " . $e->getMessage());
     }
+;
 }
 
 // lất all
@@ -68,6 +70,16 @@ function disconnect_DB()
 {
     $conn = null;
 }
+//them file
+// function uploadFile($file, $folederUpload){
+//     $pathStorage = $folederUpload . time() . $file['name'];
 
+//     $from = $file['tmp_name'];
+//     $to = PATH_ROOT . $pathStorage;
+
+//     if(move_uploaded_file($from,$pathStorage)){
+
+// }
+// }
 
 

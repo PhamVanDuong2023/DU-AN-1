@@ -12,8 +12,8 @@ define('PATH_VIEW_ADMIN',__DIR__.'/../admin/views/');
 define('PATH_UPLOAD',__DIR__.'/../uploads');
 
 
-define('BASE_URL','http://da1.test/');
-define('BASE_URL_ADMIN','http://da1.test/admin/');
+define('BASE_URL','http://localhost/Du-An-1/');
+define('BASE_URL_ADMIN','http://du-an-1.test/admin/');
 
 
 define('DB_HOST','localhost');

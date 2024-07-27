@@ -59,9 +59,9 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #6C757D;
+  color: #de79bf;
   text-align: left;
-  background-color: #F5F5F5;
+  background-color: #FFD333;;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

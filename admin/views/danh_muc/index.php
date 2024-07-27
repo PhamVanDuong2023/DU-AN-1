@@ -39,6 +39,7 @@ if (isset($_SESSION['loi'])&&$_SESSION['loi']) { ?>
               foreach ($danh_muc as $key) {
                 $stt++;
                 ?>
+                
                 <tr>
                   <td><?php echo $stt ?></td>
                   <td><?php echo $key['name_danhmuc'] ?></td>

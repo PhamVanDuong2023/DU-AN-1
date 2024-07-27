@@ -1,9 +1,9 @@
-<?php
+<!-- <?php
 
 
-class DanhmucController{
+// class DanhmucController{
    
-}
+// }
 
 
 
@@ -76,4 +76,4 @@ class DanhmucController{
 
     
 // }
-?>
+?> -->

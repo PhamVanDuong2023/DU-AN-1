@@ -35,17 +35,17 @@
               </ul>
             </li>
             <li class="treeview">
-              <a href="#">
+              <a href="index.php?act=taikhoan">
                 <i class="fa fa-files-o"></i>
-                <span>Tùy Chọn Giao Diện</span>
-                <span class="label label-primary pull-right">4</span>
+                <span>Tài khoản</span>
+                <!-- <span class="label label-primary pull-right">4</span> -->
               </a>
-              <ul class="treeview-menu">
+              <!-- <ul class="treeview-menu">
                 <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
                 <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
                 <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
                 <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-              </ul>
+              </ul> -->
             </li>
             <li>
               <a href="<?=BASE_URL_ADMIN?>?act=danhmuc">
@@ -65,19 +65,19 @@
               </ul>
             </li>
             <li class="treeview">
-              <a href="#">
+              <a href="?act=taikhoanuser">
                 <i class="fa fa-laptop"></i>
-                <span>UI Elements</span>
+                <span>Tai khoan user</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
+              <!-- <ul class="treeview-menu">
                 <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
                 <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
                 <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
                 <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
                 <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
                 <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-              </ul>
+              </ul> -->
             </li>
             <li class="treeview">
               <a href="#">
