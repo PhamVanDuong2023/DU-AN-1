@@ -1,3 +1,6 @@
+
+<a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -523,6 +526,7 @@
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -569,6 +573,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Products End -->
+
     <!-- Products End -->
 
 
@@ -664,3 +671,4 @@
 </body>
 
 </html>
+
