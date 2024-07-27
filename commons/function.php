@@ -19,11 +19,12 @@ function connect_DB()
         return $conn;
     } catch (PDOException $e) {
         debug("Connection failed: " . $e->getMessage());
+        return null;
     }
 ;
 }
 
-// lất all
+// lấy all
 // if (!function_exists('getAll')) {
 //     function getAll($sql)
 //     {
@@ -65,11 +66,12 @@ function connect_DB()
 
 
 
-
+ 
 function disconnect_DB()
 {
     $conn = null;
 }
+
 //them file
 // function uploadFile($file, $folederUpload){
 //     $pathStorage = $folederUpload . time() . $file['name'];
@@ -81,5 +83,14 @@ function disconnect_DB()
 
 // }
 // }
+function deleteSession(){
+    if(isset($_SESSION['flash'])){
+        unset($_SESSION['loi']);
+        unset($_SESSION['thongbao']);
+        session_unset();
+        // session_destroy();
+    }
+}
+
 
 

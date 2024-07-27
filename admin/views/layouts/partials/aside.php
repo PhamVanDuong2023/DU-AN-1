@@ -4,38 +4,47 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="trang_mau/AdminLTE-master/dist/img/user2-160x160.jpg" class="img-circle" alt="" />
+              <!-- <img src="trang_mau/AdminLTE-master/dist/img/user2-160x160.jpg" class="img-circle" alt="" /> -->
             </div>
             <div class="pull-left info">
-              <p>Duong Van</p>
+              <p><?=$_SESSION['user']?></p>
 
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
           <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
+          <!-- <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
-          </form>
+          </form> -->
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">Danh Mục</li>
             <li class="active treeview">
-              <a href="#">
+              <!-- <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <!-- <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li> -->
+              </a> -->
+              <!-- <ul class="treeview-menu">
+                <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
                 <li class="active"><a href="index.php"><i class="fa fa-circle-o"></i> Home </a></li>
-              </ul>
+              </ul> -->
+              <!-- <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
+              </a> -->
+              <li class="active"><a href="<?=BASE_URL_ADMIN?>"><i class="fa fa-circle-o"></i> Home </a></li>
             </li>
+<<<<<<< HEAD
             <li class="treeview">
               <a href="index.php?act=taikhoan">
+=======
+            <!-- <li class="treeview">
+              <a href="#">
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
                 <i class="fa fa-files-o"></i>
                 <span>Tài khoản</span>
                 <!-- <span class="label label-primary pull-right">4</span> -->
@@ -45,27 +54,44 @@
                 <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
                 <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
                 <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+<<<<<<< HEAD
               </ul> -->
             </li>
+=======
+              </ul>
+            </li> -->
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
             <li>
               <a href="<?=BASE_URL_ADMIN?>?act=danhmuc">
                 <i class="fa fa-th"></i> <span>Danh Mục Sản Phẩm</span> 
               </a>
             </li>
+
+            <li>
+              <a href="<?=BASE_URL_ADMIN?>?act=don-hang">
+                <i class="fa fa-th"></i> <span>Đơn hàng</span> 
+              </a>
+            </li>
+
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-pie-chart"></i>
                 <span>Biểu Đồ</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <!-- <i class="fa fa-angle-left pull-right"></i> -->
               </a>
-              <ul class="treeview-menu">
+              <!-- <ul class="treeview-menu">
                 <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
                 <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
                 <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-              </ul>
+              </ul> -->
             </li>
+<<<<<<< HEAD
             <li class="treeview">
               <a href="?act=taikhoanuser">
+=======
+            <!-- <li class="treeview">
+              <a href="#">
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
                 <i class="fa fa-laptop"></i>
                 <span>Tai khoan user</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -77,9 +103,15 @@
                 <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
                 <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
                 <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+<<<<<<< HEAD
               </ul> -->
             </li>
             <li class="treeview">
+=======
+              </ul>
+            </li> -->
+            <!-- <li class="treeview">
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Forms</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -155,6 +187,6 @@
             <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
             <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
             <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
-          </ul>
+          </ul> -->
         </section>
         <!-- /.sidebar -->
