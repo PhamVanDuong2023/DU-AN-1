@@ -45,7 +45,7 @@ class AdminDonHangController
 
    public function editDonHang($id)
    {
-
+      // $id = $_GET['id'];
 
       $donHang1 = $this->modeldonhang->getDetailDonHang($id);
 

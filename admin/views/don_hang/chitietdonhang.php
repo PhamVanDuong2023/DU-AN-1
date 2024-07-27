@@ -7,13 +7,22 @@
     <div style="margin-left:750px;">
         <form action="" method="post">
             <select name="" id="">
-                <?php foreach ($listTrangThaiDonHang as $key => $trangThai): ?>
+                <?php foreach ($listTrangThaiDonHang as $trangThai): ?>
                     <option value="<?php echo $trangThai['id'] ?>" <?php
-                       if ($trangThai['id'] == $don_hang['trang_thai_id']) {
-
-                           echo "selected";
-                       }
-                       ?>><?php echo $trangThai['ten_trang_thai'] ?>
+                       if (
+                        $trangThai['id'] < $don_hang['trang_thai_id']
+                        || $don_hang['trang_thai_id'] == 9
+                        || $don_hang['trang_thai_id'] == 10
+                        || $don_hang['trang_thai_id'] == 11
+                    ) {
+                        echo "disabled";
+                    }
+                    if($trangThai['id']==$don_hang['trang_thai_id']){
+                        echo "selected";
+                    }
+                       ?>
+                       
+                       ><?php echo $trangThai['ten_trang_thai'] ?>
 
                     </option>
                 <?php endforeach; ?>
@@ -26,9 +35,9 @@
 <div class="pad margin no-print">
 
     <?php
-    if ($don_hang['trang_thai_id'] == 12 || $don_hang['trang_thai_id'] == 8 || $don_hang['trang_thai_id'] == 7 || $don_hang['trang_thai_id'] == 3) {
+    if ($don_hang['trang_thai_id'] == 7 || $don_hang['trang_thai_id'] == 8 || $don_hang['trang_thai_id'] == 9) {
         $style = "success";
-    }else if ($don_hang['trang_thai_id'] == 11 || $don_hang['trang_thai_id'] == 6 || $don_hang['trang_thai_id'] == 5 || $don_hang['trang_thai_id'] == 4 && $don_hang['trang_thai_id'] == 2) {
+    }else if ($don_hang['trang_thai_id'] >= 1 || $don_hang['trang_thai_id'] <= 6) {
         $style = "warning";
     }else {
         $style = "danger";
