@@ -28,11 +28,7 @@ class DashboardControllers
         require_once PATH_VIEW . 'lien_he/index.php';
         exit();
     }
-    function sanpham() {
-        $title = 'sản phẩm';
-        require_once PATH_VIEW . 'san_pham/index.php';
-        exit();
-    }
+
     function thanhtoan() {
         $title = 'sản phẩm';
         require_once PATH_VIEW . 'thanh_toan/index.php';

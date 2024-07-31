@@ -25,7 +25,7 @@ else{
  
 ?>
 <h3 class="box-title">Thêm danh mục</h3>
-<form role="form" method="post" action="<?=BASE_URL_ADMIN?>?act=danhmuc-insert">
+<form role="form" method="post" action="<?=BASE_URL_ADMIN?>?act=danhmuc-insert" enctype="multipart/form-data">
     <div class="box-body">
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
