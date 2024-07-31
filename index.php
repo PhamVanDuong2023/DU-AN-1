@@ -14,15 +14,20 @@ require_file(PATH_MODEL);
 // điều hướng
 $act= $_GET['act'] ?? '/';
 match($act){
-    '/' =>(new DashboardControllers())->home(),
+    '/'=>(new ClientSanPhamController())->danhsachsanpham(),
 
-    //điều hướng các trang
-    'chi-tiet-sp' => (new DashboardControllers())->chitietsanpham(),
+    //điều hướng các trang con
+    
     'gio-hang' => (new DashboardControllers())->giohang(),
     'info' => (new DashboardControllers())->info(),
     'lien-he' => (new DashboardControllers())->lienhe(),
-    'san-pham' => (new DashboardControllers())->sanpham(),
+    
     'thanh-toan' => (new DashboardControllers())->thanhtoan(),
+
+    //trang_san_pham
+    'san-pham' => (new ClientSanPhamController())->list8sp(),
+
+    'chi-tiet-sp' => (new ClientSanPhamController())->getOneSanPham(),
 };
 
 ?>
