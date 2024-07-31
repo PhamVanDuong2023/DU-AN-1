@@ -1,4 +1,5 @@
 <div class="row px-xl-5">
+
     <div class="col-lg-3 d-none d-lg-block">
         <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
             href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
@@ -15,6 +16,7 @@
                         <a href="" class="dropdown-item">Váy Nam</a>
                         <a href="" class="dropdown-item">Váy Nữ</a>
                         <a href="" class="dropdown-item">Váy Trẻ Em</a>
+
                     </div>
                 </div>
                 <a href="" class="nav-item nav-link">Áo Sơ Mi</a>
@@ -27,6 +29,7 @@
                 <a href="" class="nav-item nav-link">Áo Khoác</a>
                 <a href="" class="nav-item nav-link">Giày</a>
             </div>
+
         </nav>
     </div>
     <div class="col-lg-9">
@@ -49,6 +52,7 @@
                         <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                             <a href="<?= BASE_URL ?>?act=gio-hang" class="dropdown-item">Giỏ Hàng</a>
                             <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh Toán</a>
+
                         </div>
                     </div>
                     <a href="<?= BASE_URL ?>?act=lien-he" class="nav-item nav-link">Liên Hệ</a>

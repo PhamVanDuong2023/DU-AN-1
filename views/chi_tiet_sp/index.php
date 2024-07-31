@@ -1,3 +1,6 @@
+
+<a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -475,12 +478,15 @@
                                 <small>(99)</small>
                             </div>
                         </div>
+
                   
                 </div>
             </div>
         </div>
     </div> -->
         <!-- Products End -->
+
+                           
 
 
         <!-- Footer Start -->
@@ -598,3 +604,4 @@
 </body>
 
 </html>
+

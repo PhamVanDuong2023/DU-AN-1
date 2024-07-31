@@ -21,6 +21,7 @@ function connect_DB()
         debug("Connection failed: " . $e->getMessage());
         return null;
     }
+;
 }
 
 // lấy all
@@ -65,11 +66,23 @@ function connect_DB()
 
 
 
-
+ 
 function disconnect_DB()
 {
     $conn = null;
 }
+
+//them file
+// function uploadFile($file, $folederUpload){
+//     $pathStorage = $folederUpload . time() . $file['name'];
+
+//     $from = $file['tmp_name'];
+//     $to = PATH_ROOT . $pathStorage;
+
+//     if(move_uploaded_file($from,$pathStorage)){
+
+// }
+// }
 function deleteSession(){
     if(isset($_SESSION['flash'])){
         unset($_SESSION['loi']);

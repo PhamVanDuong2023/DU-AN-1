@@ -1,3 +1,4 @@
+
 <!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">SẢN PHẨM NỔI
@@ -5,6 +6,7 @@
     <div class="row px-xl-5">
         <?php
         foreach ($listSanPham as $key) { ?>
+
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
@@ -17,8 +19,10 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
+
                         <a class="h6 text-decoration-none text-truncate"
                             href="<?= BASE_URL . "?act=chi-tiet-sp&id=" . $key['id'] ?>"><?= $key['name_sp'] ?></a>
+
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <a href="<?= BASE_URL . "?act=chi-tiet-sp&id=" . $key['id'] ?>">
                                 <h5><?= $key['price_sp'] ?></h5>
@@ -37,12 +41,15 @@
                 </div>
             </div>
 
+
             <?php
         }
         ?>
+
     </div>
 </div>
 <!-- Products End -->
+
 
 
 <!-- Offer Start -->
@@ -65,6 +72,7 @@
                     <h6 class="text-white text-uppercase">Giảm 20%</h6>
                     <h3 class="text-white mb-3">Ưu Đãi Đặc Biệt</h3>
                     <a href="" class="btn btn-primary">Mua Ngay</a>
+
                 </div>
             </div>
         </div>
@@ -86,6 +94,7 @@
 
 
             ?>
+
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">

@@ -38,19 +38,29 @@
               </a> -->
               <li class="active"><a href="<?=BASE_URL_ADMIN?>"><i class="fa fa-circle-o"></i> Home </a></li>
             </li>
+<<<<<<< HEAD
+            <li class="treeview">
+              <a href="index.php?act=taikhoan">
+=======
             <!-- <li class="treeview">
               <a href="#">
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
                 <i class="fa fa-files-o"></i>
-                <span>Tùy Chọn Giao Diện</span>
-                <span class="label label-primary pull-right">4</span>
+                <span>Tài khoản</span>
+                <!-- <span class="label label-primary pull-right">4</span> -->
               </a>
-              <ul class="treeview-menu">
+              <!-- <ul class="treeview-menu">
                 <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
                 <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
                 <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
                 <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+<<<<<<< HEAD
+              </ul> -->
+            </li>
+=======
               </ul>
             </li> -->
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
             <li>
               <a href="<?=BASE_URL_ADMIN?>?act=danhmuc">
                 <i class="fa fa-th"></i> <span>Danh Mục Sản Phẩm</span> 
@@ -75,22 +85,33 @@
                 <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
               </ul> -->
             </li>
+<<<<<<< HEAD
+            <li class="treeview">
+              <a href="?act=taikhoanuser">
+=======
             <!-- <li class="treeview">
               <a href="#">
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
                 <i class="fa fa-laptop"></i>
-                <span>UI Elements</span>
+                <span>Tai khoan user</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
+              <!-- <ul class="treeview-menu">
                 <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
                 <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
                 <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
                 <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
                 <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
                 <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+<<<<<<< HEAD
+              </ul> -->
+            </li>
+            <li class="treeview">
+=======
               </ul>
             </li> -->
             <!-- <li class="treeview">
+>>>>>>> 2e74bae521a6b2060ffa7fc0ffc5304cfab79637
               <a href="#">
                 <i class="fa fa-edit"></i> <span>Forms</span>
                 <i class="fa fa-angle-left pull-right"></i>

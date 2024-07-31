@@ -1,4 +1,5 @@
 <div class="row bg-secondary py-1 px-xl-5">
+
     <div class="col-lg-6 d-none d-lg-block">
         <div class="d-inline-flex align-items-center h-100">
             <a class="text-body mr-3" href="">Giới Thiệu</a>
@@ -23,6 +24,7 @@
                     <button class="dropdown-item" type="button">EUR</button>
                     <button class="dropdown-item" type="button">GBP</button>
                     <button class="dropdown-item" type="button">CAD</button>
+
                 </div>
             </div>
             <div class="btn-group">
@@ -34,6 +36,7 @@
                 </div>
             </div>
         </div>
+
         <div class="d-inline-flex align-items-center d-block d-lg-none">
             <a href="" class="btn px-0 ml-2">
                 <i class="fas fa-heart text-dark"></i>
@@ -62,6 +65,7 @@
                         <i class="fa fa-search"></i>
                     </span>
                 </div>
+
             </div>
         </form>
     </div>

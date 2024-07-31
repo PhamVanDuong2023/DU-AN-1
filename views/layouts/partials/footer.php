@@ -1,3 +1,4 @@
+
 <!-- Footer Start -->
 
 <div class="row px-xl-5 pt-5">
@@ -21,6 +22,7 @@
                     <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=gio-hang"><i class="fa fa-angle-right mr-2"></i>Giỏ Hàng</a>
                     <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=thanh-toan"><i class="fa fa-angle-right mr-2"></i>Thanh Toán</a>
                     <a class="text-secondary" href="<?= BASE_URL ?>?act=lien-he"><i class="fa fa-angle-right mr-2"></i>Liên Hệ</a>
+
                 </div>
             </div>
             <div class="col-md-4 mb-5">
