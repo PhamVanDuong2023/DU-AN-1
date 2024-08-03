@@ -24,6 +24,18 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#button").click(function (e) { 
+                e.preventDefault();
+                var boxsp = ($this).parent();
+                var namesp = boxsp.children("p").text();
+                var pricesp = boxsp.children("p").children("span").text();
+                alert(namesp);
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -337,7 +349,7 @@
                         <h6 class="mb-3">Sản phẩm</h6>
                         <div class="d-flex justify-content-between">
                             <p>Tên sản phẩm 1</p>
-                            <p>$150</p>
+                            <p>$ <span>150</span></p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>Tên sản phẩm 2</p>
@@ -388,7 +400,7 @@
                                 <label class="custom-control-label" for="banktransfer">Chuyển khoản ngân hàng</label>
                             </div>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold py-3">Đặt hàng</button>
+                        <button class="btn btn-block btn-primary font-weight-bold py-3" id="button">Đặt hàng</button>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item position-relative active" style="height: 430px;">
-                    <img class="position-absolute w-100 h-100" src="../../img/carousel-1.jpg"
+                    <img class="position-absolute w-100 h-100" src="../../../uploads/banner3.jpg"
                         style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 700px;">
@@ -20,12 +20,12 @@
                             <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
                                 magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
                             <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                href="#">Mua Ngay</a>
+                                href="<?= BASE_URL . "?act=san-pham" ?>">Mua Ngay</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item position-relative" style="height: 430px;">
-                    <img class="position-absolute w-100 h-100" src="../../img/carousel-2.jpg"
+                    <img class="position-absolute w-100 h-100" src="../../../uploads/banner2.jpg"
                         style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 700px;">
@@ -34,12 +34,12 @@
                             <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
                                 magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
                             <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                href="#">Mua Ngay</a>
+                                href="<?= BASE_URL . "?act=san-pham" ?>">Mua Ngay</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item position-relative" style="height: 430px;">
-                    <img class="position-absolute w-100 h-100" src="../../img/carousel-3.jpg"
+                    <img class="position-absolute w-100 h-100" src="../../../uploads/banner4.webp"
                         style="object-fit: cover;">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 700px;">
@@ -48,7 +48,7 @@
                             <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem
                                 magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
                             <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                href="#">Mua Ngay</a>
+                                href="<?= BASE_URL . "?act=san-pham" ?>">Mua Ngay</a>
                         </div>
 
                     </div>
@@ -58,19 +58,19 @@
     </div>
     <div class="col-lg-4">
         <div class="product-offer mb-30" style="height: 200px;">
-            <img class="img-fluid" src="../../img/offer-1.jpg" alt="">
+            <img class="img-fluid" src="../../../uploads/offer4.jpg" alt="">
             <div class="offer-text">
                 <h6 class="text-white text-uppercase">Giảm 20%</h6>
                 <h3 class="text-white mb-3">Ưu Đãi Đặc Biệt</h3>
-                <a href="" class="btn btn-primary">Mua Ngay</a>
+                <a href="<?= BASE_URL . "?act=san-pham" ?>" class="btn btn-primary">Mua Ngay</a>
             </div>
         </div>
         <div class="product-offer mb-30" style="height: 200px;">
-            <img class="img-fluid" src="../../img/offer-2.jpg" alt="">
+            <img class="img-fluid" src="../../../uploads/offer3.jpg" alt="">
             <div class="offer-text">
                 <h6 class="text-white text-uppercase">Giảm 20%</h6>
                 <h3 class="text-white mb-3">Ưu Đãi Đặc Biệt</h3>
-                <a href="" class="btn btn-primary">Mua Ngay</a>
+                <a href="<?= BASE_URL . "?act=san-pham" ?>" class="btn btn-primary">Mua Ngay</a>
             </div>
         </div>
     </div>

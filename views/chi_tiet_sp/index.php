@@ -1,6 +1,3 @@
-
-<a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -334,14 +331,70 @@
                     <div class="nav nav-tabs mb-4">
                         <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Miêu tả</a>
                         <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Thông tin</a>
-                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Đánh giá (0)</a>
+
                     </div>
+
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
                             <h4 class="mb-3">Mô tả sản phẩm</h4>
                             <p>
                             <p class="mb-4"><?= $list1SanPham['mota_sp']; ?></p>
                             </p>
+                        </div>
+                        <h4>Bình luận</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <?php
+                                if (isset($binh_luan) && $binh_luan) {
+                                    foreach ($binh_luan as $key) { ?>
+                                        <div class="media mb-4">
+                                            <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
+                                                style="width: 45px;">
+                                            <div class="media-body">
+                                                <h6>tên<small> - <i><?= $key['ngay_bl'] ?></i></small></h6>
+                                                <div class="text-primary mb-2">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                                <p><?= $key['noi_dung'] ?></p>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Để lại đánh giá</h4>
+                                <small>Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được đánh
+                                    dấu *</small>
+                                <div class="d-flex my-3">
+                                    <p class="mb-0 mr-2">Đánh giá của bạn * :</p>
+                                    <div class="text-primary">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <form method="post"
+                                    action="<?= BASE_URL . "?act=add-binh-luan&id=" . $list1SanPham['id'] ?>">
+                                    <div class="form-group">
+                                        <label for="message">Đánh giá của bạn *</label>
+                                        <textarea id="message" name="comment" cols="30" rows="5"
+                                            class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <input type="submit" value="Gửi đánh giá của bạn" class="btn btn-primary px-3"
+                                            name="submit">
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
                             <h4 class="mb-3">Thông tin thêm</h4>
@@ -384,31 +437,38 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-3">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-6">
                                     <h4 class="mb-4">1 đánh giá "Tên sản phẩm"</h4>
-                                    <div class="media mb-4">
-                                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                            style="width: 45px;">
-                                        <div class="media-body">
-                                            <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                            <div class="text-primary mb-2">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                                <i class="far fa-star"></i>
+                                    <?php
+                                    if (isset($binh_luan) && $binh_luan) {
+                                        foreach ($binh_luan as $key) { ?>
+                                            <div class="media mb-4">
+                                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
+                                                    style="width: 45px;">
+                                                <div class="media-body">
+                                                    <h6>tên<small> - <i><?= $key['ngay_bl'] ?></i></small></h6>
+                                                    <div class="text-primary mb-2">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </div>
+                                                    <p><?= $key['noi_dung'] ?></p>
+                                                </div>
                                             </div>
-                                            <p>Nội dung đánh giá.</p>
-                                        </div>
-                                    </div>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                 </div>
                                 <div class="col-md-6">
-                                    <h4 class="mb-4">Leave a review</h4>
-                                    <small>Your email address will not be published. Required fields are marked
-                                        *</small>
+                                    <h4 class="mb-4">Để lại đánh giá</h4>
+                                    <small>Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được đánh
+                                        dấu *</small>
                                     <div class="d-flex my-3">
-                                        <p class="mb-0 mr-2">Your Rating * :</p>
+                                        <p class="mb-0 mr-2">Đánh giá của bạn * :</p>
                                         <div class="text-primary">
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
@@ -417,25 +477,21 @@
                                             <i class="far fa-star"></i>
                                         </div>
                                     </div>
-                                    <form>
+                                    <form method="post"
+                                        action="<?= BASE_URL . "?act=add-binh-luan&id=" . $list1SanPham['id'] ?>">
                                         <div class="form-group">
-                                            <label for="message">Your Review *</label>
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Your Name *</label>
-                                            <input type="text" class="form-control" id="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Your Email *</label>
-                                            <input type="email" class="form-control" id="email">
+                                            <label for="message">Đánh giá của bạn *</label>
+                                            <textarea id="message" name="comment" cols="30" rows="5"
+                                                class="form-control"></textarea>
                                         </div>
                                         <div class="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                                            <input type="submit" value="Gửi đánh giá của bạn"
+                                                class="btn btn-primary px-3" name="submit">
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -486,7 +542,7 @@
     </div> -->
         <!-- Products End -->
 
-                           
+
 
 
         <!-- Footer Start -->
@@ -604,4 +660,3 @@
 </body>
 
 </html>
-

@@ -30,10 +30,15 @@ class DashboardControllers
     }
 
     function thanhtoan() {
-        $title = 'sản phẩm';
+        $title = 'thanh toán';
         require_once PATH_VIEW . 'thanh_toan/index.php';
         exit();
     }
+    // function danhmuc() {
+    //     $title = 'danh mục';
+    //     require_once PATH_VIEW . 'home';
+    //     exit();
+    // }
 }
 
 ?>
