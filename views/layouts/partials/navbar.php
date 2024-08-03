@@ -9,7 +9,7 @@
         <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
             id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
             <div class="navbar-nav w-100">
-                <div class="nav-item dropdown dropright">
+                <!-- <div class="nav-item dropdown dropright">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Váy<i
                             class="fa fa-angle-right float-right mt-1"></i></a>
                     <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
@@ -18,16 +18,13 @@
                         <a href="" class="dropdown-item">Váy Trẻ Em</a>
 
                     </div>
-                </div>
-                <a href="" class="nav-item nav-link">Áo Sơ Mi</a>
-                <a href="" class="nav-item nav-link">Quần Jean</a>
-                <a href="" class="nav-item nav-link">Đồ Bơi</a>
-                <a href="" class="nav-item nav-link">Đồ Ngủ</a>
-                <a href="" class="nav-item nav-link">Đồ Thể Thao</a>
-                <a href="" class="nav-item nav-link">Jumpsuits</a>
-                <a href="" class="nav-item nav-link">Blazers</a>
-                <a href="" class="nav-item nav-link">Áo Khoác</a>
-                <a href="" class="nav-item nav-link">Giày</a>
+                </div> -->
+               <?php
+                    foreach($listDanhMuc as $key) { ?>
+                        <a href="" class="nav-item nav-link"><?= $key['name_danhmuc'] ?></a>
+                    <?php
+                    }
+                ?>
             </div>
 
         </nav>

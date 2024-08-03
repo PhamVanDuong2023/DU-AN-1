@@ -22,6 +22,20 @@ class ClientSanPhamModel
         echo 'Lỗi' . $e->getMessage();
      }
    }
+   public function get8DanhMuc() {
+      try {
+          $sql = "SELECT * FROM `danh_muc`";
+  
+          $stmt = $this->conn->prepare($sql);
+  
+          $stmt->execute();
+  
+          return $stmt->fetchAll();
+  
+       } catch (Exception $e) {
+          echo 'Lỗi' . $e->getMessage();
+       }
+     }
    public function get1SanPham($id) {
       try {
           $sql = "SELECT * FROM `san_pham` WHERE id=".$id;
@@ -36,5 +50,6 @@ class ClientSanPhamModel
           echo 'Lỗi' . $e->getMessage();
        }
      }
+     
 }
 ?>

@@ -24,6 +24,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
+    
 </head>
 
 <body>

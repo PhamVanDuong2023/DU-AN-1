@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,8 +23,11 @@
     <link href="../../assets/clients/lib/animate/animate.min.css" rel="stylesheet">
     <link href="../../assets/clients/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 
 <body>
@@ -173,11 +177,14 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3">
+
+                            <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3" id="boxcart">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+                                    style="padding-bottom: 2px;"></span>
                             </a>
+
+
                         </div>
                     </div>
                 </nav>
@@ -206,6 +213,7 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
+         
                 <table class="table table-light table-borderless table-hover text-center mb-0">
                     <thead class="thead-dark">
                         <tr>
@@ -216,10 +224,39 @@
                             <th>Xóa</th>
                         </tr>
                     </thead>
-                    <tbody class="align-middle">
+                    <tbody class="align-middle" id="giohang">
+                
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Tên sản
-                                phẩm</td>
+                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
+                                Product Name</td>
+                            <td class="align-middle">$ <span class="giasp">150</span></td>
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary border-0 text-center" value="1"
+                                        id="number">
+                                    <div class="input-group-btn">   
+                                        <button class="btn btn-sm btn-primary btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">$ <span class="tongtien">150</span></td>
+                            <td class="align-middle">
+                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
+                            </td>
+                        </tr>
+                       
+                        <!-- Các hàng sản phẩm khác tương tự -->
+                        <tr>
+                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
+                                Product Name</td>
                             <td class="align-middle">$150</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -239,12 +276,65 @@
                                 </div>
                             </td>
                             <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i
-                                        class="fa fa-times"></i></button></td>
+                            <td class="align-middle">
+                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
+                            </td>
                         </tr>
-                        <!-- Các hàng sản phẩm khác tương tự -->
+                        <tr>
+                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
+                                Product Name</td>
+                            <td class="align-middle">$150</td>
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary border-0 text-center"
+                                        value="1">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">$150</td>
+                            <td class="align-middle">
+                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
+                                Product Name</td>
+                            <td class="align-middle">$150</td>
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary border-0 text-center"
+                                        value="1">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">$150</td>
+                            <td class="align-middle">
+                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+               
             </div>
             <div class="col-lg-4">
                 <form class="mb-30" action="">
@@ -273,8 +363,8 @@
                             <h5>Tổng cộng</h5>
                             <h5>$160</h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tiến hành thanh
-                            toán</button>
+                        <!-- <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tiến hành thanh toán</button> -->
+                        <a href="<?= BASE_URL ?>?act=thanh-toan"><button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tiến hành thanh toán</button></a>
                     </div>
                 </div>
             </div>
@@ -378,9 +468,10 @@
     <!-- Footer End -->
 
 
-    <!-- Back to Top -->
+    <!-- Template Javascript -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="../../assets/clients/js/cart.js"></script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -392,8 +483,10 @@
     <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
     <script src="../../assets/clients/mail/contact.js"></script>
 
-    <!-- Template Javascript -->
+
     <script src="../../assets/clients/js/main.js"></script>
+
+
 </body>
 
 </html>
