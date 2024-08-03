@@ -2,7 +2,7 @@
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
                     <a class="text-body mr-3" href="">Giới thiệu</a>
-                    <a class="text-body mr-3" href="">Liên hệ</a>
+                    <a class="text-body mr-3" href="<?=BASE_URL_ADMIN?>?act=lien-he">Liên hệ</a>
                     <a class="text-body mr-3" href="">Giúp đỡ khách hàng </a>
                     <a class="text-body mr-3" href=""></a>
                 </div>
@@ -10,10 +10,10 @@
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" link="?act=taikhoanuser">Tài khoản của tôi</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" >Tài khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button">Đăng kí</button>
-                            <button class="dropdown-item" type="button">Đăng nhập</button>
+                            <a href="<?= BASE_URL_ADMIN?>? act=login "><button class="dropdown-item" type="button">Đăng nhập</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">

@@ -36,21 +36,17 @@
             <label for="age" class="form-label">Tuổi:</label>
             <input type="number" value="<?= isset($taikhoan1) ? htmlspecialchars($taikhoan1['age']) : '' ?>" class="form-control" id="age" placeholder="Enter age" name="age">
         </div>
+        <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" value="<?= isset($taikhoan1) ? htmlspecialchars($taikhoan1['email']) : '' ?>" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
         <img src="../../../img/<?= htmlspecialchars($taikhoan1['img'])?>" alt="" width="100px">
         <div class="form-group">
             <label for="img" class="form-label">Ảnh:</label>
             <input type="file" class="form-control" id="img" name="img" >
         </div>
 
-        <div class="form-group">
-            <label for="vaitro" class="form-label">Vai trò:</label>
-            <select name="vaitro" id="vaitro" class="form-control">
-                <!-- Load roles dynamically with foreach -->
-                <option value="1" <?= isset($taikhoan1) && $taikhoan1['id_vaitro'] == 1 ? 'selected' : '' ?>>Admin</option>
-                <!-- Add more options as needed -->
-            </select>
-        </div>
-    </div>
+        
 
     <button type="submit" class="btn btn-primary">Submit</button>
     <a href="<?= BASE_URL_ADMIN ?>/?act=taikhoan" class="btn btn-danger">Trở lại trang</a>
