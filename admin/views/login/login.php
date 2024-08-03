@@ -48,7 +48,7 @@
 
 
                         ?>
-                        <form method="post" action="<?= BASE_URL_ADMIN ?>?act=login">
+                        <form method="post" action="<?= BASE_URL_ADMIN ?>?act=login" >
                             <!-- <input type="hidden" name="act" value="login"> -->
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <!-- <div class="row">

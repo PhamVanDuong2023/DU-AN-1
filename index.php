@@ -15,22 +15,33 @@ require_file(PATH_MODEL);
 $act= $_GET['act'] ?? '/';
 match($act){
 
-    '/' =>(new DashboardControllers())->home(),
+    '/'=>(new ClientSanPhamController())->danhsachsanpham(),
 
-
-    //điều hướng các trang
-    'chi-tiet-sp' => (new DashboardControllers())->chitietsanpham(),
+    //điều hướng các trang con
     'gio-hang' => (new DashboardControllers())->giohang(),
     'info' => (new DashboardControllers())->info(),
     'lien-he' => (new DashboardControllers())->lienhe(),
-    'san-pham' => (new DashboardControllers())->sanpham(),
     'thanh-toan' => (new DashboardControllers())->thanhtoan(),
+
 
     
     //login
     'login' => (new DashboardControllers())->login(),
 
     'logout' => (new DashboardControllers())->logout(),
+
+
+    //trang_san_pham
+    'san-pham' => (new ClientSanPhamController())->list8sp(),
+    'chi-tiet-sp' => (new ClientSanPhamController())->getOneSanPham(),
+
+    //trang_danh_muc
+    'danh-muc' => (new ClientSanPhamController())->list8sp(),
+
+    //trang_binh_luan
+    'add-binh-luan' => (new ClientBinhLuanController())->themmoibinhluan(),
+    
+
 
 };
 

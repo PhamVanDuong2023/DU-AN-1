@@ -8,9 +8,11 @@ require_once '../commons/function.php';
 
 
 
+
 require_once("./controllers/AdminTaiKhoanController.php");
 
-require_once("./controllers/DashboardControllers.php");
+
+
 
 
 // requeri file trong controllers
