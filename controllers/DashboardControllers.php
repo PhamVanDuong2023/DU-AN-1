@@ -8,16 +8,7 @@ class DashboardControllers
         $view = 'home';
         require_once PATH_VIEW . 'layouts/master.php';
     }
-    function chitietsanpham() {
-        $title = 'detail';
-        require_once PATH_VIEW . 'chi_tiet_sp/index.php';
-        exit();
-    }
-    function giohang() {
-        $title = 'cart';
-        require_once PATH_VIEW . 'gio_hang/index.php';
-        exit();
-    }
+    
     function info() {
         $title = 'thông tin khách hàng';
         require_once PATH_VIEW . 'info/index.php';

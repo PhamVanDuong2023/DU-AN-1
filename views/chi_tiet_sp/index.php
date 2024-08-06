@@ -162,7 +162,7 @@
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="<?= BASE_URL ?>?act=gio-hang" class="dropdown-item">Giỏ hàng</a>
-                                    <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh toán</a>
+                                    <!-- <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh toán</a> -->
                                 </div>
                             </div>
                             <a href="<?= BASE_URL ?>?act=lien-he" class="nav-item nav-link">Liên hệ</a>
@@ -288,23 +288,27 @@
                             </div>
                         </form>
                     </div>
-                    <div class="d-flex align-items-center mb-4 pt-2">
-                        <div class="input-group quantity mr-3" style="width: 130px;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
-                                    <i class="fa fa-minus"></i>
+                    <?php
+                    foreach ($listAllSanPham as $key) { ?>
+                        <form action="<?= BASE_URL . "?act=add-gio-hang" ?>" method="post">
+
+                            <input type="hidden" name="id" id="" value="<?= $key['id'] ?>">
+                            <input type="hidden" name="name_sp" id="" value="<?= $key['name_sp'] ?>">
+                            <input type="hidden" name="price_sp" id=""
+                                value="<?= number_format($key['price_sp'], 0, '.', ',') ?>">
+                            <input type="hidden" name="img_sp" id="" value="<?= $key['img_sp'] ?>">
+
+                            <div class="btnGroup">
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                <button type="submit" class="btn btn-outline-dark btn-square" name="submitCart"
+                                    id="submitCart"><i class="fa fa-shopping-cart"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <a href="<?= BASE_URL ?>?act=gio-hang"><button class="btn btn-primary px-3"><i
-                                    class="fa fa-shopping-cart mr-1"></i>Giỏ Hàng</button></a>
-                    </div>
+                        </form>
+                        <?php
+                    }
+                    ?>
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>
                         <div class="d-inline-flex">

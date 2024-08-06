@@ -9,16 +9,6 @@
         <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
             id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
             <div class="navbar-nav w-100">
-                <!-- <div class="nav-item dropdown dropright">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Váy<i
-                            class="fa fa-angle-right float-right mt-1"></i></a>
-                    <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                        <a href="" class="dropdown-item">Váy Nam</a>
-                        <a href="" class="dropdown-item">Váy Nữ</a>
-                        <a href="" class="dropdown-item">Váy Trẻ Em</a>
-
-                    </div>
-                </div> -->
                <?php
                     foreach($listDanhMuc as $key) { ?>
                         <a href="" class="nav-item nav-link"><?= $key['name_danhmuc'] ?></a>
@@ -26,7 +16,6 @@
                     }
                 ?>
             </div>
-
         </nav>
     </div>
     <div class="col-lg-9">
@@ -48,23 +37,25 @@
                                 class="fa fa-angle-down mt-1"></i></a>
                         <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                             <a href="<?= BASE_URL ?>?act=gio-hang" class="dropdown-item">Giỏ Hàng</a>
-                            <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh Toán</a>
+                            <!-- <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh Toán</a> -->
 
                         </div>
                     </div>
                     <a href="<?= BASE_URL ?>?act=lien-he" class="nav-item nav-link">Liên Hệ</a>
                 </div>
                 <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                    <a href="" class="btn px-0">
-                        <i class="fas fa-heart text-primary"></i>
-                        <span class="badge text-secondary border border-secondary rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
-                    </a>
-                    <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3">
-                        <i class="fas fa-shopping-cart text-primary"></i>
-                        <span class="badge text-secondary border border-secondary rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
-                    </a>
+                            <a href="" class="btn px-0">
+                                <i class="fas fa-heart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle"
+                                    style="padding-bottom: 2px;">0</span>
+                            </a>
+
+                            <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3">
+                                <i class="fas fa-shopping-cart text-primary"></i>
+                                <span class="badge text-secondary border border-secondary rounded-circle"
+                                    style="padding-bottom: 2px;"><?=$soluong?></span>
+                            </a>
+                        </div>
                 </div>
             </div>
         </nav>

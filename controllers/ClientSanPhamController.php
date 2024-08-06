@@ -13,8 +13,20 @@ class ClientSanPhamController
     public function danhsachsanpham()
     {
 
+
+
+
+        if (count($_SESSION['cart']) > 0) {
+            $soluong = count($_SESSION['cart']);
+        } else {
+            $soluong = 0;
+        }
+
+
+
+
         $listSanPham = $this->SanPham->get8SanPham();
-        $listDanhMuc = $this->SanPham-> get8DanhMuc();
+        $listDanhMuc = $this->SanPham->get8DanhMuc();
 
         $title = "list sản phẩm";
 
@@ -22,10 +34,11 @@ class ClientSanPhamController
 
         require_once PATH_VIEW . 'layouts/master.php';
     }
-    public function getOneSanPham() {
-        
-        $id=$_GET['id'];
-        
+    public function getOneSanPham()
+    {
+
+        $id = $_GET['id'];
+
         $list1SanPham = $this->SanPham->get1SanPham($id);
         $binh_luan = $this->binhluan->getBinhLuanTheoSp($id);
 
@@ -38,12 +51,18 @@ class ClientSanPhamController
     }
     function list8sp()
     {
-        $listAllSanPham = $this->SanPham->get8SanPham(); 
+        if (count($_SESSION['cart']) > 0) {
+            $soluong = count($_SESSION['cart']);
+        } else {
+            $soluong = 0;
+        }
+        $listDanhMuc = $this->SanPham->get8DanhMuc();
+        $listAllSanPham = $this->SanPham->get8SanPham();
 
         $title = "list sản phẩm";
 
         require_once PATH_VIEW . 'san_pham/index.php';
-        
+
         exit();
     }
 }

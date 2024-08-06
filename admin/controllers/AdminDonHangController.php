@@ -73,17 +73,5 @@ class AdminDonHangController
 
       header('Location: ' . BASE_URL_ADMIN . "?act=don-hang");
    }
-
-   public function xoadonhang($id)
-   {
-
-      $this->modeldonhang->deleteDonHang($id);
-
-      $_SESSION['thong_bao'] = "thao tác thành công";
-
-      header('Location: ' . BASE_URL_ADMIN . "?act=don-hang");
-
-      exit();
-   }
 }
 ?>

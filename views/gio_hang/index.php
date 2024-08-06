@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +25,200 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+    <script>
+        function checkClick(){
 
+            var coCheckboxDuocChon = $(".chonsp:checked").length > 0;
+
+            if (coCheckboxDuocChon) {
+                // Chuyển đến trang thanh toán
+                window.location.href = "<?= BASE_URL ?>?act=thanh-toan";
+            } else {
+                event.preventDefault();
+                alert("Vui lòng chọn ít nhất một sản phẩm trước khi thanh toán.");
+            }
+        }
+
+
+        function capNhatTongTien(tr) {
+            var soluong = parseInt(tr.find("#number").val());
+            var giaspText = tr.find(".giasp").text().replace(/,/g, '').trim();
+            var giasp = parseFloat(giaspText);
+            
+            var tongtien = giasp * soluong;
+            var tongCart=
+            tr.find(".tongtien").text(tongtien.toLocaleString('en-US'));
+            }
+        function capNhatTongDonHang() {
+            var tongDonHang = 0;
+
+            
+            $("#tableCart tr").each(function() {
+                if ($(this).hasClass('title')) return;
+                var checkbox = $(this).find(".chonsp");
+                if (checkbox.is(":checked")) {
+                    var tongTienSP = $(this).find(".tongtien").text().replace(/,/g, '').trim();
+                    tongDonHang += parseFloat(tongTienSP);
+                }
+                
+                // var tongTienSP = $(this).find(".tongtien").text().replace(/,/g, '').trim();
+                
+                // tongDonHang += parseFloat(tongTienSP);
+            });
+            // alert(tongDonHang);
+            // Cập nhật tổng đơn hàng
+            $(".tongCart").text(tongDonHang.toLocaleString('en-US'));
+           tongCong()
+            
+        }
+        function tongCong(){
+            var tongCong=0;
+            var thanhToan = $("#thanhToan");
+
+            var tongCart = thanhToan.find(".tongCart").text().replace(/,/g, '').trim();
+
+            var tongCartFloat=parseFloat(tongCart);
+            var ship=30000;
+            if (tongCartFloat>0) {
+                tongCong=tongCartFloat+ship;
+            } else {
+                tongCong=0;
+            }
+            
+
+            
+
+            $("#tongCong").text(tongCong.toLocaleString('en-US'));
+
+        }
+
+        function tangsoluong(x) {
+            console.log('Hàm tangsoluong được gọi');
+
+            // Tìm phần tử cha của nút nhấn
+            var parent = $(x).closest("tr"); // Tìm hàng <tr> chứa nút nhấn
+
+            // Tìm phần tử input số lượng trong hàng hiện tại
+            var soluong_old = parent.find("#number");
+
+            // Lấy giá trị hiện tại của input
+            var soluong_value = parseInt(soluong_old.val());
+            console.log('Giá trị hiện tại của input:', soluong_value);
+
+            // Tăng giá trị lên 1
+            var soluong_new = soluong_value + 1;
+            if (soluong_new < 21) {
+                soluong_old.val(soluong_new);
+            } else {
+                alert("Bạn chỉ được mua tối đa 20 sản phẩm!!");
+            }
+
+            // Lấy ID sản phẩm từ phần tử ẩn
+            var productId = parent.find('input[type="hidden"]').data('product-id');
+            
+            $.ajax({
+                url: "<?= BASE_URL ?>?act=capnhat-giohang",
+                type: 'post',
+                data: { id: productId, quantity: soluong_new },
+                success: function(response) {
+                    console.log("Số lượng đã được cập nhật !!");
+                }
+            });
+
+            // Cập nhật tổng tiền
+            capNhatTongTien(parent);
+            chonsp();
+           
+        }
+
+        function giamsoluong(x) {
+            console.log('Hàm tangsoluong được gọi');
+
+            // Tìm phần tử cha của nút nhấn
+            var parent = $(x).closest("tr"); // Tìm hàng <tr> chứa nút nhấn
+
+            // Tìm phần tử input số lượng trong hàng hiện tại
+            var soluong_old = parent.find("#number");
+
+            // Lấy giá trị hiện tại của input
+            var soluong_value = parseInt(soluong_old.val());
+            console.log('Giá trị hiện tại của input:', soluong_value);
+
+            // Tăng giá trị lên 1
+            var soluong_new = soluong_value - 1;
+            if (soluong_new > 0) {
+                soluong_old.val(soluong_new);
+            } else {
+                alert("Bạn chỉ được mua tối đa 20 sản phẩm!!");
+            }
+
+            // Lấy ID sản phẩm từ phần tử ẩn
+            var productId = parent.find('input[type="hidden"]').data('product-id');
+            
+            $.ajax({
+                url: "<?= BASE_URL ?>?act=capnhat-giohang",
+                type: 'post',
+                data: { id: productId, quantity: soluong_new },
+                success: function(response) {
+                    console.log("Số lượng đã được cập nhật !!");
+                }
+            });
+
+            // Cập nhật tổng tiền
+            capNhatTongTien(parent);
+            chonsp();
+            // capNhatTongDonHang();
+            // tongCong();
+            
+        }
+        function kiemtrasoluong(x) {
+            var num = parseInt(x.value);
+
+            // Kiểm tra giá trị không phải là số hoặc rỗng
+            if (isNaN(num) || x.value.trim() === "") {
+                x.value = 1;
+                alert('Vui lòng nhập số lượng hợp lệ');
+                return;
+            }
+
+            if (num < 1) {
+                x.value = 1;
+                alert('Nhập ít nhất 1 sản phẩm');
+                return;
+            }
+
+            if (num > 20) {
+                x.value = 20;
+                alert('Nhập tối đa 20 sản phẩm');
+                return;
+            }
+            var id_product = x.nextElementSibling.nextElementSibling;
+            // alert(id_product.value);
+            var productId = id_product.dataset.productId;
+            $.ajax({
+                url : "<?=BASE_URL?>?act=capnhat-giohang",
+                type : 'post',
+                data : {id:productId , quantity:x.value},
+                success : function(response) {
+                    console.log("số lượng đã được cập nhật !!");
+                }
+            })
+            capNhatTongTien($(x).closest("tr"));
+            capNhatTongDonHang();
+        };
+
+        // $(document).ready(function() {
+        //     $(".chonsp").on("click", function() {
+        //         capNhatTongDonHang();
+        //     });
+        // });
+
+        function chonsp(){
+                capNhatTongDonHang();
+            }
+    </script>
+    
 </head>
 
 <body>
@@ -166,7 +357,7 @@
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="<?= BASE_URL ?>?act=gio-hang" class="dropdown-item">Giỏ hàng</a>
-                                    <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh toán</a>
+                                    <!-- <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh toán</a> -->
                                 </div>
                             </div>
                             <a href="<?= BASE_URL ?>?act=lien-he" class="nav-item nav-link">Liên hệ</a>
@@ -183,8 +374,6 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;"></span>
                             </a>
-
-
                         </div>
                     </div>
                 </nav>
@@ -210,13 +399,26 @@
 
 
     <!-- Cart Start -->
-    <div class="container-fluid">
+    <div class="container-fluid" id="cart">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
-         
-                <table class="table table-light table-borderless table-hover text-center mb-0">
+                <?php
+                if (isset($_SESSION['tb_xoa']) && $_SESSION['tb_xoa']) {
+                    ?>
+                    <div class="alert alert-success">
+                        <?= $_SESSION['tb_xoa'] ?>
+                    </div>
+                <?php }
+                unset($_SESSION['tb_xoa']);
+
+
+
+
+                ?>
+                <table class="table table-light table-borderless table-hover text-center mb-0" id="tableCart">
                     <thead class="thead-dark">
-                        <tr>
+                        <tr class="title">
+                            <th></th>
                             <th>Sản phẩm</th>
                             <th>Giá</th>
                             <th>Số lượng</th>
@@ -225,116 +427,64 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle" id="giohang">
-                
-                        <tr>
-                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
-                                Product Name</td>
-                            <td class="align-middle">$ <span class="giasp">150</span></td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text"
-                                        class="form-control form-control-sm bg-secondary border-0 text-center" value="1"
-                                        id="number">
-                                    <div class="input-group-btn">   
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$ <span class="tongtien">150</span></td>
-                            <td class="align-middle">
-                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
-                            </td>
-                        </tr>
-                       
+
+                        <?php
+                        if (count($_SESSION['cart']) > 0) {
+                            $tongTien=0;
+                            $ship=30000;
+                            foreach ($_SESSION['cart'] as $item) {
+                                
+                                $price = (float) str_replace(',', '', $item['price_sp']);
+                                $tongTien+=$price*$item['soluong_sp']
+
+                                    ?>
+                                <tr>
+                                    <td><input type="checkbox" id="optionProduct"  class="chonsp" onclick="chonsp()"></td>
+                                    <td class="align-middle"><img src="../../uploads/<?= $item['img_sp'] ?>" alt=""
+                                            style="width: 50px;">
+                                        <?= $item['name_sp'] ?></td>
+                                    <td class="align-middle"><span class="giasp"><?= number_format($price, 0, '.', ',') ?></span>đ
+                                    </td>
+                                    <td class="align-middle">
+                                        
+                                        <div style="width: 120px; " class="btn-group" >
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary" onclick="giamsoluong(this)">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" onchange="kiemtrasoluong(this)"
+                                                class="form-control form-control-sm mx-auto border-0 text-center"  value="<?= $item['soluong_sp'] ?>"
+                                                id="number">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary" onclick="tangsoluong(this)">
+                                                    <i class="fa fa-plus" ></i>
+                                                </button>
+                                            </div> 
+                                            <input type="hidden" data-product-id="<?= $item['id'] ?>" >
+                                            <input type="hidden" value="<?=$tongTien?>" class="tongCart">
+                                        </div>
+                                    </td>
+                                    <td class="align-middle"><span
+                                            class="tongtien"><?= number_format($price * $item['soluong_sp'], 0, '.', ',') ?></span>đ
+                                    </td>
+                                    <td class="align-middle">
+                                        <a href="<?= BASE_URL ?>?act=delete-product&id=<?= $item['id'] ?>"><img
+                                                src="../../uploads/delete.jpg" alt="img xoa" width="40px"></a>
+                                    </td>
+
+                                </tr>
+                                <?php
+                            }
+                        }else{
+                            $ship=0;
+                        }
+                        ?>
+
                         <!-- Các hàng sản phẩm khác tương tự -->
-                        <tr>
-                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
-                                Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text"
-                                        class="form-control form-control-sm bg-secondary border-0 text-center"
-                                        value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
-                                Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text"
-                                        class="form-control form-control-sm bg-secondary border-0 text-center"
-                                        value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="../../uploads/ao0.webp" alt="" style="width: 50px;">
-                                Product Name</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text"
-                                        class="form-control form-control-sm bg-secondary border-0 text-center"
-                                        value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <img src="../../uploads/delete.jpg" alt="img xoa" width="40px" class="remove">
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
-               
+
             </div>
             <div class="col-lg-4">
                 <form class="mb-30" action="">
@@ -347,24 +497,40 @@
                 </form>
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Tóm tắt
                         giỏ hàng</span></h5>
-                <div class="bg-light p-30 mb-5">
+                <div class="bg-light p-30 mb-5" id="thanhToan">
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Tổng phụ</h6>
-                            <h6>$150</h6>
+                            <h6 class="tongCart" style="margin-left:150px;">0<?php
+                                //  if(isset($tongTien)){
+                                //     echo number_format($tongTien, 0, '.', ',');
+                                // }else{
+                                //     echo 0;
+                                // }
+                            
+                            ?></h6><h6>đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Vận chuyển</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium" style="margin-left:150px;"><?= number_format($ship, 0, '.', ',') ?></h6><h6>đ</h6>
                         </div>
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Tổng cộng</h5>
-                            <h5>$160</h5>
+                            <h5 id="tongCong" style="margin-left:100px;">0<?php
+                            // if(isset($tongTien)){
+                            //     echo number_format($tongTien+$ship, 0, '.', ',');
+                            // }else{
+                            //     echo 0;
+                            // }
+                            
+                            ?></h5><h5>đ</h5>
                         </div>
                         <!-- <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tiến hành thanh toán</button> -->
-                        <a href="<?= BASE_URL ?>?act=thanh-toan"><button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tiến hành thanh toán</button></a>
+                        <a href="<?= BASE_URL ?>?act=thanh-toan"><button
+                                class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="thanhToanBtn" onclick="checkClick()">Tiến hành thanh
+                                toán</button></a>
                     </div>
                 </div>
             </div>
@@ -470,8 +636,10 @@
 
     <!-- Template Javascript -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <script src="../../assets/clients/js/cart.js"></script>
+    <!-- <script src="../../assets/clients/js/cart.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -485,6 +653,8 @@
 
 
     <script src="../../assets/clients/js/main.js"></script>
+    <!-- <script src="../../assets/clients/js/cart.js"></script> -->
+    <script src="../../assets/clients/js/cart_jquery.js"></script>
 
 
 </body>

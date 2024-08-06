@@ -1,17 +1,15 @@
 <?php
-
-
 class ClientBinhLuanController
 {
     public $BinhLuan;
     public $sanPham;
-    // public $test;
+   
 
     public function __construct()
     {
         $this->BinhLuan = new ClientBinhLuanModel();
         $this->sanPham= new ClientSanPhamModel();
-        // $this->test=new ClientSanPhamController();
+        
     }
     public function danhsachbinhluan()
     {
@@ -52,7 +50,7 @@ class ClientBinhLuanController
 
 
             
-            // $this->test->getOneSanPham();
+            
             header("location:" . BASE_URL . "?act=chi-tiet-sp&id=".$id_sp);
             exit();
 
