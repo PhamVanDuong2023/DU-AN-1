@@ -91,6 +91,13 @@ function deleteSession(){
         // session_destroy();
     }
 }
+// function deleteFile($file)
+// {
+// 	$pathDelete = PATH_ROOT . $file;
+// 	if(file_exists($pathDelete)){
+// 		unlink($pathDelete);
+// 	}
+// }
 
 
 

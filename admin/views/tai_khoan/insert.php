@@ -40,12 +40,16 @@ unset($_SESSION['loi']);
             <label for="password" class="form-label">Password:</label>
             <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
         </div>
+        <div class="form-group">
+            <label for="eamil" class="form-label">Email:</label>
+            <input type="eamil" class="form-control" id="eamil" placeholder="Enter email" name="email">
+        </div>
 
         <div class="form-group">
             <label for="vaitro" class="form-label">Vai trò:</label>
             <select name="vaitro" id="vaitro" class="form-control">
                 <!-- Example role options, replace or extend with dynamic data -->
-                <option value="1" <?php echo (isset($_POST['vaitro']) && $_POST['vaitro'] == '1') ? 'selected' : ''; ?>>Admin</option>
+                <option value="2" <?= isset($taikhoan1) && $taikhoan1['id_vai_tro'] == 2 ? 'selected' : '' ?>>Admin</option>
                 <!-- Add more roles here -->
             </select>
         </div>

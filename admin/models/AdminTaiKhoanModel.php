@@ -9,7 +9,7 @@ class AdminTaiKhoanModel
     public function getAlltaikhoan()
     {
         try {
-            $sql = "SELECT * FROM `tai_khoan` INNER JOIN `vai_tro` ON `tai_khoan`.`id_vaitro`=`vai_tro`.`id_vaitro`";
+            $sql = "SELECT * FROM `tai_khoan` INNER JOIN `vai_tro` ON `tai_khoan`.`id_vai_tro`=`vai_tro`.`id_vai_tro`";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchALl();
@@ -18,22 +18,25 @@ class AdminTaiKhoanModel
         }
     }
 
-    public function deleteTaiKhoan($id)
-    {
-        try {
-            $sql = "DELETE FROM tai_khoan WHERE `tai_khoan`.`id` = $id";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchALl();
-        } catch (Exception $e) {
-            echo 'lỗi' . $e->getMessage();
-        }
+public function deletetaikhoan($id)
+{
+    try {
+        $sql = "DELETE FROM tai_khoan WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        error_log('Database error: ' . $e->getMessage());
+        return false;
     }
-    public function insertTaiKhoan($name, $dia_chi, $age, $img, $username, $password, $id_vaitro)
+    return true;
+}
+
+    public function insertTaiKhoan($name, $dia_chi, $age, $img, $username, $password,$email, $id_vai_tro)
     {
         try {
 
-            $sql = "INSERT INTO `tai_khoan`( `name`, `dia_chi`, `age`, `img`, `username`, `password`, `id_vaitro`) VALUES ('$name','$dia_chi','$age','$img','$username','$password','$id_vaitro')";
+            $sql = "INSERT INTO `tai_khoan`( `name`, `dia_chi`, `age`, `img`, `username`, `password`,`email`, `id_vai_tro`) VALUES ('$name','$dia_chi','$age','$img','$username','$password','$email','$id_vai_tro')";
 
             $stmt = $this->conn->prepare($sql);
 
@@ -46,7 +49,7 @@ class AdminTaiKhoanModel
     public function showOneTaiKhoan($id)
     {
         try {
-            $sql = "SELECT `id`, `name`, `dia_chi`, `age`, `img`, `username`, `password`, `id_vaitro` 
+            $sql = "SELECT `id`, `name`, `dia_chi`, `age`, `img`, `username`, `password`,`email`, `id_vai_tro` 
                     FROM `tai_khoan` WHERE `id` = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -57,13 +60,44 @@ class AdminTaiKhoanModel
             return false;
         }
     }
+    public function showOneTaiKhoan1($id)
+    {
+        try {
+            $sql = "SELECT tai_khoan.*, vai_tro.name_vaitro
+            FROM tai_khoan 
+            INNER JOIN vai_tro ON tai_khoan.id_vai_tro = vai_tro.id_vai_tro 
+            WHERE tai_khoan.id = :id";
+    
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(); // Return user data as an associative array
+        } catch (PDOException $e) {
+            error_log('Database error: ' . $e->getMessage());
+            return false;
+        }
+    }
 
+    public function getBinhLuanByTaiKhoanId($id)
+    {
+        try {
+            $query = "SELECT * FROM binh_luan WHERE id_taikhoan = :id_taikhoan";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id_taikhoan', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log('Database error: ' . $e->getMessage());
+            return [];
+        }
+    }
+   
     // Method to update user account details
-    public function updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password, $id_vaitro)
+    public function updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password,$email, $id_vai_tro)
     {
         try {
             // Prepare the SQL statement with placeholders
-            $sql = "UPDATE `tai_khoan` SET `name`='$name',`dia_chi`='$dia_chi',`age`='$age',`img`='$img',`username`='$username',`password`='$password',`id_vaitro`='$id_vaitro'
+            $sql = "UPDATE `tai_khoan` SET `name`='$name',`dia_chi`='$dia_chi',`age`='$age',`img`='$img',`username`='$username',`password`='$password',`email`='$email',`id_vai_tro`='$id_vai_tro'
              WHERE id=".$id;
             $stmt = $this->conn->prepare($sql);
             // Execute the query
@@ -74,11 +108,15 @@ class AdminTaiKhoanModel
             return false;
         }
     }
-
     
+
+  
+
+
 
     public function __distruct()
     {
         $this->conn = disconnect_DB();
     }
-}
+
+    }

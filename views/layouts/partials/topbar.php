@@ -1,5 +1,6 @@
 <div class="row bg-secondary py-1 px-xl-5">
 
+
     <div class="col-lg-6 d-none d-lg-block">
         <div class="d-inline-flex align-items-center h-100">
             <a class="text-body mr-3" href="">Giới Thiệu</a>
@@ -24,6 +25,7 @@
                     <button class="dropdown-item" type="button">EUR</button>
                     <button class="dropdown-item" type="button">GBP</button>
                     <button class="dropdown-item" type="button">CAD</button>
+
 
                 </div>
             </div>
