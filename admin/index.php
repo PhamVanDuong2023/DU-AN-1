@@ -73,7 +73,7 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
      
      'donhang-chitet' => (new AdminDonHangController())->chitietdonhang(),
 
-     'delete-don-hang' => (new AdminDonHangController())->xoadonhang($_GET['id_don_hang']),
+   //   'delete-don-hang' => (new AdminDonHangController())->xoadonhang($_GET['id_don_hang']),
 
      //quản lý đơn hàng
      //tai khoan

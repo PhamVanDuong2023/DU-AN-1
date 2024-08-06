@@ -24,7 +24,29 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
-    
+    <style>
+        .btnGroup {
+            margin-left: 40px;
+            display: flex;
+        }
+
+        #submitCart {
+            display: none;
+
+            position: absolute;
+
+            bottom: 112px;
+
+            left: 20px;
+
+            padding-right: 2px;
+            margin-left: 43px;
+        }
+
+        .product-action:hover #submitCart {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -121,28 +143,16 @@
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
-                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-                    <div class="navbar-nav w-100">
-                        <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Váy đầm <i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                <a href="" class="dropdown-item">Váy đầm nam</a>
-                                <a href="" class="dropdown-item">Váy đầm nữ</a>
-                                <a href="" class="dropdown-item">Váy đầm em bé</a>
-                            </div>
-                        </div>
-                        <a href="" class="nav-item nav-link">Áo sơ mi</a>
-                        <a href="" class="nav-item nav-link">Quần jeans</a>
-                        <a href="" class="nav-item nav-link">Đồ bơi</a>
-                        <a href="" class="nav-item nav-link">Đồ ngủ</a>
-                        <a href="" class="nav-item nav-link">Đồ thể thao</a>
-                        <a href="" class="nav-item nav-link">Jumpsuit</a>
-                        <a href="" class="nav-item nav-link">Áo blazer</a>
-                        <a href="" class="nav-item nav-link">Áo khoác</a>
-                        <a href="" class="nav-item nav-link">Giày</a>
-                    </div>
-                </nav>
+            id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+            <div class="navbar-nav w-100">
+               <?php
+                    foreach($listDanhMuc as $key) { ?>
+                        <a href="" class="nav-item nav-link"><?= $key['name_danhmuc'] ?></a>
+                    <?php
+                    }
+                ?>
+            </div>
+        </nav>
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
@@ -163,7 +173,7 @@
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="<?= BASE_URL ?>?act=gio-hang" class="dropdown-item">Giỏ hàng</a>
-                                    <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh toán</a>
+                                    <!-- <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh toán</a> -->
                                 </div>
                             </div>
                             <a href="<?= BASE_URL ?>?act=lien-he" class="nav-item nav-link">Liên hệ</a>
@@ -174,10 +184,11 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3">
+
+                            <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3" >
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+                                    style="padding-bottom: 2px;"><?=$soluong?></span>
                             </a>
                         </div>
                     </div>
@@ -230,24 +241,24 @@
                         <div
                             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input" id="price-2">
-                            <label class="custom-control-label" for="price-2">$100 - $200</label>
+                            <label class="custom-control-label" for="price-2">100.000 - 200.000</label>
                             <span class="badge border font-weight-normal">295</span>
                         </div>
                         <div
                             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input" id="price-3">
-                            <label class="custom-control-label" for="price-3">$200 - $300</label>
+                            <label class="custom-control-label" for="price-3">200.000 - 300.000</label>
                             <span class="badge border font-weight-normal">246</span>
                         </div>
                         <div
                             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input" id="price-4">
-                            <label class="custom-control-label" for="price-4">$300 - $400</label>
+                            <label class="custom-control-label" for="price-4">300.000 - 400.000</label>
                             <span class="badge border font-weight-normal">145</span>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                             <input type="checkbox" class="custom-control-input" id="price-5">
-                            <label class="custom-control-label" for="price-5">$400 - $500</label>
+                            <label class="custom-control-label" for="price-5">400.000 - 500.000</label>
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
@@ -386,12 +397,25 @@
                                 <div class="product-img position-relative overflow-hidden">
                                     <img class="img-fluid w-100" src="../uploads/<?= $key['img_sp']; ?>" alt="">
                                     <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
-                                                class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+
+                                        <form action="<?= BASE_URL . "?act=add-gio-hang" ?>" method="post">
+
+                                            <input type="hidden" name="id" id="" value="<?= $key['id'] ?>">
+                                            <input type="hidden" name="name_sp" id="" value="<?= $key['name_sp'] ?>">
+                                            <input type="hidden" name="price_sp" id=""
+                                                value="<?= number_format($key['price_sp'], 0, '.', ',') ?>">
+                                            <input type="hidden" name="img_sp" id="" value="<?= $key['img_sp'] ?>">
+
+                                            <div class="btnGroup">
+                                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                                        class="fa fa-sync-alt"></i></a>
+                                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                                        class="fa fa-search"></i></a>
+                                                <button type="submit" class="btn btn-outline-dark btn-square"
+                                                    name="submitCart" id="submitCart"><i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="text-center py-4">
@@ -538,20 +562,24 @@
 
             <!-- Back to Top -->
             <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <!-- <script src="../../assets/clients/js/cart.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/clients/lib/easing/easing.min.js"></script>
+    <script src="../../assets/clients/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../../assets/clients/mail/contact.js"></script>
 
 
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-            <script src="../../assets/clients/lib/easing/easing.min.js"></script>
-            <script src="../../assets/clients/lib/owlcarousel/owl.carousel.min.js"></script>
-
-            <!-- Contact Javascript File -->
-            <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
-            <script src="../../assets/clients/mail/contact.js"></script>
-
-            <!-- Template Javascript -->
-            <script src="../../assets/clients/js/main.js"></script>
+    <script src="../../assets/clients/js/main.js"></script>
+    <script src="../../assets/clients/js/cart.js"></script>
+    <script src="../../assets/clients/js/cart_jquery.js"></script>
 </body>
 
 </html>
