@@ -9,7 +9,18 @@ if(!function_exists('require_file')){
         }
     }
 }
+if (!function_exists('uploadFlie')) {
+    function uploadFlie($file, $pathFolderUpload)
+    {
 
+        $imagePath = $pathFolderUpload . time() . basename($file['name']);
+
+        if (move_uploaded_file($file["tmp_name"], PATH_UPLOAD . $imagePath)) {
+            return $imagePath;
+        }
+        return null;
+    }
+}
 if(!function_exists('debug')){
     function debug($data){
         echo "<pre>";

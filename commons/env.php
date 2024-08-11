@@ -9,13 +9,13 @@ define('PATH_VIEW',__DIR__.'/../views/');
 define('PATH_CONTROLLER_ADMIN',__DIR__.'/../admin/controllers/');
 define('PATH_MODEL_ADMIN',__DIR__.'/../admin/models/');
 define('PATH_VIEW_ADMIN',__DIR__.'/../admin/views/');
-define('PATH_UPLOAD',__DIR__.'/../uploads');
+define('PATH_UPLOAD',__DIR__.'/../');
 
 
 // Dường đãn vào phần client
-define('BASE_URL','http://da1.test/');
+define('BASE_URL','http://Du-An-1.test/');
 // Đường dẫn vào phần admin
-define('BASE_URL_ADMIN','http://da1.test/admin/');
+define('BASE_URL_ADMIN','http://Du-An-1.test/admin/');
 
 
 define('DB_HOST','localhost');

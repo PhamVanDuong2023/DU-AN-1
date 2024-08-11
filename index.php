@@ -8,6 +8,7 @@ require_once './commons/model.php';
 
 
 require_once './controllers/DashboardControllers.php';
+require_once './controllers/AuthenControllers.php';
 require_file(PATH_CONTROLLER);
 require_file(PATH_MODEL);
 
@@ -23,6 +24,8 @@ match($act){
     'lien-he' => (new DashboardControllers())->lienhe(),
     'san-pham' => (new DashboardControllers())->sanpham(),
     'thanh-toan' => (new DashboardControllers())->thanhtoan(),
+    'login'=>(new AuthenControllers())->login(),
+
 };
 
 ?>
