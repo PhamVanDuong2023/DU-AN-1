@@ -48,7 +48,7 @@
 
 
                         ?>
-                        <form method="post" action="<?= BASE_URL_ADMIN ?>?act=login">
+                        <form method="post" action="">
                             <!-- <input type="hidden" name="act" value="login"> -->
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <!-- <div class="row">
@@ -67,13 +67,13 @@
                             </div> -->
 
                             <!-- Email input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
+                            <div data-mdb-input-init class=" mb-4">
                                 <input type="text" id="form3Example3" class="form-control" name="username" placeholder="Username" />
                                 
                             </div>
 
                             <!-- Password input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
+                            <div data-mdb-input-init class=" mb-4">
                                 <input type="password" id="form3Example4" class="form-control" name="password" placeholder="Password" />
                        
                             </div>

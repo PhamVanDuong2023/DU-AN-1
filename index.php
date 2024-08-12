@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Require trong commons
 require_once './commons/env.php';
 require_once './commons/helper.php';
@@ -13,6 +14,7 @@ require_file(PATH_CONTROLLER);
 require_file(PATH_MODEL);
 
 // điều hướng
+
 $act= $_GET['act'] ?? '/';
 match($act){
     '/' =>(new DashboardControllers())->home(),
@@ -25,6 +27,8 @@ match($act){
     'san-pham' => (new DashboardControllers())->sanpham(),
     'thanh-toan' => (new DashboardControllers())->thanhtoan(),
     'login'=>(new AuthenControllers())->login(),
+    'logout'=>(new AuthenControllers())->logout(),
+    'signup'=>(new AuthenControllers())->signup(),
 
 };
 
