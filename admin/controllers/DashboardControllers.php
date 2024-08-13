@@ -43,7 +43,7 @@ class DashboardControllers
             // exit();
 
             foreach ($getAllTaiKhoan as $key) {
-                if ($email == $key["email"] && $password == $key["password"] && $key['id_vai_tro'] == 2) {
+                if ($email == $key["email"] && $password == $key["password"] && $key['id_vai_tro'] == 2 ) {
                     $_SESSION['user'] = $key['username'];
                     $_SESSION['img'] = $key['img'];
                     $isLoginSuccessful = true;

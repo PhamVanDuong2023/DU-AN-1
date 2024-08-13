@@ -10,7 +10,7 @@ require_once './commons/function.php';
 require_once './commons/model.php';
 // requeri file trong ctrller và models
 
-// require_once("./controllers/AdminTaiKhoanUserController.php");
+
 require_once './controllers/DashboardControllers.php';
 require_file(PATH_CONTROLLER);
 require_file(PATH_MODEL);
@@ -25,6 +25,13 @@ match ($act) {
     'info' => (new DashboardControllers())->info(),
     'lien-he' => (new DashboardControllers())->lienhe(),
 
+    
+    //login
+    'login' => (new DashboardControllers())->login(),
+
+    'logout' => (new DashboardControllers())->logout(),
+
+
     //trang_san_pham
     'san-pham' => (new ClientSanPhamController())->list8sp(),
     'chi-tiet-sp' => (new ClientSanPhamController())->getOneSanPham(),
@@ -34,6 +41,7 @@ match ($act) {
 
     //trang_binh_luan
     'add-binh-luan' => (new ClientBinhLuanController())->themmoibinhluan(),
+
 
     // add-gio-hang
     'gio-hang' => (new ClientGioHangController())->viewGioHang(),
