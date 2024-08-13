@@ -1,5 +1,4 @@
 <?php
-
 class DashboardControllers
 {
     function home()
@@ -8,28 +7,17 @@ class DashboardControllers
         $view = 'home';
         require_once PATH_VIEW . 'layouts/master.php';
     }
-    
-    function info() {
+    function info()
+    {
         $title = 'thông tin khách hàng';
         require_once PATH_VIEW . 'info/index.php';
         exit();
     }
-    function lienhe() {
+    function lienhe()
+    {
         $title = 'liên hệ';
         require_once PATH_VIEW . 'lien_he/index.php';
         exit();
     }
-
-    function thanhtoan() {
-        $title = 'thanh toán';
-        require_once PATH_VIEW . 'thanh_toan/index.php';
-        exit();
-    }
-    // function danhmuc() {
-    //     $title = 'danh mục';
-    //     require_once PATH_VIEW . 'home';
-    //     exit();
-    // }
 }
-
 ?>

@@ -9,7 +9,10 @@ class AdminTaiKhoanModel
     public function getAlltaikhoan()
     {
         try {
-            $sql = "SELECT * FROM `tai_khoan` INNER JOIN `vai_tro` ON `tai_khoan`.`id_vaitro`=`vai_tro`.`id_vaitro`";
+            $sql = "SELECT tai_khoan.*, vai_tro.name AS name_vaitro, vai_tro.id 
+                    FROM tai_khoan 
+                    INNER JOIN vai_tro 
+                    ON tai_khoan.id_vai_tro = vai_tro.id";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchALl();
@@ -64,18 +67,18 @@ class AdminTaiKhoanModel
         try {
             // Prepare the SQL statement with placeholders
             $sql = "UPDATE `tai_khoan` SET `name`='$name',`dia_chi`='$dia_chi',`age`='$age',`img`='$img',`username`='$username',`password`='$password',`id_vaitro`='$id_vaitro'
-             WHERE id=".$id;
+             WHERE id=" . $id;
             $stmt = $this->conn->prepare($sql);
             // Execute the query
             $stmt->execute();
-            
+
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return false;
         }
     }
 
-    
+
 
     public function __distruct()
     {

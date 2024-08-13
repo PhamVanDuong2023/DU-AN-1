@@ -27,18 +27,7 @@
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
     <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
     <script>
-        function checkClick(){
-
-            var coCheckboxDuocChon = $(".chonsp:checked").length > 0;
-
-            if (coCheckboxDuocChon) {
-                // Chuyển đến trang thanh toán
-                window.location.href = "<?= BASE_URL ?>?act=thanh-toan";
-            } else {
-                event.preventDefault();
-                alert("Vui lòng chọn ít nhất một sản phẩm trước khi thanh toán.");
-            }
-        }
+        
 
 
         function capNhatTongTien(tr) {
@@ -130,7 +119,7 @@
             capNhatTongTien(parent);
             chonsp();
            
-        }
+    }
 
         function giamsoluong(x) {
             console.log('Hàm tangsoluong được gọi');
@@ -208,15 +197,36 @@
             capNhatTongDonHang();
         };
 
-        // $(document).ready(function() {
-        //     $(".chonsp").on("click", function() {
-        //         capNhatTongDonHang();
-        //     });
-        // });
-
         function chonsp(){
                 capNhatTongDonHang();
+            };
+        
+        function checkClick () { 
+            
+            var coCheckboxDuocChon = $(".chonsp:checked").length > 0;
+
+            if (coCheckboxDuocChon) {
+                var selectProduct = [];
+                $('.chonsp:checked').each(function() {
+                    
+                    
+                    selectProduct.push($(this).val());
+                });
+                
+                $.ajax({
+                url : "<?=BASE_URL?>?act=thanh-toan",
+                type : 'post',
+                data : {select_product: selectProduct},
+                success : function(response) {
+                    console.log("thành công rồi");
+                }
+            })
+            } else {
+                event.preventDefault();
+                alert("Vui lòng chọn ít nhất một sản phẩm trước khi thanh toán.");
             }
+            
+         };
     </script>
     
 </head>
@@ -403,6 +413,7 @@
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
                 <?php
+
                 if (isset($_SESSION['tb_xoa']) && $_SESSION['tb_xoa']) {
                     ?>
                     <div class="alert alert-success">
@@ -410,10 +421,6 @@
                     </div>
                 <?php }
                 unset($_SESSION['tb_xoa']);
-
-
-
-
                 ?>
                 <table class="table table-light table-borderless table-hover text-center mb-0" id="tableCart">
                     <thead class="thead-dark">
@@ -428,18 +435,20 @@
                     </thead>
                     <tbody class="align-middle" id="giohang">
 
+                        
                         <?php
                         if (count($_SESSION['cart']) > 0) {
                             $tongTien=0;
                             $ship=30000;
+
                             foreach ($_SESSION['cart'] as $item) {
                                 
                                 $price = (float) str_replace(',', '', $item['price_sp']);
-                                $tongTien+=$price*$item['soluong_sp']
-
+                                $tongTien+=$price*$item['soluong_sp'];
                                     ?>
                                 <tr>
-                                    <td><input type="checkbox" id="optionProduct"  class="chonsp" onclick="chonsp()"></td>
+                                    <td><input type="checkbox" id="optionProduct" name="select-product[]" class="chonsp" onclick="chonsp()" value="<?= $item['id'] ?>"></td>
+                                    
                                     <td class="align-middle"><img src="../../uploads/<?= $item['img_sp'] ?>" alt=""
                                             style="width: 50px;">
                                         <?= $item['name_sp'] ?></td>
@@ -472,7 +481,6 @@
                                         <a href="<?= BASE_URL ?>?act=delete-product&id=<?= $item['id'] ?>"><img
                                                 src="../../uploads/delete.jpg" alt="img xoa" width="40px"></a>
                                     </td>
-
                                 </tr>
                                 <?php
                             }
@@ -480,7 +488,7 @@
                             $ship=0;
                         }
                         ?>
-
+                        
                         <!-- Các hàng sản phẩm khác tương tự -->
                     </tbody>
                 </table>
@@ -507,7 +515,6 @@
                                 // }else{
                                 //     echo 0;
                                 // }
-                            
                             ?></h6><h6>đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -524,11 +531,11 @@
                             // }else{
                             //     echo 0;
                             // }
-                            
                             ?></h5><h5>đ</h5>
                         </div>
                         <!-- <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tiến hành thanh toán</button> -->
-                        <a href="<?= BASE_URL ?>?act=thanh-toan"><button
+                        <a href="<?= BASE_URL ?>?act=thanh-toan">
+                            <button type="button"
                                 class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="thanhToanBtn" onclick="checkClick()">Tiến hành thanh
                                 toán</button></a>
                     </div>
@@ -536,10 +543,7 @@
             </div>
         </div>
     </div>
-
     <!-- Cart End -->
-
-
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">

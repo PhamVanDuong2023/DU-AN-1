@@ -6,14 +6,7 @@ require_once '../commons/env.php';
 require_once '../commons/helper.php';
 require_once '../commons/function.php';
 
-
-
-
 require_once("./controllers/AdminTaiKhoanController.php");
-
-
-
-
 
 // requeri file trong controllers
 require_once ("./controllers/AdminDanhMucController.php");
@@ -72,18 +65,19 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
      
      'donhang-chitet' => (new AdminDonHangController())->chitietdonhang(),
 
-   //   'delete-don-hang' => (new AdminDonHangController())->xoadonhang($_GET['id_don_hang']),
-
-     //quản lý đơn hàng
      //tai khoan
      'taikhoan' => (new AdminTaiKhoanController())->danhsachtaikhoan(),
+
      'taikhoan-delete' => (new AdminTaiKhoanController())->xoataikhoan($_GET['id']),
+
      'taikhoan-add-form-insert' => (new AdminTaiKhoanController())->addforminsert(),
+
      'taikhoan-insert' => (new AdminTaiKhoanController())->themmoitaikhoan(),
  
      'taikhoan-edit' => (new AdminTaiKhoanController())->lay1TaiKhoan($_GET['id']),
  
      'taikhoan-update' => (new AdminTaiKhoanController())->capnhattaikhoan(),
+
 };
 
 ?>

@@ -16,7 +16,7 @@ if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
 <?php
 if (isset($_SESSION['loi'])&&$_SESSION['loi']) { 
 ?>
-<<div class="alert alert-danger"><?php
+<div class="alert alert-danger"><?php
  echo $_SESSION['loi'] 
 ?></div> 
 <?php
@@ -28,7 +28,7 @@ unset($_SESSION['loi']);
 
 <section class="content" >
     <div class="row">
-        <div class="col-xs-12">s
+        <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title" style="text-align: center; font-weight: 20000;">Tài khoản</h3>

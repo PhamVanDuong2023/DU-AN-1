@@ -3,7 +3,7 @@
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">SẢN PHẨM NỔI
             BẬT</span></h2>
     <div class="row px-xl-5">
-        
+
         <?php
         foreach ($listSanPham as $key) { ?>
 
@@ -29,7 +29,6 @@
                                 </div>
 
                             </form>
-                            <!-- <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a> -->
 
                         </div>
                     </div>
@@ -106,7 +105,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="../uploads/<?= $key['img_sp']; ?>" alt="" style="height:260px;">
+                        <img class="img-fluid w-100" src="../uploads/<?= $key['img_sp']; ?>" alt="" style="height:280px;">
                         <div class="product-action">
 
                             <form action="<?= BASE_URL . "?act=add-gio-hang" ?>" method="post">
@@ -125,7 +124,6 @@
                                 </div>
 
                             </form>
-                            <!-- <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a> -->
 
                         </div>
                     </div>

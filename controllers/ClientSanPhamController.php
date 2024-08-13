@@ -1,10 +1,8 @@
 <?php
-
 class ClientSanPhamController
 {
     public $SanPham;
     public $binhluan;
-
     public function __construct()
     {
         $this->SanPham = new ClientSanPhamModel();
@@ -12,18 +10,11 @@ class ClientSanPhamController
     }
     public function danhsachsanpham()
     {
-
-
-
-
         if (count($_SESSION['cart']) > 0) {
             $soluong = count($_SESSION['cart']);
         } else {
             $soluong = 0;
         }
-
-
-
 
         $listSanPham = $this->SanPham->get8SanPham();
         $listDanhMuc = $this->SanPham->get8DanhMuc();
@@ -36,14 +27,10 @@ class ClientSanPhamController
     }
     public function getOneSanPham()
     {
-
         $id = $_GET['id'];
 
         $list1SanPham = $this->SanPham->get1SanPham($id);
         $binh_luan = $this->binhluan->getBinhLuanTheoSp($id);
-
-        // print_r($binh_luan);
-        // exit();
 
         $title = "list sản phẩm chi tiết";
 
@@ -52,10 +39,13 @@ class ClientSanPhamController
     function list8sp()
     {
         if (count($_SESSION['cart']) > 0) {
+
             $soluong = count($_SESSION['cart']);
         } else {
+
             $soluong = 0;
         }
+
         $listDanhMuc = $this->SanPham->get8DanhMuc();
         $listAllSanPham = $this->SanPham->get8SanPham();
 

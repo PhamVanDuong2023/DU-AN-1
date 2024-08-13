@@ -22,11 +22,8 @@ match ($act) {
     '/' => (new ClientSanPhamController())->danhsachsanpham(),
 
     //điều hướng các trang con
-
     'info' => (new DashboardControllers())->info(),
     'lien-he' => (new DashboardControllers())->lienhe(),
-    'thanh-toan' => (new DashboardControllers())->thanhtoan(),
-
 
     //trang_san_pham
     'san-pham' => (new ClientSanPhamController())->list8sp(),
@@ -41,8 +38,14 @@ match ($act) {
     // add-gio-hang
     'gio-hang' => (new ClientGioHangController())->viewGioHang(),
     'add-gio-hang' => (new ClientGioHangController())->themmoigiohang(),
+    'add-gio-hang-sp' => (new ClientGioHangController())->themmoigiohangsp(),
     'delete-product' => (new ClientGioHangController())->xoagiohang(),
     'capnhat-giohang'=>(new ClientGioHangController())->capnhatsoluong(),
-};
 
+    //thanh_toan
+    'thanh-toan' => (new ClientThanhToanController())->thanhToan(),
+    'tien-hanh-thanh-toan'=> (new ClientThanhToanController())->tienHanhThanhToan(),
+
+    // 'online_checkout'=>(new ClientThanhToanController())->online_checkout(),
+};
 ?>
