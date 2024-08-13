@@ -9,6 +9,10 @@ class AdminTaiKhoanModel
     public function getAlltaikhoan()
     {
         try {
+            // $sql = "SELECT tai_khoan.*, vai_tro.name AS name_vaitro, vai_tro.id 
+            //         FROM tai_khoan 
+            //         INNER JOIN vai_tro 
+            //         ON tai_khoan.id_vai_tro = vai_tro.id";
             $sql = "SELECT * FROM `tai_khoan` INNER JOIN `vai_tro` ON `tai_khoan`.`id_vai_tro`=`vai_tro`.`id_vai_tro`";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
@@ -18,21 +22,21 @@ class AdminTaiKhoanModel
         }
     }
 
-public function deletetaikhoan($id)
-{
-    try {
-        $sql = "DELETE FROM tai_khoan WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    } catch (PDOException $e) {
-        error_log('Database error: ' . $e->getMessage());
-        return false;
+    public function deletetaikhoan($id)
+    {
+        try {
+            $sql = "DELETE FROM tai_khoan WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            error_log('Database error: ' . $e->getMessage());
+            return false;
+        }
+        return true;
     }
-    return true;
-}
 
-    public function insertTaiKhoan($name, $dia_chi, $age, $img, $username, $password,$email, $id_vai_tro)
+    public function insertTaiKhoan($name, $dia_chi, $age, $img, $username, $password, $email, $id_vai_tro)
     {
         try {
 
@@ -67,7 +71,7 @@ public function deletetaikhoan($id)
             FROM tai_khoan 
             INNER JOIN vai_tro ON tai_khoan.id_vai_tro = vai_tro.id_vai_tro 
             WHERE tai_khoan.id = :id";
-    
+
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -91,32 +95,22 @@ public function deletetaikhoan($id)
             return [];
         }
     }
-   
+
     // Method to update user account details
-    public function updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password,$email, $id_vai_tro)
+    public function updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password, $email, $id_vai_tro)
     {
         try {
             // Prepare the SQL statement with placeholders
             $sql = "UPDATE `tai_khoan` SET `name`='$name',`dia_chi`='$dia_chi',`age`='$age',`img`='$img',`username`='$username',`password`='$password',`email`='$email',`id_vai_tro`='$id_vai_tro'
-             WHERE id=".$id;
+             WHERE id=" . $id;
+
             $stmt = $this->conn->prepare($sql);
             // Execute the query
             $stmt->execute();
-            
+
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return false;
         }
     }
-    
-
-  
-
-
-
-    public function __distruct()
-    {
-        $this->conn = disconnect_DB();
-    }
-
-    }
+}

@@ -53,7 +53,7 @@ if (isset($_SESSION['loi']) && $_SESSION['loi']) { ?>
                 <td><?php echo $donHang['ten_nguoi_nhan'] ?></td>
                 <td><?php echo $donHang['sđt_nguoi_nhan'] ?></td>
                 <td><?php echo $donHang['ngay_dat'] ?></td>
-                <td><?php echo $donHang['tong_tien'] ?></td>
+                <td><?= number_format($donHang['tong_tien'], 0, '.', ',') ?></td>
                 <td><?php echo $donHang['ten_trang_thai'] ?></td>
                 <td>
                  

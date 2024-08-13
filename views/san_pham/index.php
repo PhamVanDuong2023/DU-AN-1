@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
+    <title>DPLShop - Online Shop Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -132,6 +132,23 @@
     </div>
     <!-- Topbar End -->
 
+    <?php
+
+if (isset($_SESSION['tb_gio_hang']) && $_SESSION['tb_gio_hang']) {
+    ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['tb_gio_hang'] ?>
+    </div>
+<?php }
+unset($_SESSION['tb_gio_hang']);
+if (isset($_SESSION['dat-hang']) && $_SESSION['dat-hang']) {
+    ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['dat-hang'] ?>
+    </div>
+<?php }
+unset($_SESSION['dat-hang']);
+?>
 
     <!-- Navbar Start -->
     <div class="container-fluid bg-dark mb-30">
@@ -235,7 +252,7 @@
                         <div
                             class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1">$0 - $100</label>
+                            <label class="custom-control-label" for="price-1">0đ - 100đ</label>
                             <span class="badge border font-weight-normal">150</span>
                         </div>
                         <div
@@ -398,7 +415,7 @@
                                     <img class="img-fluid w-100" src="../uploads/<?= $key['img_sp']; ?>" alt="">
                                     <div class="product-action">
 
-                                        <form action="<?= BASE_URL . "?act=add-gio-hang" ?>" method="post">
+                                        <form action="<?= BASE_URL . "?act=add-gio-hang-sp" ?>" method="post">
 
                                             <input type="hidden" name="id" id="" value="<?= $key['id'] ?>">
                                             <input type="hidden" name="name_sp" id="" value="<?= $key['name_sp'] ?>">
@@ -408,6 +425,7 @@
 
                                             <div class="btnGroup">
                                                 <a class="btn btn-outline-dark btn-square" href=""><i
+                                                
                                                         class="fa fa-sync-alt"></i></a>
                                                 <a class="btn btn-outline-dark btn-square" href=""><i
                                                         class="fa fa-search"></i></a>
@@ -424,9 +442,9 @@
                                     </a>
                                     <div class="d-flex align-items-center justify-content-center mt-2">
                                         <a href="<?= BASE_URL . "?act=chi-tiet-sp&id=" . $key['id'] ?>">
-                                            <h5><?= $key['price_sp'] ?></h5>
+                                            <h5><?= number_format($key['price_sp'], 0, '.', ',') ?></h5>
                                         </a>
-                                        <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                        <h6 class="text-muted ml-2"><del>123.000đ</del></h6>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center mb-1">
                                         <small class="fa fa-star text-primary mr-1"></small>
