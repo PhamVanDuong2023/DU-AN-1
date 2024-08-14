@@ -87,7 +87,7 @@ public function capnhatsanpham($id){
     $img = $img_sp;
     
     if (!empty($img) && $img['size'] > 0) {
-        $img_sp = uploadFlie($img, '../../uploads/');
+        $img_sp = uploadFlie($img, '../uploads/');
     }else{
       $img_sp = $sp['img_sp'];
     }

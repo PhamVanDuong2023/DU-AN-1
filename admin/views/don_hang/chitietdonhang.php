@@ -83,7 +83,7 @@
             <br />
             <address>
                 <b>Mã đơn hàng :</b> <?= $don_hang['ma_don_hang'] ?><br />
-                <b>Tổng tiền :</b> <?= $don_hang['tong_tien'] ?> đ<br />
+                <b>Tổng tiền :</b> <?= number_format($don_hang['tong_tien'], 0, '.', ',') ?> đ<br />
                 <b>Ghi chú :</b> <?= $don_hang['ghi_chu'] ?><br />
             </address>
         </div><!-- /.col -->
@@ -110,9 +110,9 @@
                     <tr>
                         <td><?= $key + 1 ?></td>
                         <td><?= $sanPham['name_sp'] ?></td>
-                        <td><?= $sanPham['price_sp'] ?></td>
+                        <td><?= number_format($sanPham['price_sp'], 0, '.', ',') ?></td>
                         <td><?= $sanPham['so_luong'] ?></td>
-                        <td><?= $sanPham['thanh_tien'] ?></td>
+                        <td><?= number_format($sanPham['thanh_tien'], 0, '.', ',') ?></td>
                     </tr>
                     <?php $tong_tien += $sanPham['thanh_tien']; ?>
                 <?php endforeach; ?>
@@ -129,7 +129,7 @@
                 <table class="table">
                     <tr>
                         <th style="width:50%">Thành tiền :</th>
-                        <td><?php echo $tong_tien ?> đ</td>
+                        <td><?= number_format($tong_tien, 0, '.', ',') ?> đ</td>
                     </tr>
                     <tr>
                         <th>Vận chuyển :</th>
@@ -137,7 +137,7 @@
                     </tr>
                     <tr>
                         <th>Tổng tiền :</th>
-                        <td><?= $tong_tien + 50000 ?> đ</td>
+                        <td><?= number_format($tong_tien + 50000, 0, '.', ',') ?> đ</td>
                     </tr>
                 </table>
             </div>

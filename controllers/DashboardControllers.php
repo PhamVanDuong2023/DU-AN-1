@@ -1,5 +1,4 @@
 <?php
-
 class DashboardControllers
 {
     function home()
@@ -9,29 +8,28 @@ class DashboardControllers
        
         require_once PATH_VIEW . 'layouts/master.php';
     }
-    
-    function info() {
+    function info()
+    {
         $title = 'thông tin khách hàng';
         require_once PATH_VIEW . 'info/index.php';
         exit();
     }
-    function lienhe() {
+    function lienhe()
+    {
         $title = 'liên hệ';
         require_once PATH_VIEW . 'lien_he/index.php';
         exit();
     }
 
-    function thanhtoan() {
+    function thanhtoan()
+    {
         $title = 'thanh toán';
         require_once PATH_VIEW . 'thanh_toan/index.php';
         exit();
     }
 
+    public $login;
 
-
-
-
-     public $login;
     public function __construct()
     {
         $this->login = new LoginModel();
@@ -66,20 +64,15 @@ class DashboardControllers
             $email = $_POST['email'];
             $password = $_POST['password'];
             $isLoginSuccessful = false;
-            // echo '<pre>';
-            // print_r($_POST);
-            // echo '</pre>';
-            // exit();
 
             foreach ($getAllTaiKhoan as $key) {
-                if ($email == $key["email"] && $password == $key["password"] && $key['id_vai_tro'] == 1 ) {
+                if ($email == $key["email"] && $password == $key["password"] && $key['id_vai_tro'] == 1) {
                     $_SESSION['user'] = $key['username'];
                     $_SESSION['img'] = $key['img'];
                     $isLoginSuccessful = true;
                     break;
                 }
             }
-
 
             if ($isLoginSuccessful) {
                 $this->dashboard();
@@ -99,20 +92,5 @@ class DashboardControllers
         require_once PATH_VIEW_ADMIN . 'login/login.php';
         exit();
     }
-
-
-    // function danhmuc() {
-    //     $title = 'danh mục';
-    //     require_once PATH_VIEW . 'home';
-    //     exit();
-    // }
-
 }
-
-
-
-
-
-
-
 ?>

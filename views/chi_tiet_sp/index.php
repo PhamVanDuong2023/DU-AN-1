@@ -44,8 +44,12 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                             khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Đăng nhập</button>
-                            <button class="dropdown-item" type="button">Đăng ký</button>
+                            <a href="<?= BASE_URL ?>?act=login"><button class="dropdown-item" type="button">Đăng
+                                    Nhập</button></a>
+                            <a href="<?= BASE_URL ?>?act=signup"><button class="dropdown-item" type="button">Đăng
+                                    Ký</button></a>
+                            <a href="<?= BASE_URL ?>clat=logout"><button class="dropdown-item" type="button">Đăng
+                                    Xuất</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">
@@ -309,8 +313,10 @@
                                     </button>
                                 </div>
                             </div>
-                            <a href="<?= BASE_URL ?>?act=gio-hang"><button class="btn btn-primary px-3" type="submit" name="submitCart"><i
-                            class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng</button></a>
+
+                            <a href="<?= BASE_URL ?>?act=gio-hang"><button class="btn btn-primary px-3" type="submit"
+                                    name="submitCart"><i class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng</button></a>
+
                         </div>
                     </form>
 
@@ -356,22 +362,22 @@
                                 <?php
                                 if (isset($binh_luan) && $binh_luan) {
                                     foreach ($binh_luan as $key) { ?>
-                                        <div class="media mb-4">
-                                            <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                                style="width: 45px;">
-                                            <div class="media-body">
-                                                <h6>tên<small> - <i><?= $key['ngay_bl'] ?></i></small></h6>
-                                                <div class="text-primary mb-2">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star-half-alt"></i>
-                                                    <i class="far fa-star"></i>
-                                                </div>
-                                                <p><?= $key['noi_dung'] ?></p>
-                                            </div>
+                                <div class="media mb-4">
+                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
+                                        style="width: 45px;">
+                                    <div class="media-body">
+                                        <h6>tên<small> - <i><?= $key['ngay_bl'] ?></i></small></h6>
+                                        <div class="text-primary mb-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
                                         </div>
-                                        <?php
+                                        <p><?= $key['noi_dung'] ?></p>
+                                    </div>
+                                </div>
+                                <?php
                                     }
                                 }
                                 ?>

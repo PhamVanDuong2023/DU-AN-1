@@ -6,19 +6,16 @@ require_once '../commons/env.php';
 require_once '../commons/helper.php';
 require_once '../commons/function.php';
 
-
-
-
 require_once("./controllers/AdminTaiKhoanController.php");
-
-
-
-
 
 // requeri file trong controllers
 require_once ("./controllers/AdminDanhMucController.php");
 
 require_once ("./controllers/AdminDonHangController.php");
+
+
+// require_once ("./controllers/AdminSanPhamController.php");
+
 
 // require_once ("./controllers/AdminSanPhamController.php");
 
@@ -29,7 +26,14 @@ require_file(PATH_MODEL_ADMIN);
 
 // requeri file trong models
 require_once("./models/AdminTaiKhoanModel.php");
+
 require_once("./models/AdminSanPhamModel.php");
+
+// require_once("./models/AdminSanPhamModel.php");
+
+
+// requeri file trong models
+
 require_once ("./models/AdminDanhMucModel.php");
 require_once ("./models/AdminDonhangModel.php");
 require_once ("./models/AdminSanPhamModel.php");
@@ -73,6 +77,7 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
      
      'donhang-chitet' => (new AdminDonHangController())->chitietdonhang(),
 
+
      'delete-don-hang' => (new AdminDonHangController())->xoadonhang($_GET['id_don_hang']),
 
      //sản phẩm
@@ -84,18 +89,24 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
      
      'sanpham-edit' => (new AdminSanPhamController())-> capnhatsanpham($_GET['id']),
 
+
      //tai khoan
      'taikhoan' => (new AdminTaiKhoanController())->danhsachtaikhoan(),
+
      'taikhoan-delete' => (new AdminTaiKhoanController())->xoataikhoan($_GET['id']),
+
      'taikhoan-add-form-insert' => (new AdminTaiKhoanController())->addforminsert(),
+
      'taikhoan-insert' => (new AdminTaiKhoanController())->themmoitaikhoan(),
      'chi-tiet-tai-khoan' => (new AdminTaiKhoanController())->deltaiLkhachhang($_GET['id']),
      'taikhoan-edit' => (new AdminTaiKhoanController())->lay1TaiKhoan($_GET['id']),
      'taikhoan-update' => (new AdminTaiKhoanController())->capnhattaikhoan(),
 
+
      // bình luận
      'binhluan' => (new AdminBinhLuanController())->danhsachbinhluan(),
      'binhluan-delete' => (new AdminBinhLuanController())->xoabinhluan($_GET['id']),
+
 
      //sản phẩm
      'sanpham' => (new AdminSanPhamController())->danhsachsanpham(),
@@ -105,6 +116,7 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
      'chi-tiet-san-pham' => (new  AdminSanPhamController())->chiTietSanPham($_GET['id']),
      'sanpham-edit' => (new  AdminSanPhamController())->lay1sanpham($_GET['id']),
      'sanpham-update' => (new  AdminSanPhamController())->capnhatsanpham(),
+
 };
 ?>
 

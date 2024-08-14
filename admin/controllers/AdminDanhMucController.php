@@ -13,12 +13,12 @@ class AdminDanhMucController
   {
 
     $listDanhMuc = $this->DanhMuc->getAlldanhmuc();
-    
+
 
     $title = "list danh sách";
 
     $view = "danh_muc/index";
-    
+
 
     require_once PATH_VIEW_ADMIN . 'layouts/master.php';
   }
@@ -26,16 +26,23 @@ class AdminDanhMucController
 
   public function xoadanhmuc($id)
   {
+    $flag = false;
 
-    $this->DanhMuc->deleteDanhmuc($id);
 
-    $listDanhMuc = $this->DanhMuc->getAlldanhmuc();
 
-    $title = "delete danh mục";
+    if ($this->DanhMuc->deleteDanhmuc($id)) {
+      $flag = true;
+      $listDanhMuc = $this->DanhMuc->getAlldanhmuc();
 
-    $view = "danh_muc/index";
+      $title = "delete danh mục";
 
-    $_SESSION['thong_bao'] = "thao tác thành công";
+      $view = "danh_muc/index";
+
+      $_SESSION['thong_bao'] = "thao tác thành công";
+    }else{
+      $_SESSION['loi'] = "Danh mục này có sản phẩm !!!";
+    }
+
 
     header('Location: ' . BASE_URL_ADMIN . "?act=danhmuc");
     exit();

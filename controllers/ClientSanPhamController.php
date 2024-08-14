@@ -1,10 +1,8 @@
 <?php
-
 class ClientSanPhamController
 {
     public $SanPham;
     public $binhluan;
-
     public function __construct()
     {
         $this->SanPham = new ClientSanPhamModel();
@@ -12,18 +10,11 @@ class ClientSanPhamController
     }
     public function danhsachsanpham()
     {
-
-
-
-
         if (count($_SESSION['cart']) > 0) {
             $soluong = count($_SESSION['cart']);
         } else {
             $soluong = 0;
         }
-
-
-
 
         $listSanPham = $this->SanPham->get8SanPham();
         $listDanhMuc = $this->SanPham->get8DanhMuc();
@@ -48,10 +39,13 @@ class ClientSanPhamController
     function list8sp()
     {
         if (count($_SESSION['cart']) > 0) {
+
             $soluong = count($_SESSION['cart']);
         } else {
+
             $soluong = 0;
         }
+
         $listDanhMuc = $this->SanPham->get8DanhMuc();
         $listAllSanPham = $this->SanPham->get8SanPham();
 

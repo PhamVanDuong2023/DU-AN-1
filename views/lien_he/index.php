@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>MultiShop - Online Shop Website Template</title>
+    <title>DPLShop - Online Shop Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -44,8 +44,12 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                             khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Đăng nhập</button>
-                            <button class="dropdown-item" type="button">Đăng ký</button>
+                            <a href="<?= BASE_URL ?>?act=login"><button class="dropdown-item" type="button">Đăng
+                                    Nhập</button></a>
+                            <a href="<?= BASE_URL ?>?act=signup"><button class="dropdown-item" type="button">Đăng
+                                    Ký</button></a>
+                            <a href="<?= BASE_URL ?>?act=logout"><button class="dropdown-item" type="button">Đăng
+                                    Xuất</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">

@@ -25,17 +25,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#button").click(function (e) { 
-                e.preventDefault();
-                var boxsp = ($this).parent();
-                var namesp = boxsp.children("p").text();
-                var pricesp = boxsp.children("p").children("span").text();
-                alert(namesp);
-            });
-        });
-    </script>
+
 </head>
 
 <body>
@@ -56,8 +46,12 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                             khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Đăng nhập</button>
-                            <button class="dropdown-item" type="button">Đăng ký</button>
+                            <a href="<?= BASE_URL ?>?act=login"><button class="dropdown-item" type="button">Đăng
+                                    Nhập</button></a>
+                            <a href="<?= BASE_URL ?>?act=signup"><button class="dropdown-item" type="button">Đăng
+                                    Ký</button></a>
+                            <a href="<?= BASE_URL ?>?act=logout"><button class="dropdown-item" type="button">Đăng
+                                    Xuất</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">
@@ -223,122 +217,55 @@
                 <h5 class="section-title position-relative text-uppercase mb-3">
                     <span class="bg-secondary pr-3">Địa chỉ thanh toán</span>
                 </h5>
-                <div class="bg-light p-30 mb-5">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>Tên</label>
-                            <input class="form-control" type="text" placeholder="Firts Name">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Họ</label>
-                            <input class="form-control" type="text" placeholder="Last Name">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Email</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Số điện thoại di động</label>
-                            <input class="form-control" type="text" placeholder="Phone">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Địa chỉ 1</label>
-                            <input class="form-control" type="text" placeholder="Address 1">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Địa chỉ 2</label>
-                            <input class="form-control" type="text" placeholder="Address 2">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Quốc gia</label>
-                            <select class="custom-select">
-                                <option selected>Việt Nam</option>
-                                <option>Afghanistan</option>
-                                <option>Albania</option>
-                                <option>Algeria</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Thành phố</label>
-                            <input class="form-control" type="text" placeholder="City">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Quận/Huyện</label>
-                            <input class="form-control" type="text" placeholder="Quận/Huyện">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Mã bưu chính</label>
-                            <input class="form-control" type="text" placeholder="12345">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="newaccount">
-                                <label class="custom-control-label" for="newaccount">Tạo tài khoản</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="shipto">
-                                <label class="custom-control-label" for="shipto" data-toggle="collapse"
-                                    data-target="#shipping-address">Giao đến địa chỉ khác</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse mb-5" id="shipping-address">
-                    <h5 class="section-title position-relative text-uppercase mb-3">
-                        <span class="bg-secondary pr-3">Địa chỉ giao hàng</span>
-                    </h5>
-                    <div class="bg-light p-30">
+                <form action="<?= BASE_URL ?>?act=tien-hanh-thanh-toan" method="post" id="myForm">
+                    <div class="bg-light p-30 mb-5">
                         <div class="row">
+                            <input name="id_tk" class="form-control" type="hidden" placeholder="id"
+                                value="<?= $list1TK['id'] ?>">
                             <div class="col-md-6 form-group">
                                 <label>Tên</label>
-                                <input class="form-control" type="text" placeholder="Firts Name">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Họ</label>
-                                <input class="form-control" type="text" placeholder="Last Name">
+                                <input name="name" class="form-control" type="text" placeholder="Firts Name"
+                                    value="<?= $list1TK['name'] ?>">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Email</label>
-                                <input class="form-control" type="text" placeholder="example@email.com">
+                                <input name="email" class="form-control" type="text" placeholder="example@email.com"
+                                    value="<?= $list1TK['email'] ?>">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Số điện thoại di động</label>
-                                <input class="form-control" type="text" placeholder="Phone">
+                                <label>SĐT</label>
+                                <input name="sdt" class="form-control" type="number" placeholder="sdt">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Địa chỉ 1</label>
-                                <input class="form-control" type="text" placeholder="Address 1">
+                                <label>Địa chỉ</label>
+                                <input name="diachi" class="form-control" type="text" placeholder="Address"
+                                    value="<?= $list1TK['dia_chi'] ?>">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Địa chỉ 2</label>
-                                <input class="form-control" type="text" placeholder="Address 2">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Quốc gia</label>
-                                <select class="custom-select">
-                                    <option selected>Việt Nam</option>
-                                    <option>Afghanistan</option>
-                                    <option>Albania</option>
-                                    <option>Algeria</option>
+                                <label>Tỉnh/Thành Phố</label>
+                                <select name="tinh" class="custom-select" id="thaibinh">
+                                    <!-- Các tùy chọn sẽ được tải ở đây -->
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Thành phố</label>
-                                <input class="form-control" type="text" placeholder="City">
-                            </div>
-                            <div class="col-md-6 form-group">
                                 <label>Quận/Huyện</label>
-                                <input class="form-control" type="text" placeholder="Huyện">
+                                <select name="huyen" class="custom-select" id="thaithuy">
+                                    <!-- Các tùy chọn sẽ được tải ở đây -->
+                                </select>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Mã bưu chính</label>
-                                <input class="form-control" type="text" placeholder="12345">
+                                <label>Ghi chú</label>
+                                <input name="ghi_chu" class="form-control" type="text " placeholder="ghi chú">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Xã/Phường</label>
+                                <select name="xa" class="custom-select" id="hongdung">
+                                    <!-- Các tùy chọn sẽ được tải ở đây -->
+                                </select>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="col-lg-4">
                 <h5 class="section-title position-relative text-uppercase mb-3">
@@ -347,33 +274,36 @@
                 <div class="bg-light p-30 mb-5">
                     <div class="border-bottom">
                         <h6 class="mb-3">Sản phẩm</h6>
+                        <?php
+                        $tongPhu = 0;
+                        $shipPhu = 30000;
+                        foreach ($selected_products as $key) {
+                            $tongPhu += floatval(str_replace(',', '', $key['price_sp'])) * $key['soluong_sp'];
+                            $tongPrice = $tongPhu + $shipPhu;
+                            ?>
                         <div class="d-flex justify-content-between">
-                            <p>Tên sản phẩm 1</p>
-                            <p>$ <span>150</span></p>
+                            <p><?= $key['name_sp'] ?></p>
+                            <p><span><?= number_format(((floatval(str_replace(',', '', $key['price_sp']))) * $key['soluong_sp']), 0, '.', ',') ?>đ</span>
+                            </p>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Tên sản phẩm 2</p>
-                            <p>$150</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Tên sản phẩm 3</p>
-                            <p>$150</p>
-                        </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <div class="border-bottom pt-3 pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Tổng phụ</h6>
-                            <h6>$150</h6>
+                            <h6><?= number_format($tongPhu, 0, '.', ',') ?>đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Phí vận chuyển</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">30000đ</h6>
                         </div>
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Tổng cộng</h5>
-                            <h5>$160</h5>
+                            <h5><?= number_format($tongPrice, 0, '.', ',') ?>đ</h5>
                         </div>
                     </div>
                 </div>
@@ -382,31 +312,24 @@
                         <span class="bg-secondary pr-3">Thanh toán</span>
                     </h5>
                     <div class="bg-light p-30">
+                        <?php foreach ($listPhuongThuc as $key) { ?>
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
+                                <input type="radio" class="custom-control-input" name="payment"
+                                    id="payment_<?= $key['id'] ?>" value="<?= $key['id'] ?>">
+                                <label class="custom-control-label"
+                                    for="payment_<?= $key['id'] ?>"><?= $key['ten_phuong_thuc'] ?></label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Thanh toán trực tiếp</label>
-                            </div>
-                        </div>
-                        <div class="form-group mb-4">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Chuyển khoản ngân hàng</label>
-                            </div>
-                        </div>
-                        <button class="btn btn-block btn-primary font-weight-bold py-3" id="button">Đặt hàng</button>
+                        <?php } ?>
                     </div>
+                    <button class="btn btn-block btn-primary font-weight-bold py-3" id="button">Đặt
+                        hàng</button>
                 </div>
             </div>
         </div>
     </div>
-
+    </div>
     <!-- Checkout End -->
 
 
@@ -506,7 +429,7 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -520,6 +443,8 @@
 
     <!-- Template Javascript -->
     <script src="../../assets/clients/js/main.js"></script>
+    <script src="../../assets/clients/js/Callapiaddress.js"></script>
+    <script src="../../assets/clients/js/bill.js"></script>
 </body>
 
 </html>
