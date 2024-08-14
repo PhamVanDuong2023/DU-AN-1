@@ -77,7 +77,7 @@ if (isset($_SESSION['loi']) && !empty($_SESSION['loi'])) { ?>
                                     <td>
                                         <img src="<?php echo htmlspecialchars($tkhoan['img'], ENT_QUOTES, 'UTF-8'); ?>" 
                                              alt="Ảnh đại diện" 
-                                             style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                                             style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;">
                                     </td>
                                     <td><?php echo $tkhoan['username'] ?></td>
                                     <td><?php echo str_repeat('*', strlen($tkhoan['password'])) ?></td>

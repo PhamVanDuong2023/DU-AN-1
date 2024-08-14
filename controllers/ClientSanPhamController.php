@@ -29,6 +29,7 @@ class ClientSanPhamController
     {
         $id = $_GET['id'];
 
+        $soluong=$this->SanPham->getSoLuong($id);
         $list1SanPham = $this->SanPham->get1SanPham($id);
         $binh_luan = $this->binhluan->getBinhLuanTheoSp($id);
 

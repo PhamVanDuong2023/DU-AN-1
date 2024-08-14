@@ -70,11 +70,5 @@ class DashboardControllers
         require_once PATH_VIEW_ADMIN . 'login/login.php';
         exit();
     }
-
-
-
-
-
 }
-
 ?>
