@@ -16,6 +16,9 @@ class ClientDonHangModel
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute();
+            $id_don_hang=$this->conn->lastInsertId();
+
+            return $id_don_hang;
 
         } catch (Exception $e) {
             echo 'Lỗi' . $e->getMessage();
@@ -36,5 +39,6 @@ class ClientDonHangModel
             echo 'Lỗi' . $e->getMessage();
         }
     }
+    
 }
 ?>
