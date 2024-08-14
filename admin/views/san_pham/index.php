@@ -2,9 +2,8 @@
 <?php
 if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
   <div class="alert alert-success"><?php echo $_SESSION['thong_bao'] ?></div>
-  <?php
+<?php
   unset($_SESSION['thong_bao']);
-
 } else {
   echo "";
 }
@@ -15,8 +14,8 @@ if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
 // if (isset($_SESSION['loi'])&&$_SESSION['loi']) { 
 ?>
 <!-- <div class="alert alert-danger"><?php
-//  echo $_SESSION['loi'] 
-?></div> -->
+                                      //  echo $_SESSION['loi'] 
+                                      ?></div> -->
 <?php
 // unset($_SESSION['loi']);
 // }else{
@@ -50,7 +49,7 @@ if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
               $stt = 0;
               foreach ($listsp as $key) {
                 $stt++;
-                ?>
+              ?>
                 <tr>
                   <td><?php echo $key['id'] ?></td>
                   <td><?php echo $key['name_sp'] ?></td>
@@ -58,16 +57,17 @@ if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
                   <td><?php echo $key['soluong_sp'] ?></td>
                   <td><?php echo $key['mota_sp'] ?></td>
                   <td>
-                     <img src="<?= BASE_URL . $key['img_sp'] ?>"  alt="" style="width: 50px; height: 50px; object-fit: cover; overflow: hidden;" ></td>
+                     <img src="../uploads/<?= $key['img_sp']; ?>"  alt="" style="width: 50px; height: 50px; object-fit: cover; overflow: hidden;" ></td>
+                     
                   <td><?php echo $key['name_danhmuc'] ?></td>
                   <td>
                     <a href="<?= BASE_URL_ADMIN ?>?act=sanpham-edit&id=<?php echo $key['id'] ?>"
                       class="label label-warning">Sửa</a>
                     <a href="<?= BASE_URL_ADMIN ?>?act=sanpham-xoa&id=<?php echo $key['id'] ?>"
-                      class="label label-danger" onclick="return confirm('Ban co chac chan xoa khong')" >Xóa</a>
+                      class="label label-danger" onclick="return confirm('Ban co chac chan xoa khong')">Xóa</a>
                   </td>
                 </tr>
-                <?php
+              <?php
               }
               ?>
             </tbody>
@@ -81,7 +81,7 @@ if (isset($_SESSION['thong_bao']) && $_SESSION['thong_bao'] != "") { ?>
   </div><!-- /.row -->
 </section>
 <script>
-  $(document).ready(function () {
+  $(document).ready(function() {
     $('#example2').DataTable();
   });
 </script>

@@ -71,7 +71,7 @@ public function xoasp($id)
 public function capnhatsanpham($id){
   // echo " đây là danh sách sản phẩm";
   $sp = $this->modelSanPham->getOneSP($id);
-  
+  //  var_dump($sp);die();
   $listdanhmuc = $this->DanhMuc->getAlldanhmuc();
   // var_dump($listsp);die();
   $title = "list danh sách";
@@ -87,7 +87,7 @@ public function capnhatsanpham($id){
     $img = $img_sp;
     
     if (!empty($img) && $img['size'] > 0) {
-        $img_sp = uploadFlie($img, 'uploads/');
+        $img_sp = uploadFlie($img, '../../uploads/');
     }else{
       $img_sp = $sp['img_sp'];
     }

@@ -45,7 +45,7 @@ class AdminDonHangController
 
    public function editDonHang($id)
    {
-
+      // $id = $_GET['id'];
 
       $donHang1 = $this->modeldonhang->getDetailDonHang($id);
 
@@ -72,18 +72,6 @@ class AdminDonHangController
       $_SESSION['thong_bao'] = "thao tác thành công";
 
       header('Location: ' . BASE_URL_ADMIN . "?act=don-hang");
-   }
-
-   public function xoadonhang($id)
-   {
-
-      $this->modeldonhang->deleteDonHang($id);
-
-      $_SESSION['thong_bao'] = "thao tác thành công";
-
-      header('Location: ' . BASE_URL_ADMIN . "?act=don-hang");
-
-      exit();
    }
 }
 ?>

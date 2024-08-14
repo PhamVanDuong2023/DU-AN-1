@@ -28,10 +28,12 @@ else{
     <div class="box-body">
         <div class="form-group">
             <label>Tên sản phẩm</label>
-            <input type="text" name="name_sp" class="form-control" value="<?=$sp['name_sp']?>" placeholder="Nhập tên sản phẩm">
+            <!-- <input type="text" name="name_sp" class="form-control" value="<?=$sp['name_sp']?>" placeholder="Nhập tên sản phẩm">
             <?php if (isset($errors['name_sp'])) { ?>
             <p class="text-danger"><?= $errors['name_sp']?> </p>
-            <?php } ?>
+            <?php } ?> -->
+            <input type="text" name="name_sp" class="form-control" value="<?php if(isset($sp)&&$sp){echo $sp['name_sp'];}else{echo "";} ?>" placeholder="Nhập tên sản phẩm">
+            
         </div>
 
         <div class="form-group">
@@ -52,10 +54,11 @@ else{
 
         <div class="form-group">
             <label>Mô tả</label>
-            <input type="text" name="mota_sp" class="form-control" value="<?=$sp['mota_sp']?>" placeholder="nhập mô tả">
+            <!-- <input type="text" name="mota_sp" class="form-control" value="<?=$sp['mota_sp']?>" placeholder="nhập mô tả">
             <?php if (isset($errors['mota_sp'])) { ?>
             <p class="text-danger"><?= $errors['mota_sp']?> </p>
-            <?php } ?>
+            <?php } ?> -->
+            <input type="text" name="mota_sp" class="form-control" value="<?php if(isset($sp)&&$sp){echo $sp['mota_sp'];}else{echo "";} ?>" placeholder="Nhập tên sản phẩm">
         </div>
 
 

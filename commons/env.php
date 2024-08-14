@@ -9,7 +9,10 @@ define('PATH_VIEW',__DIR__.'/../views/');
 define('PATH_CONTROLLER_ADMIN',__DIR__.'/../admin/controllers/');
 define('PATH_MODEL_ADMIN',__DIR__.'/../admin/models/');
 define('PATH_VIEW_ADMIN',__DIR__.'/../admin/views/');
-define('PATH_UPLOAD',__DIR__.'/../');
+
+// define('PATH_UPLOAD',__DIR__.'/../');
+
+define('PATH_UPLOAD',__DIR__.'/../uploads/');
 
 
 // Dường đãn vào phần client
@@ -23,3 +26,4 @@ define('DB_PORT','3306');
 define('DB_USERNAME','root');
 define('DB_PASSWORD','');
 define('DB_NAME','du_an_1');
+define('PATH_ROOT'    , __DIR__ . '/../');

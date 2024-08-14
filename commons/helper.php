@@ -1,4 +1,5 @@
 <?php
+
 // khai báo các hàm dùng Global
 if(!function_exists('require_file')){
     function require_file($pathFolder){

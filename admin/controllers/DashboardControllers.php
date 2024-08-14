@@ -26,7 +26,10 @@ class DashboardControllers
     {
         $getAllTaiKhoan = $this->login->getAllTaiKhoan();
 
-
+        // echo '<pre>';
+        // print_r($getAllTaiKhoan);
+        // echo '</pre>';
+        // exit();
         if (!isset($_SESSION['user'])) {
             if (empty($_POST['email']) || empty($_POST['password'])) {
                 $_SESSION['loi'] = "Vui lòng nhập thông tin !!";
@@ -70,8 +73,4 @@ class DashboardControllers
         require_once PATH_VIEW_ADMIN . 'login/login.php';
         exit();
     }
-
-
 }
-
-?>

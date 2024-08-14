@@ -34,7 +34,7 @@
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="fw-bold mb-5">Login up now</h2>
+                        <h2 class="fw-bold mb-5">Login</h2>
                         <?php
                         if (isset($_SESSION['loi']) && $_SESSION['loi']) { ?>
                             <div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
@@ -49,9 +49,9 @@
 
                         ?>
                         <form method="post" action="">
-                            <!-- <input type="hidden" name="act" value="login"> -->
+                            <input type="hidden" name="act" value="login">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div data-mdb-input-init class="form-outline">
                                         <input type="text" id="form3Example1" class="form-control" />
@@ -64,7 +64,7 @@
                                         <label class="form-label" for="form3Example2">Last name</label>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <!-- Email input -->
                             <div data-mdb-input-init class=" mb-4">

@@ -12,7 +12,7 @@ class AdminSanPhamModel{
         try {
             $sql = 'SELECT san_pham.*, danh_muc.name_danhmuc
             FROM san_pham
-            INNER JOIN danh_muc ON san_pham.id_danhmuc = danh_muc.id WHERE active= 1 ';
+            INNER JOIN danh_muc ON san_pham.id_danhmuc = danh_muc.id';
 
             $stml = $this->conn->prepare($sql);
             $stml->execute();
@@ -48,8 +48,9 @@ public function deletesp($id)
 {
    try {
 
-    $sql = "UPDATE `san_pham` SET `active`= 0 WHERE id = ".$id;
-
+    // $sql = "UPDATE `san_pham` SET `active`= 0 WHERE id = ".$id;
+    $sql = " DELETE FROM `san_pham` WHERE id = ".$id;
+   
 
       $stmt = $this->conn->prepare($sql);
 
@@ -64,7 +65,7 @@ public function getOneSP($id){
     try {
         $sql = 'SELECT san_pham.*, danh_muc.name_danhmuc
         FROM san_pham
-        INNER JOIN danh_muc ON san_pham.id_danhmuc = danh_muc.id WHERE active= 1 AND san_pham.id ='.$id;
+        INNER JOIN danh_muc ON san_pham.id_danhmuc = danh_muc.id WHERE san_pham.id ='.$id;
 
         $stml = $this->conn->prepare($sql);
         $stml->execute();

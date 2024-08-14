@@ -1,36 +1,24 @@
 <div class="row bg-secondary py-1 px-xl-5">
     <div class="col-lg-6 d-none d-lg-block">
         <div class="d-inline-flex align-items-center h-100">
-            <a class="text-body mr-3" href="">About</a>
-            <a class="text-body mr-3" href="">Contact</a>
-            <a class="text-body mr-3" href="">Help</a>
+            <a class="text-body mr-3" href="">Giới Thiệu</a>
+            <a class="text-body mr-3" href="<?= BASE_URL ?>?act=lien-he">Liên Hệ</a>
+            <a class="text-body mr-3" href="<?= BASE_URL ?>?act=lien-he">Trợ Giúp</a>
             <a class="text-body mr-3" href="">FAQs</a>
         </div>
     </div>
     <div class="col-lg-6 text-center text-lg-right">
         <div class="d-inline-flex align-items-center">
-            <?php if(empty($_SESSION['user'])): ?>
             <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My
-                    Account</button>
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài Khoản Của
+                    Tôi</button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="<?=BASE_URL.'?act=login'?>"><button class="dropdown-item" type="button">Sign
-                            in</button></a>
-                    <button class="dropdown-item" type="button">Sign up</button>
+                    <button class="dropdown-item" type="button">Đăng Nhập</button>
+                    <button class="dropdown-item" type="button">Đăng Ký</button>
                 </div>
             </div>
-            <?php else: ?>
-            <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                    data-toggle="dropdown"><?=$_SESSION['user']['username']?></button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a href="<?=BASE_URL.'?act=logout'?>" onclick="return confirm('Bạn có chắc chắn đăng xuất không')" ><button class="dropdown-item" type="button">Đăng xuất</button></a>
-                    <button class="dropdown-item" type="button">Sign up</button>
-                </div>
-            </div>
-            <?php endif ?>
             <div class="btn-group mx-2">
-                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">VND</button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <button class="dropdown-item" type="button">EUR</button>
                     <button class="dropdown-item" type="button">GBP</button>
@@ -38,7 +26,7 @@
                 </div>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">VN</button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <button class="dropdown-item" type="button">FR</button>
                     <button class="dropdown-item" type="button">AR</button>
@@ -60,15 +48,15 @@
 </div>
 <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
     <div class="col-lg-4">
-        <a href="" class="text-decoration-none">
-            <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
+        <a href="<?= BASE_URL ?>" class="text-decoration-none">
+            <span class="h1 text-uppercase text-primary bg-dark px-2">DPL</span>
             <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
         </a>
     </div>
     <div class="col-lg-4 col-6 text-left">
         <form action="">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for products">
+                <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
                 <div class="input-group-append">
                     <span class="input-group-text bg-transparent text-primary">
                         <i class="fa fa-search"></i>
@@ -78,7 +66,7 @@
         </form>
     </div>
     <div class="col-lg-4 col-6 text-right">
-        <p class="m-0">Customer Service</p>
-        <h5 class="m-0">+012 345 6789</h5>
+        <p class="m-0">Dịch Vụ Khách Hàng</p>
+        <h5 class="m-0">+84 988672894</h5>
     </div>
 </div>
