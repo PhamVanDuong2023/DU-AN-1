@@ -148,6 +148,13 @@ if (isset($_SESSION['dat-hang']) && $_SESSION['dat-hang']) {
     </div>
 <?php }
 unset($_SESSION['dat-hang']);
+if (isset($_SESSION['loi_gio_hang']) && $_SESSION['loi_gio_hang']) {
+    ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['loi_gio_hang'] ?>
+    </div>
+<?php }
+unset($_SESSION['loi_gio_hang']);
 ?>
 
     <!-- Navbar Start -->

@@ -8,17 +8,19 @@ class ClientBinhLuanController
         $this->BinhLuan = new ClientBinhLuanModel();
         $this->sanPham= new ClientSanPhamModel();
     }
-    public function danhsachbinhluan()
-    {
-        $listBinhLuan = $this->BinhLuan->getAllBinhLuan();
-        $listSanPham = $this->BinhLuan->getAllBinhLuan();
-        $listTaiKhoan = $this->BinhLuan->getAllBinhLuan();
+    // public function danhsachbinhluan()
+    // {
+    //     $listBinhLuan = $this->BinhLuan->getAllBinhLuan();
+       
+    //     echo "<pre>";
 
-        $title = "list bình luận";
+    //     print_r($listBinhLuan);
+    //     exit();
+    //     $title = "list bình luận";
 
-        $view = "chi_tiet_sp/index";
+    //     $view = "chi_tiet_sp/index";
 
-    }
+    // }
     public function themmoibinhluan()
     {
         if (isset($_POST['comment']) && $_POST['comment']) {

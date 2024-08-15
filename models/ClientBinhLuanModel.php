@@ -9,7 +9,7 @@ class ClientBinhLuanModel
    public function getAllBinhLuan()
    {
       try {
-         $sql = "SELECT * FROM `binh_luan`";
+         $sql = "SELECT * FROM `binh_luan` inner join `tai_khoan` on `binh_luan.id_taikhoan`=tai_khoan.id";
 
          $stmt = $this->conn->prepare($sql);
 
@@ -39,7 +39,7 @@ class ClientBinhLuanModel
    {
       try {
 
-         $sql = "SELECT * FROM `binh_luan` WHERE id_sp=" . $id;
+         $sql = "SELECT * FROM `binh_luan` inner join `tai_khoan` on binh_luan.id_taikhoan = tai_khoan.id WHERE id_sp=" . $id;
 
          $stmt = $this->conn->prepare($sql);
 
