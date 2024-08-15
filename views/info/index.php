@@ -60,9 +60,12 @@
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                         khoản của tôi</button>
                     <div class="dropdown-menu dropdown-menu-right">
-                       <a href="<?= BASE_URL ?>?act=login"> <button class="dropdown-item" type="button">Đăng nhập</button></a>
-                       <a href="<?= BASE_URL ?>?act=signup"> <button class="dropdown-item" type="button">Đăng ký</button></a>
-                       <a href="<?= BASE_URL ?>?act=logout"> <button class="dropdown-item" type="button">Đăng xuất</button></a>
+
+                        <a href="<?= BASE_URL ?>?act=login"> <button class="dropdown-item" type="button">Đăng nhập</button></a>
+                        <a href="<?= BASE_URL ?>?act=signup"> <button class="dropdown-item" type="button">Đăng ký</button></a>
+                        <a href="<?= BASE_URL ?>?act=logout"> <button class="dropdown-item" type="button">Đăng xuất</button></a>
+
+
 
                     </div>
                 </div>
@@ -72,7 +75,9 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <button class="dropdown-item" type="button">VND</button>
                         <button class="dropdown-item" type="button">GBP</button>
-<button class="dropdown-item" type="button">CAD</button>
+
+                        <button class="dropdown-item" type="button">CAD</button>
+
                         <button class="dropdown-item" type="button">USD</button>
                     </div>
                 </div>
@@ -141,7 +146,9 @@
 
             <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
                 href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-<h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Danh mục</h6>
+
+                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Danh mục</h6>
+
 
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
@@ -188,7 +195,9 @@
                         <!-- <a href="detail.html" class="nav-item nav-link active">Chi tiết cửa hàng</a> -->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Trang khác <i
-class="fa fa-angle-down mt-1"></i></a>
+
+                                    class="fa fa-angle-down mt-1"></i></a>
+
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                 <a href="<?= BASE_URL ?>?act=gio-hang" class="dropdown-item">Giỏ hàng</a>
                                 <!-- <a href="<?= BASE_URL ?>?act=thanh-toan" class="dropdown-item">Thanh toán</a> -->
@@ -255,7 +264,9 @@ class="fa fa-angle-down mt-1"></i></a>
                             <td>1</td>
                             <td>PH31963</td>
                             <td>img.jpg</td>
-<td>Áo thun nam đen</td>
+
+                            <td>Áo thun nam đen</td>
+
                             <td>12345</td>
                             <td>159.000đ</td>
                             <td><button class="btn btn-success">Đang xử lí</button></td>
@@ -269,39 +280,42 @@ class="fa fa-angle-down mt-1"></i></a>
                 </div>
 
                 <div class="col-xs-12 table-responsive">
-                    <h4>Thông tin người dùng</h4>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>img</th>
-                                <th>Tên người đặt</th>
-                                <th>Tên đăng nhập</th>
-                                <th>Số điện thoại</th>
-                                <th>Email</th>
-                                <th>Địa chỉ</th>
-                                <th>Ngày đăng kí</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <td>img.jpg</td>
-                            <td>Pham van duong</td>
-                            <td>duong</td>
-                            <td>0988672894</td>
-                            <td>duong@gmail.com</td>
-                            <td>ha noi</td>
-                            <td>12/08/2024</td>
-                            <td>
-                                <a href="#">
-                                    <button class="btn btn-primary" id="button">Sửa thông tin</button>
-                                </a>
-                                <a href="#">
-                                    <button class="btn btn-primary" id="button">Đổi mật khẩu</button>
-                                </a>
-                            </td>
-                        </tbody>
-                    </table>
-                    <!-- <a href="#">
+
+                        <h4>Thông tin người dùng</h4>
+
+                        
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>img</th>
+                                    <th>Tên người đặt</th>
+                                    <th>Tên đăng nhập</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Email</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Ngày đăng kí</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td>img.jpg</td>
+                                <td>Pham van duong</td>
+                                <td>duong</td>
+                                <td>0988672894</td>
+                                <td>duong@gmail.com</td>
+                                <td>ha noi</td>
+                                <td>12/08/2024</td>
+                                <td>
+                                    <a href="#">
+                                        <button class="btn btn-primary" id="button">Sửa thông tin</button>
+                                    </a>
+                                    <a href="#">
+                                        <button class="btn btn-primary" id="button">Đổi mật khẩu</button>
+                                    </a>
+                                </td>
+                            </tbody>
+                        </table>
+                        <!-- <a href="#">
                         <button class="btn btn-primary" id="button">Đăng xuất</button>
                     </a> -->
                 </div>
@@ -320,7 +334,7 @@ class="fa fa-angle-down mt-1"></i></a>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i><a href="#">123 Trịnh Văn Bô ,
                         Nam từ Liêm , Hà Nội</a></p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i><a
-href="#">phamvanduong2004tb@gmail.com</a></p>
+                        href="#">phamvanduong2004tb@gmail.com</a></p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i><a href="#">+84988672894</a></p>
             </div>
             <div class="col-lg-8 col-md-12">
@@ -362,7 +376,7 @@ href="#">phamvanduong2004tb@gmail.com</a></p>
                                     class="fa fa-angle-right mr-2"></i>Mua sắm
                                 Cart</a>
                             <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=thanh-toan"><i
-class="fa fa-angle-right mr-2"></i>Thanh
+                                    class="fa fa-angle-right mr-2"></i>Thanh
                                 toán</a>
                             <a class="text-secondary" href="<?= BASE_URL ?>?act=lien-he"><i
                                     class="fa fa-angle-right mr-2"></i>Liên hệ với
@@ -415,7 +429,7 @@ class="fa fa-angle-right mr-2"></i>Thanh
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/clients/lib/easing/easing.min.js"></script>
     <script src="../../assets/clients/lib/owlcarousel/owl.carousel.min.js"></script>
-<!-- Contact Javascript File -->
+    <!-- Contact Javascript File -->
     <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
     <script src="../../assets/clients/mail/contact.js"></script>
 

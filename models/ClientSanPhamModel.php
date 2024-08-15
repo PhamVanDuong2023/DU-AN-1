@@ -51,5 +51,39 @@ class ClientSanPhamModel
          echo 'Lỗi' . $e->getMessage();
       }
    }
+
+   public function getSoLuong($id)
+   {
+      try {
+         $sql = "SELECT soluong_sp FROM `san_pham` WHERE id=" . $id;
+
+         $stmt = $this->conn->prepare($sql);
+
+         $soluong = $stmt->execute();
+
+         $soluong = $stmt->fetch(PDO::FETCH_ASSOC);
+         
+         return $soluong['soluong_sp'];
+
+      } catch (Exception $e) {
+         echo 'Lỗi' . $e->getMessage();
+      }
+   }
+   public function updateSoLuong($id, $new_soluong)
+   {
+      try {
+         $sql = "UPDATE `san_pham` SET `soluong_sp`='$new_soluong' WHERE id=" . $id;
+
+         $stmt = $this->conn->prepare($sql);
+
+         $stmt->execute();
+
+      } catch (Exception $e) {
+         echo 'Lỗi' . $e->getMessage();
+      }
+   }
+
+
+
 }
 ?>

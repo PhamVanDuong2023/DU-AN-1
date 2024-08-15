@@ -234,7 +234,8 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>SĐT</label>
-                                <input name="sdt" class="form-control" type="number" placeholder="sdt">
+                                <!-- <input name="sdt" class="form-control" type="number" placeholder="sdt"> -->
+                                 <input type="number" name="sdt" id="" class="form-control" placeholder="sdt" max="10">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Địa chỉ</label>

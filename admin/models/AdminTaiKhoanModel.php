@@ -10,17 +10,11 @@ class AdminTaiKhoanModel
     {
         try {
 
-            $sql = "SELECT tai_khoan.*, vai_tro.name AS name_vaitro, vai_tro.id 
-            FROM tai_khoan 
-            INNER JOIN vai_tro 
-            ON tai_khoan.id_vai_tro = vai_tro.id";
 
-            // $sql = "SELECT tai_khoan.*, vai_tro.name AS name_vaitro, vai_tro.id 
-            //         FROM tai_khoan 
-            //         INNER JOIN vai_tro 
-            //         ON tai_khoan.id_vai_tro = vai_tro.id";
-            $sql = "SELECT * FROM `tai_khoan` INNER JOIN `vai_tro` ON `tai_khoan`.`id_vai_tro`=`vai_tro`.`id_vai_tro`";
-
+            $sql = "SELECT tai_khoan.*, vai_tro.name AS name_vaitro, vai_tro.id as id_vaitro 
+                    FROM tai_khoan 
+                    INNER JOIN vai_tro 
+                    ON tai_khoan.id_vai_tro = vai_tro.id";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchALl();
@@ -32,15 +26,16 @@ class AdminTaiKhoanModel
     public function deletetaikhoan($id)
     {
         try {
-            $sql = "DELETE FROM tai_khoan WHERE id = :id";
+            $sql = "DELETE FROM tai_khoan WHERE id =" . $id;
+
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            // $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return false;
         }
-        return true;
+        // return true;
     }
 
     public function insertTaiKhoan($name, $dia_chi, $age, $img, $username, $password, $email, $id_vai_tro)
@@ -65,7 +60,7 @@ class AdminTaiKhoanModel
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetch(); // Return user data as an associative array
+            return $stmt->fetch();
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return false;
@@ -74,15 +69,15 @@ class AdminTaiKhoanModel
     public function showOneTaiKhoan1($id)
     {
         try {
-            $sql = "SELECT tai_khoan.*, vai_tro.name_vaitro
+            $sql = "SELECT tai_khoan.*, vai_tro.name as name_vaitro
             FROM tai_khoan 
-            INNER JOIN vai_tro ON tai_khoan.id_vai_tro = vai_tro.id_vai_tro 
+            INNER JOIN vai_tro ON tai_khoan.id_vai_tro = vai_tro.id
             WHERE tai_khoan.id = :id";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetch(); // Return user data as an associative array
+            return $stmt->fetch();
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return false;
@@ -114,7 +109,6 @@ class AdminTaiKhoanModel
             $stmt = $this->conn->prepare($sql);
             // Execute the query
             $stmt->execute();
-
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return false;
