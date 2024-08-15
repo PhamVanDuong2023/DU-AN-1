@@ -24,6 +24,51 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var quantityInput = document.getElementById('quantity');
+            var soluong_sp = document.getElementById('soluong_sp');
+            var quantityError = document.getElementById('quantity-error');
+
+            function validateQuantity(value) {
+                if (value < 1) {
+                    quantityError.textContent = "Số lượng không được ít hơn 1.";
+                    quantityError.style.display = "block";
+                    return 1;
+                } else if (value > 20) {
+                    quantityError.textContent = "Số lượng không được lớn hơn 20.";
+                    quantityError.style.display = "block";
+                    return 20;
+                } else {
+                    quantityError.style.display = "none";
+                    return value;
+                }
+            }
+
+            // Sự kiện khi người dùng nhấn nút giảm
+            document.querySelector('.btn-minus').addEventListener('click', function () {
+                var newValue = parseInt(quantityInput.value) - 1;
+                quantityInput.value = validateQuantity(newValue);
+                soluong_sp.value = quantityInput.value;
+            });
+
+            // Sự kiện khi người dùng nhấn nút tăng
+            document.querySelector('.btn-plus').addEventListener('click', function () {
+                var newValue = parseInt(quantityInput.value) + 1;
+                quantityInput.value = validateQuantity(newValue);
+                soluong_sp.value = quantityInput.value;
+            });
+
+            // Sự kiện khi người dùng rời khỏi ô input (blur)
+            quantityInput.addEventListener('blur', function () {
+                var newValue = parseInt(quantityInput.value) || 1;
+                quantityInput.value = validateQuantity(newValue);
+                soluong_sp.value = quantityInput.value;
+            });
+        });
+
+
+    </script>
 </head>
 
 <body>
@@ -180,7 +225,7 @@
                             <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+                                    style="padding-bottom: 2px;"><?= $soluonggh ?></span>
                             </a>
                         </div>
                     </div>
@@ -206,7 +251,31 @@
     </div>
     <!-- Breadcrumb End -->
 
+    <?php
 
+    if (isset($_SESSION['tb_gio_hang']) && $_SESSION['tb_gio_hang']) {
+        ?>
+        <div class="alert alert-success">
+            <?= $_SESSION['tb_gio_hang'] ?>
+        </div>
+    <?php }
+    unset($_SESSION['tb_gio_hang']);
+    if (isset($_SESSION['dat-hang']) && $_SESSION['dat-hang']) {
+        ?>
+        <div class="alert alert-success">
+            <?= $_SESSION['dat-hang'] ?>
+        </div>
+    <?php }
+    unset($_SESSION['dat-hang']);
+
+    if (isset($_SESSION['loi_gio_hang']) && $_SESSION['loi_gio_hang']) {
+        ?>
+        <div class="alert alert-danger">
+            <?= $_SESSION['loi_gio_hang'] ?>
+        </div>
+    <?php }
+    unset($_SESSION['loi_gio_hang']);
+    ?>
     <!-- Shop Detail Start -->
     <div class="container-fluid pb-5">
         <div class="row px-xl-5">
@@ -243,62 +312,43 @@
                     </div>
                     <h3 class="font-weight-semi-bold mb-4"><?= number_format($list1SanPham['price_sp'], 0, '.', ',') ?>đ
                     </h3>
-                    <div class="d-flex mb-3">
-                        <strong class="text-dark mr-3">Sizes:</strong>
-                        <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" name="size">
-                                <label class="custom-control-label" for="size-1">XS</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-2" name="size">
-                                <label class="custom-control-label" for="size-2">S</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-3" name="size">
-                                <label class="custom-control-label" for="size-3">M</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-4" name="size">
-                                <label class="custom-control-label" for="size-4">L</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-5" name="size">
-                                <label class="custom-control-label" for="size-5">XL</label>
-                            </div>
-                        </form>
-                    </div>
                     <div class="d-flex mb-4">
-                      <h6>Số lượng : <?=$soluong?></h6>
-                      <span></span>
+                        <h6>Số lượng : <?= $soluong ?></h6>
+                        <span></span>
                     </div>
-                    <form action="<?= BASE_URL . "?act=add-gio-hang-sp" ?>" method="post">
-                        <input type="hidden" name="id" id="" value="<?= $list1SanPham['id'] ?>">
-                        <input type="hidden" name="name_sp" id="" value="<?= $list1SanPham['name_sp'] ?>">
-                        <input type="hidden" name="price_sp" id=""
-                            value="<?= number_format($list1SanPham['price_sp'], 0, '.', ',') ?>">
-                        <input type="hidden" name="img_sp" id="" value="<?= $list1SanPham['img_sp'] ?>">
+                    <form action="<?= BASE_URL . "?act=add-gio-hang-chi-tiet-sp" ?>" method="post">
+                        <input type="hidden" name="id" value="<?= $list1SanPham['id'] ?>">
+                        <input type="hidden" name="name_sp" value="<?= $list1SanPham['name_sp'] ?>">
+                        <input type="hidden" name="price_sp" value="<?= $list1SanPham['price_sp'] ?>">
+                        <input type="hidden" name="img_sp" value="<?= $list1SanPham['img_sp'] ?>">
+
+                        <!-- Input để lưu số lượng sản phẩm -->
+                        <input type="hidden" name="soluong_sp" id="soluong_sp" value="1">
+
                         <div class="d-flex align-items-center mb-4 pt-2">
                             <div class="input-group quantity mr-3" style="width: 130px;">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-minus">
+                                    <button class="btn btn-primary btn-minus" type="button">
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
+                                <input type="text" class="form-control bg-secondary border-0 text-center" id="quantity"
+                                    value="1">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-plus">
+                                    <button class="btn btn-primary btn-plus" type="button">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
 
-                            <a href="<?= BASE_URL ?>?act=gio-hang"><button class="btn btn-primary px-3" type="submit"
-                                    name="submitCart"><i class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng</button></a>
-
+                            <button class="btn btn-primary px-3" type="submit" name="submitCart">
+                                <i class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng
+                            </button>
+                            <span id="quantity-error" style="color: red; font-size: 12px; display: none;"></span>
 
                         </div>
                     </form>
+
 
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>
@@ -342,17 +392,22 @@
                                 <?php
                                 if (isset($binh_luan) && $binh_luan) {
                                     foreach ($binh_luan as $key) { ?>
-                                <div class="media mb-4">
-                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-                                        style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6>tên<small> - <i><?= $key['ngay_bl'] ?></i></small></h6>
-                                        <div class="text-primary mb-2">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
+
+                                        <div class="media mb-4">
+                                            <img src="../<?= $key['img'] ?>" alt="Image" class="img-fluid mr-3 mt-1"
+                                                style="width: 45px;">
+                                            <div class="media-body">
+                                                <h6><?= $key['name'] ?><small> - <i><?= $key['ngay_bl'] ?></i></small></h6>
+                                                <div class="text-primary mb-2">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                                <p><?= $key['noi_dung'] ?></p>
+                                            </div>
+
                                         </div>
                                         <p><?= $key['noi_dung'] ?></p>
                                     </div>

@@ -49,8 +49,9 @@ match ($act) {
 
     // add-gio-hang
     'gio-hang' => (new ClientGioHangController())->viewGioHang(),
-    'add-gio-hang' => (new ClientGioHangController())->themmoigiohang(),
-    'add-gio-hang-sp' => (new ClientGioHangController())->themmoigiohangsp(),
+    'add-gio-hang' => (new ClientGioHangController())->themmoigiohangTrangHome(),
+    'add-gio-hang-sp' => (new ClientGioHangController())->themmoigiohangTrangsp(),
+    'add-gio-hang-chi-tiet-sp' => (new ClientGioHangController())->themmoigiohangTrangChiTietsp(),
     'delete-product' => (new ClientGioHangController())->xoagiohang(),
     'capnhat-giohang'=>(new ClientGioHangController())->capnhatsoluong(),
 

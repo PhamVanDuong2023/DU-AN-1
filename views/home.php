@@ -94,6 +94,30 @@
 <!-- Offer End -->
 
 
+<?php
+
+if (isset($_SESSION['tb_gio_hang']) && $_SESSION['tb_gio_hang']) {
+    ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['tb_gio_hang'] ?>
+    </div>
+<?php }
+unset($_SESSION['tb_gio_hang']);
+if (isset($_SESSION['dat-hang']) && $_SESSION['dat-hang']) {
+    ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['dat-hang'] ?>
+    </div>
+<?php }
+unset($_SESSION['dat-hang']);
+if (isset($_SESSION['loi_gio_hang']) && $_SESSION['loi_gio_hang']) {
+    ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['loi_gio_hang'] ?>
+    </div>
+<?php }
+unset($_SESSION['loi_gio_hang']);
+?>
 <!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">SẢN PHẨM

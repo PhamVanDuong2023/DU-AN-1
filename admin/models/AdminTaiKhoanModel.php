@@ -109,19 +109,44 @@ class AdminTaiKhoanModel
         }
      }
     // Method to update user account details
-    public function updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password, $email, $id_vai_tro)
+    public function updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password, $email)
     {
         try {
             // Prepare the SQL statement with placeholders
-            $sql = "UPDATE `tai_khoan` SET `name`='$name',`dia_chi`='$dia_chi',`age`='$age',`img`='$img',`username`='$username',`password`='$password',`email`='$email',`id_vai_tro`='$id_vai_tro'
+            $sql = "UPDATE `tai_khoan` SET `name`='$name',`dia_chi`='$dia_chi',`age`='$age',`img`='$img',`username`='$username',`password`='$password',`email`='$email'
              WHERE id=" . $id;
 
             $stmt = $this->conn->prepare($sql);
             // Execute the query
             $stmt->execute();
+
+            return true;
+
+
+
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage());
             return false;
         }
     }
+
+    public function getImgById($id){
+        try {
+            $sql = "SELECT img FROM `tai_khoan` WHERE id=" . $id;
+   
+            $stmt = $this->conn->prepare($sql);
+   
+            $soluong = $stmt->execute();
+   
+            $soluong = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return $soluong['img'];
+   
+         } catch (Exception $e) {
+            echo 'Lỗi' . $e->getMessage();
+         }
+    }
 }
+
+}
+

@@ -32,6 +32,8 @@ class ClientSanPhamController
         $soluong=$this->SanPham->getSoLuong($id);
         $list1SanPham = $this->SanPham->get1SanPham($id);
         $binh_luan = $this->binhluan->getBinhLuanTheoSp($id);
+        $soluonggh=count($_SESSION['cart']);
+       
 
         $title = "list sản phẩm chi tiết";
 

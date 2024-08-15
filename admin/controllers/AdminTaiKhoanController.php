@@ -117,10 +117,10 @@ class AdminTaiKhoanController
         }
 
         // Hash the password
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert into the database
-        $sbc = $this->TaiKhoan->insertTaiKhoan($name, $dia_chi, $age, $img, $username, $hashedPassword, $email, $id_vai_tro);
+        $sbc = $this->TaiKhoan->insertTaiKhoan($name, $dia_chi, $age, $img, $username, $password, $email, $id_vai_tro);
 
         if ($sbc) {
             $_SESSION['thong_bao'] = "Thao tác thành công";
@@ -188,10 +188,13 @@ class AdminTaiKhoanController
             $username = isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '';
             $password = isset($_POST['password']) ? htmlspecialchars($_POST['password']) : '';
             $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-            $id_vai_tro = isset($_POST['vaitro']) ? htmlspecialchars($_POST['vaitro']) : '';
-
+           
+    
+            // Get current image path from the database
+            $currentImg = $this->TaiKhoan->getImgById($id);
+    
             // Handle file upload
-            $img = null;
+            $img = $currentImg; // Giữ nguyên ảnh cũ nếu không có ảnh mới
             if (isset($_FILES['img']) && $_FILES['img']['error'] == UPLOAD_ERR_OK) {
                 $dir = "../img/";
                 $filename = basename($_FILES['img']['name']);
@@ -199,15 +202,19 @@ class AdminTaiKhoanController
                 $fileType = strtolower(pathinfo($upload, PATHINFO_EXTENSION));
                 $allowedTypes = array('jpg', 'png', 'jpeg', 'gif');
                 $maxFileSize = 5000000; // 5MB
-
+    
                 // Ensure the directory exists
                 if (!is_dir($dir)) {
                     mkdir($dir, 0777, true);
                 }
-
+    
                 // Validate file type and size
                 if (in_array($fileType, $allowedTypes) && $_FILES['img']['size'] <= $maxFileSize) {
                     if (move_uploaded_file($_FILES['img']['tmp_name'], $upload)) {
+                        // Xóa ảnh cũ nếu có ảnh mới được upload thành công
+                        if (!empty($currentImg) && file_exists($currentImg)) {
+                            unlink($currentImg);
+                        }
                         $img = $upload;
                     } else {
                         $_SESSION['loi'] = "Không thể upload file.";
@@ -220,27 +227,11 @@ class AdminTaiKhoanController
                     exit();
                 }
             }
-            echo $id;
-            echo "<pre>";
-            echo $name;
-            echo "<pre>";
-            echo $dia_chi;
-            echo "<pre>";
-            echo $age;
-            echo "<pre>";
-            echo $img;
-            echo "<pre>";
-            echo $username;
-            echo "<pre>";
-            echo $password;
-            echo "<pre>";
-            echo $email;
-            echo "<pre>";
-            echo $id_vai_tro;
-            exit();
+    
             // Update account information
             try {
-                $result = $this->TaiKhoan->updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password, $email, $id_vai_tro);
+                $result = $this->TaiKhoan->updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password, $email);
+               
                 if ($result) {
                     $_SESSION['thong_bao'] = "Cập nhật tài khoản thành công.";
                 } else {
@@ -249,7 +240,7 @@ class AdminTaiKhoanController
             } catch (Exception $e) {
                 $_SESSION['loi'] = "Lỗi: " . $e->getMessage();
             }
-
+    
             // Redirect to the account list page
             header('Location: ' . BASE_URL_ADMIN . "?act=taikhoan");
             exit();
@@ -259,4 +250,5 @@ class AdminTaiKhoanController
             exit();
         }
     }
+    
 }
