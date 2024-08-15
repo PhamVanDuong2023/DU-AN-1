@@ -34,7 +34,7 @@
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
-                        <h2 class="fw-bold mb-5">Login up now</h2>
+                        <h2 class="fw-bold mb-5">Login</h2>
                         <?php
                         if (isset($_SESSION['loi']) && $_SESSION['loi']) { ?>
                             <div class="alert alert-danger"><?php echo $_SESSION['loi'] ?></div>
@@ -48,34 +48,21 @@
 
 
                         ?>
-                        <form method="post" action="<?= BASE_URL_ADMIN ?>?act=login">
-                            <input type="hidden" name="act" value="login"> 
+                        <form method="post" action="">
+                            <input type="hidden" name="act" value="login">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <input type="text" id="form3Example1" class="form-control" />
-                                        <label class="form-label" for="form3Example1">Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div data-mdb-input-init class="form-outline">
-                                        <input type="text" id="form3Example2" class="form-control" />
-                                        <label class="form-label" for="form3Example2">Last name</label>
-                                    </div>
-                                </div>
-                            </div>
+      
 
-                             <!-- Email input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <input type="email" id="form3Example3" class="form-control" name="email" />
-                                <label class="form-label" for="form3Example3">Email address</label>
+                            <!-- Email input -->
+                            <div data-mdb-input-init class=" mb-4">
+                                <input type="text" id="form3Example3" class="form-control" name="username" placeholder="Username" />
+                                
                             </div>
 
                             <!-- Password input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <input type="password" id="form3Example4" class="form-control" name="password" />
-                                <label class="form-label" for="form3Example4">Password</label>
+                            <div data-mdb-input-init class=" mb-4">
+                                <input type="password" id="form3Example4" class="form-control" name="password" placeholder="Password" />
+                       
                             </div>
 
                             <!-- Checkbox -->

@@ -11,14 +11,24 @@
     </div>
     <div class="col-lg-6 text-center text-lg-right">
         <div class="d-inline-flex align-items-center">
-            <div class="btn-group">
+            <?php if(!empty($_SESSION['user'])): ?>
+                <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown"><?=$_SESSION['user']['username']?></button>
+                <div class="dropdown-menu dropdown-menu-right">
+                <a href="<?=BASE_URL.'?act=info'?>">   <button class="dropdown-item" type="button">Thông tin</button></a>
+                <a href="<?=BASE_URL.'?act=logout'?>">  <button class="dropdown-item" type="button">Đăng xuất</button></a> 
+                </div>
+            </div>
+            <?php else: ?>
+                <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài Khoản Của
                     Tôi</button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item" type="button">Đăng Nhập</button>
-                    <button class="dropdown-item" type="button">Đăng Ký</button>
+                <a href="<?=BASE_URL.'?act=login'?>">   <button class="dropdown-item" type="button">Đăng Nhập</button></a> 
+                <a href="<?=BASE_URL.'?act=signup'?>">  <button class="dropdown-item" type="button">Đăng Ký</button></a>  
                 </div>
             </div>
+            <?php endif ?>
             <div class="btn-group mx-2">
                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">VND</button>
                 <div class="dropdown-menu dropdown-menu-right">

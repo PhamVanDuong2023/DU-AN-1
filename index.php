@@ -23,13 +23,17 @@ match ($act) {
 
     //điều hướng các trang con
     'info' => (new DashboardControllers())->info(),
+    'ct-donhang' =>(new DashboardControllers())->detailOrder($_GET['id']),
     'lien-he' => (new DashboardControllers())->lienhe(),
 
     
     //login
-    'login' => (new DashboardControllers())->login(),
+    'login' => (new AuthenControllers())->login(),
 
-    'logout' => (new DashboardControllers())->logout(),
+    'logout' => (new AuthenControllers())->logout(),
+    
+    //singin
+    'signup'=>(new AuthenControllers())->signup(),
 
 
     //trang_san_pham
@@ -53,6 +57,8 @@ match ($act) {
     //thanh_toan
     'thanh-toan' => (new ClientThanhToanController())->thanhToan(),
     'tien-hanh-thanh-toan'=> (new ClientThanhToanController())->tienHanhThanhToan(),
+    'success-order' =>(new ClientThanhToanController())->successOrder(),
+    'payment' =>(new ClientThanhToanController())->successPayment(),
 
     // 'online_checkout'=>(new ClientThanhToanController())->online_checkout(),
 };

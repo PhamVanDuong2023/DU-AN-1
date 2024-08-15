@@ -25,27 +25,27 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
     <style>
-        .btnGroup {
-            margin-left: 40px;
-            display: flex;
-        }
+    .btnGroup {
+        margin-left: 40px;
+        display: flex;
+    }
 
-        #submitCart {
-            display: none;
+    #submitCart {
+        display: none;
 
-            position: absolute;
+        position: absolute;
 
-            bottom: 112px;
+        bottom: 112px;
 
-            left: 20px;
+        left: 20px;
 
-            padding-right: 2px;
-            margin-left: 43px;
-        }
+        padding-right: 2px;
+        margin-left: 43px;
+    }
 
-        .product-action:hover #submitCart {
-            display: block;
-        }
+    .product-action:hover #submitCart {
+        display: block;
+    }
     </style>
 </head>
 
@@ -67,8 +67,12 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                             khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Đăng nhập</button>
-                            <button class="dropdown-item" type="button">Đăng ký</button>
+                            <a href="<?= BASE_URL ?>?act=login"><button class="dropdown-item" type="button">Đăng
+                                    Nhập</button></a>
+                            <a href="<?= BASE_URL ?>?act=signup"><button class="dropdown-item" type="button">Đăng
+                                    Ký</button></a>
+                            <a href="<?= BASE_URL ?>?act=logout"><button class="dropdown-item" type="button">Đăng
+                                    Xuất</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">
@@ -139,14 +143,14 @@ if (isset($_SESSION['tb_gio_hang']) && $_SESSION['tb_gio_hang']) {
     <div class="alert alert-success">
         <?= $_SESSION['tb_gio_hang'] ?>
     </div>
-<?php }
+    <?php }
 unset($_SESSION['tb_gio_hang']);
 if (isset($_SESSION['dat-hang']) && $_SESSION['dat-hang']) {
     ?>
     <div class="alert alert-success">
         <?= $_SESSION['dat-hang'] ?>
     </div>
-<?php }
+    <?php }
 unset($_SESSION['dat-hang']);
 ?>
 
@@ -160,16 +164,16 @@ unset($_SESSION['dat-hang']);
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
-            id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
-            <div class="navbar-nav w-100">
-               <?php
+                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                    <div class="navbar-nav w-100">
+                        <?php
                     foreach($listDanhMuc as $key) { ?>
                         <a href="" class="nav-item nav-link"><?= $key['name_danhmuc'] ?></a>
-                    <?php
+                        <?php
                     }
                 ?>
-            </div>
-        </nav>
+                    </div>
+                </nav>
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
@@ -202,7 +206,7 @@ unset($_SESSION['dat-hang']);
                                     style="padding-bottom: 2px;">0</span>
                             </a>
 
-                            <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3" >
+                            <a href="<?= BASE_URL ?>?act=gio-hang" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;"><?=$soluong?></span>
@@ -409,55 +413,54 @@ unset($_SESSION['dat-hang']);
                     </div>
                     <?php
                     foreach ($listAllSanPham as $key) { ?>
-                        <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
-                                <div class="product-img position-relative overflow-hidden">
-                                    <img class="img-fluid w-100" src="../uploads/<?= $key['img_sp']; ?>" alt="">
-                                    <div class="product-action">
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="product-item bg-light mb-4">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="../uploads/<?= $key['img_sp']; ?>" alt="">
+                                <div class="product-action">
 
-                                        <form action="<?= BASE_URL . "?act=add-gio-hang-sp" ?>" method="post">
+                                    <form action="<?= BASE_URL . "?act=add-gio-hang-sp" ?>" method="post">
 
-                                            <input type="hidden" name="id" id="" value="<?= $key['id'] ?>">
-                                            <input type="hidden" name="name_sp" id="" value="<?= $key['name_sp'] ?>">
-                                            <input type="hidden" name="price_sp" id=""
-                                                value="<?= number_format($key['price_sp'], 0, '.', ',') ?>">
-                                            <input type="hidden" name="img_sp" id="" value="<?= $key['img_sp'] ?>">
+                                        <input type="hidden" name="id" id="" value="<?= $key['id'] ?>">
+                                        <input type="hidden" name="name_sp" id="" value="<?= $key['name_sp'] ?>">
+                                        <input type="hidden" name="price_sp" id=""
+                                            value="<?= number_format($key['price_sp'], 0, '.', ',') ?>">
+                                        <input type="hidden" name="img_sp" id="" value="<?= $key['img_sp'] ?>">
 
-                                            <div class="btnGroup">
-                                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                                
-                                                        class="fa fa-sync-alt"></i></a>
-                                                <a class="btn btn-outline-dark btn-square" href=""><i
-                                                        class="fa fa-search"></i></a>
-                                                <button type="submit" class="btn btn-outline-dark btn-square"
-                                                    name="submitCart" id="submitCart"><i class="fa fa-shopping-cart"></i>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        <div class="btnGroup">
+                                            <a class="btn btn-outline-dark btn-square" href=""><i
+                                                    class="fa fa-sync-alt"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i
+                                                    class="fa fa-search"></i></a>
+                                            <button type="submit" class="btn btn-outline-dark btn-square"
+                                                name="submitCart" id="submitCart"><i class="fa fa-shopping-cart"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate"
-                                        href="<?= BASE_URL . "?act=chi-tiet-sp&id=" . $key['id'] ?>"><?= $key['name_sp'] ?>
+                            </div>
+                            <div class="text-center py-4">
+                                <a class="h6 text-decoration-none text-truncate"
+                                    href="<?= BASE_URL . "?act=chi-tiet-sp&id=" . $key['id'] ?>"><?= $key['name_sp'] ?>
+                                </a>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <a href="<?= BASE_URL . "?act=chi-tiet-sp&id=" . $key['id'] ?>">
+                                        <h5><?= number_format($key['price_sp'], 0, '.', ',') ?></h5>
                                     </a>
-                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                        <a href="<?= BASE_URL . "?act=chi-tiet-sp&id=" . $key['id'] ?>">
-                                            <h5><?= number_format($key['price_sp'], 0, '.', ',') ?></h5>
-                                        </a>
-                                        <h6 class="text-muted ml-2"><del>123.000đ</del></h6>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small>(99)</small>
-                                    </div>
+                                    <h6 class="text-muted ml-2"><del>123.000đ</del></h6>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small class="fa fa-star text-primary mr-1"></small>
+                                    <small>(99)</small>
                                 </div>
                             </div>
                         </div>
-                        <?php
+                    </div>
+                    <?php
                     }
                     ?>
                     <div class="col-12">
@@ -580,24 +583,24 @@ unset($_SESSION['dat-hang']);
 
             <!-- Back to Top -->
             <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    <!-- <script src="../../assets/clients/js/cart.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/clients/lib/easing/easing.min.js"></script>
-    <script src="../../assets/clients/lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
-    <script src="../../assets/clients/mail/contact.js"></script>
+            <!-- <script src="../../assets/clients/js/cart.js"></script> -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-    <script src="../../assets/clients/js/main.js"></script>
-    <script src="../../assets/clients/js/cart.js"></script>
-    <script src="../../assets/clients/js/cart_jquery.js"></script>
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+            <script src="../../assets/clients/lib/easing/easing.min.js"></script>
+            <script src="../../assets/clients/lib/owlcarousel/owl.carousel.min.js"></script>
+
+            <!-- Contact Javascript File -->
+            <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
+            <script src="../../assets/clients/mail/contact.js"></script>
+
+
+            <script src="../../assets/clients/js/main.js"></script>
+            <script src="../../assets/clients/js/cart.js"></script>
+            <script src="../../assets/clients/js/cart_jquery.js"></script>
 </body>
 
 </html>

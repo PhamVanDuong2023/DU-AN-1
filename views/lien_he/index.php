@@ -44,8 +44,12 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                             khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Đăng nhập</button>
-                            <button class="dropdown-item" type="button">Đăng ký</button>
+                            <a href="<?= BASE_URL ?>?act=login"><button class="dropdown-item" type="button">Đăng
+                                    Nhập</button></a>
+                            <a href="<?= BASE_URL ?>?act=signup"><button class="dropdown-item" type="button">Đăng
+                                    Ký</button></a>
+                            <a href="<?= BASE_URL ?>?act=logout"><button class="dropdown-item" type="button">Đăng
+                                    Xuất</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">

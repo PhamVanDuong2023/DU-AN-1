@@ -27,208 +27,219 @@
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
     <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
     <script>
-        
+    function capNhatTongTien(tr) {
+        var soluong = parseInt(tr.find("#number").val());
+        var giaspText = tr.find(".giasp").text().replace(/,/g, '').trim();
+        var giasp = parseFloat(giaspText);
 
-
-        function capNhatTongTien(tr) {
-            var soluong = parseInt(tr.find("#number").val());
-            var giaspText = tr.find(".giasp").text().replace(/,/g, '').trim();
-            var giasp = parseFloat(giaspText);
-            
-            var tongtien = giasp * soluong;
-            var tongCart=
+        var tongtien = giasp * soluong;
+        var tongCart =
             tr.find(".tongtien").text(tongtien.toLocaleString('en-US'));
-            }
-        function capNhatTongDonHang() {
-            var tongDonHang = 0;
-
-            
-            $("#tableCart tr").each(function() {
-                if ($(this).hasClass('title')) return;
-                var checkbox = $(this).find(".chonsp");
-                if (checkbox.is(":checked")) {
-                    var tongTienSP = $(this).find(".tongtien").text().replace(/,/g, '').trim();
-                    tongDonHang += parseFloat(tongTienSP);
-                }
-                
-                // var tongTienSP = $(this).find(".tongtien").text().replace(/,/g, '').trim();
-                
-                // tongDonHang += parseFloat(tongTienSP);
-            });
-            // alert(tongDonHang);
-            // Cập nhật tổng đơn hàng
-            $(".tongCart").text(tongDonHang.toLocaleString('en-US'));
-           tongCong()
-            
-        }
-        function tongCong(){
-            var tongCong=0;
-            var thanhToan = $("#thanhToan");
-
-            var tongCart = thanhToan.find(".tongCart").text().replace(/,/g, '').trim();
-
-            var tongCartFloat=parseFloat(tongCart);
-            var ship=30000;
-            if (tongCartFloat>0) {
-                tongCong=tongCartFloat+ship;
-            } else {
-                tongCong=0;
-            }
-            
-
-            
-
-            $("#tongCong").text(tongCong.toLocaleString('en-US'));
-
-        }
-
-        function tangsoluong(x) {
-            console.log('Hàm tangsoluong được gọi');
-
-            // Tìm phần tử cha của nút nhấn
-            var parent = $(x).closest("tr"); // Tìm hàng <tr> chứa nút nhấn
-
-            // Tìm phần tử input số lượng trong hàng hiện tại
-            var soluong_old = parent.find("#number");
-
-            // Lấy giá trị hiện tại của input
-            var soluong_value = parseInt(soluong_old.val());
-            console.log('Giá trị hiện tại của input:', soluong_value);
-
-            // Tăng giá trị lên 1
-            var soluong_new = soluong_value + 1;
-            if (soluong_new < 21) {
-                soluong_old.val(soluong_new);
-            } else {
-                alert("Bạn chỉ được mua tối đa 20 sản phẩm!!");
-            }
-
-            // Lấy ID sản phẩm từ phần tử ẩn
-            var productId = parent.find('input[type="hidden"]').data('product-id');
-            
-            $.ajax({
-                url: "<?= BASE_URL ?>?act=capnhat-giohang",
-                type: 'post',
-                data: { id: productId, quantity: soluong_new },
-                success: function(response) {
-                    console.log("Số lượng đã được cập nhật !!");
-                }
-            });
-
-            // Cập nhật tổng tiền
-            capNhatTongTien(parent);
-            chonsp();
-           
     }
 
-        function giamsoluong(x) {
-            console.log('Hàm tangsoluong được gọi');
+    function capNhatTongDonHang() {
+        var tongDonHang = 0;
 
-            // Tìm phần tử cha của nút nhấn
-            var parent = $(x).closest("tr"); // Tìm hàng <tr> chứa nút nhấn
 
-            // Tìm phần tử input số lượng trong hàng hiện tại
-            var soluong_old = parent.find("#number");
-
-            // Lấy giá trị hiện tại của input
-            var soluong_value = parseInt(soluong_old.val());
-            console.log('Giá trị hiện tại của input:', soluong_value);
-
-            // Tăng giá trị lên 1
-            var soluong_new = soluong_value - 1;
-            if (soluong_new > 0) {
-                soluong_old.val(soluong_new);
-            } else {
-                alert("Bạn chỉ được mua tối đa 20 sản phẩm!!");
+        $("#tableCart tr").each(function() {
+            if ($(this).hasClass('title')) return;
+            var checkbox = $(this).find(".chonsp");
+            if (checkbox.is(":checked")) {
+                var tongTienSP = $(this).find(".tongtien").text().replace(/,/g, '').trim();
+                tongDonHang += parseFloat(tongTienSP);
             }
 
-            // Lấy ID sản phẩm từ phần tử ẩn
-            var productId = parent.find('input[type="hidden"]').data('product-id');
-            
-            $.ajax({
-                url: "<?= BASE_URL ?>?act=capnhat-giohang",
-                type: 'post',
-                data: { id: productId, quantity: soluong_new },
-                success: function(response) {
-                    console.log("Số lượng đã được cập nhật !!");
-                }
+            // var tongTienSP = $(this).find(".tongtien").text().replace(/,/g, '').trim();
+
+            // tongDonHang += parseFloat(tongTienSP);
+        });
+        // alert(tongDonHang);
+        // Cập nhật tổng đơn hàng
+        $(".tongCart").text(tongDonHang.toLocaleString('en-US'));
+        tongCong()
+
+    }
+
+    function tongCong() {
+        var tongCong = 0;
+        var thanhToan = $("#thanhToan");
+
+        var tongCart = thanhToan.find(".tongCart").text().replace(/,/g, '').trim();
+
+        var tongCartFloat = parseFloat(tongCart);
+        var ship = 30000;
+        if (tongCartFloat > 0) {
+            tongCong = tongCartFloat + ship;
+        } else {
+            tongCong = 0;
+        }
+
+
+
+
+        $("#tongCong").text(tongCong.toLocaleString('en-US'));
+
+    }
+
+    function tangsoluong(x) {
+        console.log('Hàm tangsoluong được gọi');
+
+        // Tìm phần tử cha của nút nhấn
+        var parent = $(x).closest("tr"); // Tìm hàng <tr> chứa nút nhấn
+
+        // Tìm phần tử input số lượng trong hàng hiện tại
+        var soluong_old = parent.find("#number");
+
+        // Lấy giá trị hiện tại của input
+        var soluong_value = parseInt(soluong_old.val());
+        console.log('Giá trị hiện tại của input:', soluong_value);
+
+        // Tăng giá trị lên 1
+        var soluong_new = soluong_value + 1;
+        if (soluong_new < 21) {
+            soluong_old.val(soluong_new);
+        } else {
+            alert("Bạn chỉ được mua tối đa 20 sản phẩm!!");
+        }
+
+        // Lấy ID sản phẩm từ phần tử ẩn
+        var productId = parent.find('input[type="hidden"]').data('product-id');
+
+        $.ajax({
+            url: "<?= BASE_URL ?>?act=capnhat-giohang",
+            type: 'post',
+            data: {
+                id: productId,
+                quantity: soluong_new
+            },
+            success: function(response) {
+                console.log("Số lượng đã được cập nhật !!");
+            }
+        });
+
+        // Cập nhật tổng tiền
+        capNhatTongTien(parent);
+        chonsp();
+
+    }
+
+    function giamsoluong(x) {
+        console.log('Hàm tangsoluong được gọi');
+
+        // Tìm phần tử cha của nút nhấn
+        var parent = $(x).closest("tr"); // Tìm hàng <tr> chứa nút nhấn
+
+        // Tìm phần tử input số lượng trong hàng hiện tại
+        var soluong_old = parent.find("#number");
+
+        // Lấy giá trị hiện tại của input
+        var soluong_value = parseInt(soluong_old.val());
+        console.log('Giá trị hiện tại của input:', soluong_value);
+
+        // Tăng giá trị lên 1
+        var soluong_new = soluong_value - 1;
+        if (soluong_new > 0) {
+            soluong_old.val(soluong_new);
+        } else {
+            alert("Bạn chỉ được mua tối đa 20 sản phẩm!!");
+        }
+
+        // Lấy ID sản phẩm từ phần tử ẩn
+        var productId = parent.find('input[type="hidden"]').data('product-id');
+
+        $.ajax({
+            url: "<?= BASE_URL ?>?act=capnhat-giohang",
+            type: 'post',
+            data: {
+                id: productId,
+                quantity: soluong_new
+            },
+            success: function(response) {
+                console.log("Số lượng đã được cập nhật !!");
+            }
+        });
+
+        // Cập nhật tổng tiền
+        capNhatTongTien(parent);
+        chonsp();
+        // capNhatTongDonHang();
+        // tongCong();
+
+    }
+
+    function kiemtrasoluong(x) {
+        var num = parseInt(x.value);
+
+        // Kiểm tra giá trị không phải là số hoặc rỗng
+        if (isNaN(num) || x.value.trim() === "") {
+            x.value = 1;
+            alert('Vui lòng nhập số lượng hợp lệ');
+            return;
+        }
+
+        if (num < 1) {
+            x.value = 1;
+            alert('Nhập ít nhất 1 sản phẩm');
+            return;
+        }
+
+        if (num > 20) {
+            x.value = 20;
+            alert('Nhập tối đa 20 sản phẩm');
+            return;
+        }
+        var id_product = x.nextElementSibling.nextElementSibling;
+        // alert(id_product.value);
+        var productId = id_product.dataset.productId;
+        $.ajax({
+            url: "<?=BASE_URL?>?act=capnhat-giohang",
+            type: 'post',
+            data: {
+                id: productId,
+                quantity: x.value
+            },
+            success: function(response) {
+                console.log("số lượng đã được cập nhật !!");
+            }
+        })
+        capNhatTongTien($(x).closest("tr"));
+        capNhatTongDonHang();
+    };
+
+    function chonsp() {
+        capNhatTongDonHang();
+    };
+
+    function checkClick() {
+
+        var coCheckboxDuocChon = $(".chonsp:checked").length > 0;
+
+        if (coCheckboxDuocChon) {
+            var selectProduct = [];
+            $('.chonsp:checked').each(function() {
+
+
+                selectProduct.push($(this).val());
             });
 
-            // Cập nhật tổng tiền
-            capNhatTongTien(parent);
-            chonsp();
-            // capNhatTongDonHang();
-            // tongCong();
-            
-        }
-        function kiemtrasoluong(x) {
-            var num = parseInt(x.value);
-
-            // Kiểm tra giá trị không phải là số hoặc rỗng
-            if (isNaN(num) || x.value.trim() === "") {
-                x.value = 1;
-                alert('Vui lòng nhập số lượng hợp lệ');
-                return;
-            }
-
-            if (num < 1) {
-                x.value = 1;
-                alert('Nhập ít nhất 1 sản phẩm');
-                return;
-            }
-
-            if (num > 20) {
-                x.value = 20;
-                alert('Nhập tối đa 20 sản phẩm');
-                return;
-            }
-            var id_product = x.nextElementSibling.nextElementSibling;
-            // alert(id_product.value);
-            var productId = id_product.dataset.productId;
             $.ajax({
-                url : "<?=BASE_URL?>?act=capnhat-giohang",
-                type : 'post',
-                data : {id:productId , quantity:x.value},
-                success : function(response) {
-                    console.log("số lượng đã được cập nhật !!");
-                }
-            })
-            capNhatTongTien($(x).closest("tr"));
-            capNhatTongDonHang();
-        };
-
-        function chonsp(){
-                capNhatTongDonHang();
-            };
-        
-        function checkClick () { 
-            
-            var coCheckboxDuocChon = $(".chonsp:checked").length > 0;
-
-            if (coCheckboxDuocChon) {
-                var selectProduct = [];
-                $('.chonsp:checked').each(function() {
-                    
-                    
-                    selectProduct.push($(this).val());
-                });
-                
-                $.ajax({
-                url : "<?=BASE_URL?>?act=thanh-toan",
-                type : 'post',
-                data : {select_product: selectProduct},
-                success : function(response) {
+                url: "<?=BASE_URL?>?act=thanh-toan",
+                type: 'post',
+                data: {
+                    select_product: selectProduct
+                },
+                success: function(response) {
                     console.log("thành công rồi");
                 }
             })
-            } else {
-                event.preventDefault();
-                alert("Vui lòng chọn ít nhất một sản phẩm trước khi thanh toán.");
-            }
-            
-         };
+        } else {
+            event.preventDefault();
+            alert("Vui lòng chọn ít nhất một sản phẩm trước khi thanh toán.");
+        }
+
+    };
     </script>
-    
+
 </head>
 
 <body>
@@ -252,9 +263,12 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                             khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Đăng nhập</button>
-                            <button class="dropdown-item" type="button">Đăng ký</button>
-
+                            <a href="<?= BASE_URL ?>?act=login"><button class="dropdown-item" type="button">Đăng
+                                    Nhập</button></a>
+                            <a href="<?= BASE_URL ?>?act=signup"><button class="dropdown-item" type="button">Đăng
+                                    Ký</button></a>
+                            <a href="<?= BASE_URL ?>?act=logout"><button class="dropdown-item" type="button">Đăng
+                                    Xuất</button></a>
                         </div>
                     </div>
                     <div class="btn-group mx-2">
@@ -420,9 +434,9 @@
 
                 if (isset($_SESSION['tb_xoa']) && $_SESSION['tb_xoa']) {
                     ?>
-                    <div class="alert alert-success">
-                        <?= $_SESSION['tb_xoa'] ?>
-                    </div>
+                <div class="alert alert-success">
+                    <?= $_SESSION['tb_xoa'] ?>
+                </div>
                 <?php }
                 unset($_SESSION['tb_xoa']);
                 ?>
@@ -439,7 +453,7 @@
                     </thead>
                     <tbody class="align-middle" id="giohang">
 
-                        
+
                         <?php
                         if (count($_SESSION['cart']) > 0) {
                             $tongTien=0;
@@ -450,49 +464,51 @@
                                 $price = (float) str_replace(',', '', $item['price_sp']);
                                 $tongTien+=$price*$item['soluong_sp'];
                                     ?>
-                                <tr>
-                                    <td><input type="checkbox" id="optionProduct" name="select-product[]" class="chonsp" onclick="chonsp()" value="<?= $item['id'] ?>"></td>
-                                    
-                                    <td class="align-middle"><img src="../../uploads/<?= $item['img_sp'] ?>" alt=""
-                                            style="width: 50px;">
-                                        <?= $item['name_sp'] ?></td>
-                                    <td class="align-middle"><span class="giasp"><?= number_format($price, 0, '.', ',') ?></span>đ
-                                    </td>
-                                    <td class="align-middle">
-                                        
-                                        <div style="width: 120px; " class="btn-group" >
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-primary" onclick="giamsoluong(this)">
-                                                    <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" onchange="kiemtrasoluong(this)"
-                                                class="form-control form-control-sm mx-auto border-0 text-center"  value="<?= $item['soluong_sp'] ?>"
-                                                id="number">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-primary" onclick="tangsoluong(this)">
-                                                    <i class="fa fa-plus" ></i>
-                                                </button>
-                                            </div> 
-                                            <input type="hidden" data-product-id="<?= $item['id'] ?>" >
-                                            <input type="hidden" value="<?=$tongTien?>" class="tongCart">
-                                        </div>
-                                    </td>
-                                    <td class="align-middle"><span
-                                            class="tongtien"><?= number_format($price * $item['soluong_sp'], 0, '.', ',') ?></span>đ
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="<?= BASE_URL ?>?act=delete-product&id=<?= $item['id'] ?>"><img
-                                                src="../../uploads/delete.jpg" alt="img xoa" width="40px"></a>
-                                    </td>
-                                </tr>
-                                <?php
+                        <tr>
+                            <td><input type="checkbox" id="optionProduct" name="select-product[]" class="chonsp"
+                                    onclick="chonsp()" value="<?= $item['id'] ?>"></td>
+
+                            <td class="align-middle"><img src="../../uploads/<?= $item['img_sp'] ?>" alt=""
+                                    style="width: 50px;">
+                                <?= $item['name_sp'] ?></td>
+                            <td class="align-middle"><span
+                                    class="giasp"><?= number_format($price, 0, '.', ',') ?></span>đ
+                            </td>
+                            <td class="align-middle">
+
+                                <div style="width: 120px; " class="btn-group">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary" onclick="giamsoluong(this)">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" onchange="kiemtrasoluong(this)"
+                                        class="form-control form-control-sm mx-auto border-0 text-center"
+                                        value="<?= $item['soluong_sp'] ?>" id="number">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary" onclick="tangsoluong(this)">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="hidden" data-product-id="<?= $item['id'] ?>">
+                                    <input type="hidden" value="<?=$tongTien?>" class="tongCart">
+                                </div>
+                            </td>
+                            <td class="align-middle"><span
+                                    class="tongtien"><?= number_format($price * $item['soluong_sp'], 0, '.', ',') ?></span>đ
+                            </td>
+                            <td class="align-middle">
+                                <a href="<?= BASE_URL ?>?act=delete-product&id=<?= $item['id'] ?>"><img
+                                        src="../../uploads/delete.jpg" alt="img xoa" width="40px"></a>
+                            </td>
+                        </tr>
+                        <?php
                             }
                         }else{
                             $ship=0;
                         }
                         ?>
-                        
+
                         <!-- Các hàng sản phẩm khác tương tự -->
                     </tbody>
                 </table>
@@ -519,11 +535,14 @@
                                 // }else{
                                 //     echo 0;
                                 // }
-                            ?></h6><h6>đ</h6>
+                            ?></h6>
+                            <h6>đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Vận chuyển</h6>
-                            <h6 class="font-weight-medium" style="margin-left:150px;"><?= number_format($ship, 0, '.', ',') ?></h6><h6>đ</h6>
+                            <h6 class="font-weight-medium" style="margin-left:150px;">
+                                <?= number_format($ship, 0, '.', ',') ?></h6>
+                            <h6>đ</h6>
                         </div>
                     </div>
                     <div class="pt-2">
@@ -535,12 +554,13 @@
                             // }else{
                             //     echo 0;
                             // }
-                            ?></h5><h5>đ</h5>
+                            ?></h5>
+                            <h5>đ</h5>
                         </div>
                         <!-- <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Tiến hành thanh toán</button> -->
                         <a href="<?= BASE_URL ?>?act=thanh-toan">
-                            <button type="button"
-                                class="btn btn-block btn-primary font-weight-bold my-3 py-3" id="thanhToanBtn" onclick="checkClick()">Tiến hành thanh
+                            <button type="button" class="btn btn-block btn-primary font-weight-bold my-3 py-3"
+                                id="thanhToanBtn" onclick="checkClick()">Tiến hành thanh
                                 toán</button></a>
                     </div>
                 </div>
@@ -646,7 +666,7 @@
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
     <!-- <script src="../../assets/clients/js/cart.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
+
 
 
     <!-- JavaScript Libraries -->

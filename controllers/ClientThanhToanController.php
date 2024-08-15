@@ -15,6 +15,39 @@ class ClientThanhToanController
         $this->dh = new ClientDonHangModel();
         $this->mm = new ClientMoMoModel();
     }
+    public function successOrder()
+    {
+        // Sau khi xử lý xong, mới unset các session liên quan
+        unset($_SESSION['product']);
+
+        foreach ($_SESSION['select_product'] as $item => $value) {
+            unset($_SESSION['cart'][$value]);
+        }
+        require_once PATH_VIEW . 'thanh_toan/success.php';
+    }
+    public function successPayment()
+    {   
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['transId']) && isset($_GET['resultCode'])){
+            $transId = ($_GET['transId']);
+            $resultCode = $_GET['resultCode'];
+            $amount = $_GET['amount'];
+            $id = $_GET['id'];
+            $this->mm->insertMoMo($transId, $resultCode, $amount);
+            //Nếu tồn tại các điều kiện trong if thì thanh toán thành công
+            if($resultCode == 0){
+                $this->dh->updatePayment(8,$id);//Update lại trạng thái fodnw hàng thành đã thanh toán
+                $style1 = 'style="display: block;"';
+                $style2 = 'style="display: none;"';
+            }else{
+                // Nguyowcj lại thì thông báo thanh toán thaajtss bại
+                $style1 = 'style="display: none;"';
+                $style2 = 'style="display: block;"';
+            }
+        }
+
+
+        require_once PATH_VIEW . 'thanh_toan/success-payment.php';
+    }
     public function thanhToan()
     {
         if (isset($_POST["select_product"])) {
@@ -26,11 +59,12 @@ class ClientThanhToanController
         $selected_products = array_filter($_SESSION['cart'], function ($item) use ($selected_product_ids) {
             return in_array($item['id'], $selected_product_ids);
         });
+        // Lưu các sản phẩm được chọn mua vào  $_SESSION['product']
+        $_SESSION['product'] = $selected_products;
 
-        $id = 1;
-
+        
         $listPhuongThuc = $this->TK->getPhuongThucTT();
-        $list1TK = $this->TK->getOneTK($id);
+        $list1TK = $this->TK->getOneTK($_SESSION['user']['id']);
 
         $title = "1 tai khoan";
 
@@ -38,11 +72,51 @@ class ClientThanhToanController
     }
     public function tienHanhThanhToan()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Xử lý POST request từ form
-            if ($_POST['id_pt'] == '1') {
-                $listSanPham = $this->SP->get8SanPham();
-                $id_tk = $_POST['id_tk'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Nếu người dùng ấn submit
+
+            if ($_POST['id_pt'] == '1') { //Nếu người dùng chọn hình thức thanh toán là offfline ()
+                //Lấy các dữ liệu cần thiết để insert vào database
+                $id_tk = $_SESSION['user']['id']; // id tài khoản
+                $name = $_POST['name']; // Tên
+                $email = $_POST['email']; //
+                $sdt = $_POST['sdt'];
+                $diachi = $_POST['diachi'];
+                $tinh = $_POST['province_name'];
+                $huyen = $_POST['district_name'];
+                $xa = $_POST['ward_name'];
+                $diachi_full = $diachi . ', ' . $xa . ', ' . $huyen . ', ' . $tinh;
+                $ngay_dat = date('Y-m-d');
+                $id_pt = $_POST['id_pt'];
+                $ghi_chu = $_POST['ghi_chu'];
+                $ma_don_hang = time();
+                $tong_tien = $_POST['tong_tien']; // Tổng tiền
+
+                // Insert đơn hàng vào bảng don_hang
+                $id_don_hang = $this->dh->insertdonhang($name, $email, $sdt, $diachi_full, $ngay_dat, $tong_tien, $ghi_chu, $id_tk, $id_pt, 1, $ma_don_hang);
+
+                // Xử lí chi tiết đơn hàng
+             
+                foreach ($_SESSION['product'] as $product) { // foreach seession sản phẩm người mua chọn ở bên giỏ hàng
+                    
+                    $don_gia = str_replace(',', '', $product['price_sp']); // Xử lí giá để phù hợp nhập vào database
+                    $so_luong = $product['soluong_sp'];
+                    $thanh_tien = $don_gia * $so_luong;
+                    $san_pham_id = $product['id'];
+
+                    // Insert từng sản phẩm vào bảng chitietdonhang
+                    $this->dh->insertchitietdonhang($don_gia, $so_luong, $thanh_tien, $id_don_hang, $san_pham_id);
+
+                    // Cập nhật lại số lượng sản phẩm
+                    $old_soluong = $this->SP->getSoLuong($product['id']); // Lấy số lượng của sản phẩm trong database
+                    $new_soluong = $old_soluong - $so_luong; // Trừu đi số lượng sản phẩm người dùng mua
+                    $this->SP->updateSoLuong($product['id'], $new_soluong); // Update lại số lượng mới
+                }
+                // CHuyển hướng trang đến trang thông báo thành công
+                header("location:" . BASE_URL . "?act=success-order");
+                exit();
+            } else { // Ngược lại nếu người dùng chọn thanh toán online
+                // XỬ lí dữ liệu như trên
+                $id_tk = $_SESSION['user']['id'];
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $sdt = $_POST['sdt'];
@@ -54,145 +128,42 @@ class ClientThanhToanController
                 $ngay_dat = date('Y-m-d');
                 $id_pt = $_POST['id_pt'];
                 $ghi_chu = $_POST['ghi_chu'];
-                $ma_don_hang = 'null';
-                $selected_product_ids = isset($_SESSION['select_product']) ? $_SESSION['select_product'] : [];
+                $ma_don_hang = time();
+                $tong_tien = $_POST['tong_tien'];
 
-                foreach ($selected_product_ids as $product_id) {
-                    $product = array_filter($_SESSION['cart'], function ($item) use ($product_id) {
-                        return $item['id'] === $product_id;
-                    });
+                // Insert đơn hàng vào bảng don_hang với trạng thái chưa thanh toán
+                $id_don_hang = $this->dh->insertdonhang($name, $email, $sdt, $diachi_full, $ngay_dat, $tong_tien, $ghi_chu, $id_tk, $id_pt, 6, $ma_don_hang);
 
-                    if (!empty($product)) {
-                        $product = array_shift($product);
-                        $tong_tien = floatval(str_replace(',', '', $product['price_sp'])) * $product['soluong_sp'] + 30000;
-
-                        $id_don_hang = $this->dh->insertdonhang($name, $email, $sdt, $diachi_full, $ngay_dat, $tong_tien, $ghi_chu, $id_tk, $id_pt, $product_id, $ma_don_hang);
-
-
-                        $this->dh->insertchitietdonhang(
-                            floatval(str_replace(',', '', $product['price_sp'])),
-                            $product['soluong_sp'],
-                            floatval(str_replace(',', '', $product['price_sp'])) * $product['soluong_sp']
-                            ,
-                            $id_don_hang,
-                            $product['id']
-                        );
-                        $old_soluong=$this->SP->getSoLuong( $product['id']);
-                       
-
-                        $new_soluong=$old_soluong-$product['soluong_sp'];
-
-                        $this->SP->updateSoLuong($product['id'],$new_soluong);
-
-
-
-                    }
+                // Xử lí chi tiết đơn hàng
+                
+                foreach ($_SESSION['product'] as $product) {
                     
+                    $don_gia = str_replace(',', '', $product['price_sp']);
+                    $so_luong = $product['soluong_sp'];
+                    $thanh_tien = $don_gia * $so_luong;
+                    $san_pham_id = $product['id'];
 
+                    // Insert từng sản phẩm vào bảng chitietdonhang
+                    $this->dh->insertchitietdonhang($don_gia, $so_luong, $thanh_tien, $id_don_hang, $san_pham_id);
+
+                    // Cập nhật lại số lượng sản phẩm
+                    $old_soluong = $this->SP->getSoLuong($product['id']);
+                    $new_soluong = $old_soluong - $so_luong;
+                    $this->SP->updateSoLuong($product['id'], $new_soluong);
                 }
-               
+                // Xóa session và sản phẩm đã chọn ở seession cart
+                unset($_SESSION['product']);
 
-
-
-                // Xóa sản phẩm khỏi giỏ hàng sau khi xử lý
                 foreach ($_SESSION['select_product'] as $item => $value) {
                     unset($_SESSION['cart'][$value]);
                 }
-                $soluong = count($_SESSION['cart']);
-                // $view = "thanh_toan/success";
-                $_SESSION['dat-hang'] = "Bạn đã đặt hàng thành công";
-                header("location:" . BASE_URL . "?act=san-pham");
-                exit();
-
-            } else if ($_POST['id_pt'] == '2') {
-                // Lưu thông tin vào session và chuyển hướng tới MoMo
-                $_SESSION['user_info'] = [
-                    'id_tk' => $_POST['id_tk'],
-                    'name' => $_POST['name'],
-                    'email' => $_POST['email'],
-                    'sdt' => $_POST['sdt'],
-                    'diachi' => $_POST['diachi'],
-                    'tinh' => $_POST['province_name'],
-                    'huyen' => $_POST['district_name'],
-                    'xa' => $_POST['ward_name'],
-                    'ngay_dat' => date('Y-m-d'),
-                    'ghi_chu' => $_POST['ghi_chu'],
-                ];
-                $this->online_checkout(); // Chuyển hướng tới MoMo
-                //exit();
+                //Tiến hành chuyển sang thanh toán onl
+                $this->online_checkout($tong_tien, $ma_don_hang, $id_don_hang);
             }
+
         }
         // Xử lý GET request khi MoMo trả về kết quả thanh toán
-        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['transId']) && isset($_GET['resultCode'])) {
 
-            $transId = ($_GET['transId']);
-            $resultCode = $_GET['resultCode'];
-            $amount = $_GET['amount'];
-            $this->mm->insertMoMo($transId, $resultCode, $amount);
-
-            if ($resultCode == '0') {
-
-                $listSanPham = $this->SP->get8SanPham();
-
-                $userInfo = $_SESSION['user_info'];
-                $id_tk = $userInfo['id_tk'];
-                $name = $userInfo['name'];
-                $email = $userInfo['email'];
-                $sdt = $userInfo['sdt'];
-                $ngay_dat = $userInfo['ngay_dat'];
-                $diachi = $userInfo['diachi'];
-                $tinh = $userInfo['tinh'];
-                $huyen = $userInfo['huyen'];
-                $xa = $userInfo['xa'];
-                $ghi_chu = $userInfo['ghi_chu'];
-                $diachi_full = $diachi . ', ' . $xa . ', ' . $huyen . ', ' . $tinh;
-                $selected_product_ids = isset($_SESSION['select_product']) ? $_SESSION['select_product'] : [];
-
-                foreach ($selected_product_ids as $product_id) {
-                    $product = array_filter($_SESSION['cart'], function ($item) use ($product_id) {
-                        return $item['id'] === $product_id;
-                    });
-
-                    if (!empty($product)) {
-                        $product = array_shift($product);
-                        $tong_tien = floatval(str_replace(',', '', $product['price_sp'])) * $product['soluong_sp'] + 30000;
-
-                        $id_don_hang = $this->dh->insertdonhang($name, $email, $sdt, $diachi_full, $ngay_dat, $tong_tien, $ghi_chu, $id_tk, 2, $product_id, $transId);
-                        $this->dh->insertchitietdonhang(
-                            floatval(str_replace(',', '', $product['price_sp'])),
-                            $product['soluong_sp'],
-                            floatval(str_replace(',', '', $product['price_sp'])) * $product['soluong_sp']
-                            ,
-                            $id_don_hang,
-                            $product['id']
-                        );
-                        $old_soluong=$this->SP->getSoLuong( $product['id']);
-                       
-
-                        $new_soluong=$old_soluong-$product['soluong_sp'];
-
-                        $this->SP->updateSoLuong($product['id'],$new_soluong);
-
-                    }
-                }
-                //exit();
-
-                // Xóa sản phẩm khỏi giỏ hàng và session sau khi hoàn tất
-                foreach ($_SESSION['select_product'] as $item => $value) {
-                    unset($_SESSION['cart'][$value]);
-                }
-
-                unset($_SESSION['user_info']);
-                $soluong = count($_SESSION['cart']);
-
-                $_SESSION['dat-hang'] = "Bạn đã đặt hàng thành công";
-                header("location:" . BASE_URL . "?act=san-pham");
-                exit();
-            } else {
-                // Xử lý nếu thanh toán thất bại
-                echo "Thanh toán thất bại. Mã lỗi: " . $resultCode;
-            }
-        }
     }
     public function execPostRequest($url, $data)
     {
@@ -216,21 +187,9 @@ class ClientThanhToanController
         curl_close($ch);
         return $result;
     }
-    public function online_checkout()
+    public function online_checkout($tong_tien, $ma_don_hang, $id)
     {
-        $selected_product_ids = isset($_SESSION['select_product']) ? $_SESSION['select_product'] : [];
-        foreach ($selected_product_ids as $product_id) {
-            $product = array_filter($_SESSION['cart'], function ($item) use ($product_id) {
-                return $item['id'] === $product_id;
-            });
-            $tong_tien = 0;
-            if (!empty($product)) {
-                $product = array_shift($product);
-                $tong_tien += floatval(str_replace(',', '', $product['price_sp'])) * $product['soluong_sp'];
-            }
-            $tong_dh = $tong_tien + 30000;
-        }
-        ;
+
         // Endpoint cho thanh toán bằng thẻ MoMo
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
@@ -241,10 +200,10 @@ class ClientThanhToanController
         $orderInfo = "Thanh toán qua thẻ MoMo";
 
         // Tính toán số tiền và ID đơn hàng
-        $amount = $tong_dh; // Bạn cần tính toán tổng số tiền từ giỏ hàng
-        $orderId = time(); // ID đơn hàng
-        $redirectUrl = "http://da1.test/?act=tien-hanh-thanh-toan";
-        $ipnUrl = "http://da1.test/?act=tien-hanh-thanh-toan";
+        $amount = $tong_tien; // Bạn cần tính toán tổng số tiền từ giỏ hàng
+        $orderId = $ma_don_hang; // ID đơn hàng
+        $redirectUrl =BASE_URL. "?act=payment&id=" . $id; //Trang trả về kết quả xử lí sau khi thanh toán xong 
+        $ipnUrl =BASE_URL. "?act=payment&id=" . $id;
         $extraData = ""; // Các thông tin thêm nếu cần
 
         $requestId = time() . "";
@@ -282,4 +241,3 @@ class ClientThanhToanController
         }
     }
 }
-?>
