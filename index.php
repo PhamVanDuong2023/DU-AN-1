@@ -29,9 +29,9 @@ match ($act) {
 
 
     //login
-    'login' => (new DashboardControllers())->login(),
+    'login' => (new AuthenControllers())->login(),
 
-    'logout' => (new DashboardControllers())->logout(),
+    'logout' => (new AuthenControllers())->logout(),
     
     //singin
     'signup'=>(new AuthenControllers())->signup(),
@@ -58,6 +58,7 @@ match ($act) {
     //thanh_toan
     'thanh-toan' => (new ClientThanhToanController())->thanhToan(),
     'tien-hanh-thanh-toan'=> (new ClientThanhToanController())->tienHanhThanhToan(),
+    'success-order'=>(new ClientThanhToanController())->successOrder(),
 
     // 'online_checkout'=>(new ClientThanhToanController())->online_checkout(),
 

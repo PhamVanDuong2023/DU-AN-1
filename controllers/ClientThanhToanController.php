@@ -15,6 +15,9 @@ class ClientThanhToanController
         $this->dh = new ClientDonHangModel();
         $this->mm = new ClientMoMoModel();
     }
+    public function successOrder(){
+        require_once PATH_VIEW . 'thanh_toan/success.php';
+    }
     public function thanhToan()
     {
         
@@ -30,7 +33,7 @@ class ClientThanhToanController
         // echo "<pre>";
         // print_r($selected_products);
         // exit();
-        $id = 1;
+        $id = $_SESSION['user']['id'];
     
         $listPhuongThuc = $this->TK->getPhuongThucTT();
         $list1TK = $this->TK->getOneTK($id);
@@ -84,8 +87,8 @@ class ClientThanhToanController
                 }
                 $soluong = count($_SESSION['cart']);
                 // $view = "thanh_toan/success";
-                $_SESSION['dat-hang']="Bạn đã đặt hàng thành công";
-                header("location:".BASE_URL."?act=san-pham");
+       
+                header("location:".BASE_URL."?act=success-order");
                 exit();
                 
             } else if ($_POST['id_pt'] == '2') {

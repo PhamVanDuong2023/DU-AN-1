@@ -269,7 +269,7 @@ class="fa fa-angle-down mt-1"></i></a>
                 </div>
 
                 <div class="col-xs-12 table-responsive">
-                    <h4>Thông tin người đặt hàng</h4>
+                    <h4>Thông tin người dùng</h4>
                     <table class="table table-striped">
                         <thead>
                             <tr>

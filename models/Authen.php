@@ -11,7 +11,7 @@ class Authen
     public function getTaiKhoanByUsernameAndPassword($username,$password)
     {
        try {
-          $sql = "SELECT * FROM `tai_khoan` WHERE `username`='$username' AND `password`='$password' AND id_vai_tro = 2";
+          $sql = "SELECT * FROM `tai_khoan` WHERE `username`='$username' AND `password`='$password' AND id_vai_tro = 1";
  
           $stmt = $this->conn->prepare($sql);
  
@@ -27,7 +27,7 @@ class Authen
    public function insertTaiKhoan($email,$username,$password)
    {
       try {
-         $sql = "INSERT INTO `tai_khoan`(  `username`, `password`, `email`, `id_vai_tro`) VALUES ('$username','$password','$email',2)";
+         $sql = "INSERT INTO `tai_khoan`(  `username`, `password`, `email`, `id_vai_tro`) VALUES ('$username','$password','$email',1)";
 
          $stmt = $this->conn->prepare($sql);
 
