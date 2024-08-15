@@ -262,6 +262,17 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                        $tongPhu = 0;
+                        $shipPhu = 30000;
+                        foreach ($selected_products as $key) {
+                            $tongPhu += floatval(str_replace(',', '', $key['price_sp'])) * $key['soluong_sp'];
+                            $tongPrice = $tongPhu + $shipPhu;
+                            ?>
+                            <input type="hidden" name="tong_tien" value="<?=$tongPrice?>"> 
+                            <?php
+                        }
+                        ?>
                 </form>
             </div>
             <div class="col-lg-4">
@@ -301,6 +312,7 @@
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Tổng cộng</h5>
                             <h5><?= number_format($tongPrice, 0, '.', ',') ?>đ</h5>
+
                         </div>
                     </div>
                 </div>

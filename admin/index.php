@@ -10,24 +10,35 @@ require_once("./controllers/AdminTaiKhoanController.php");
 
 // requeri file trong controllers
 require_once ("./controllers/AdminDanhMucController.php");
+
 require_once ("./controllers/AdminDonHangController.php");
+
+
 // require_once ("./controllers/AdminSanPhamController.php");
+
+
+// require_once ("./controllers/AdminSanPhamController.php");
+
 require_once ("./controllers/DashboardControllers.php");
 
 require_file(PATH_CONTROLLER_ADMIN);
 require_file(PATH_MODEL_ADMIN);
 
+// requeri file trong models
 require_once("./models/AdminTaiKhoanModel.php");
+
+require_once("./models/AdminSanPhamModel.php");
+
 // require_once("./models/AdminSanPhamModel.php");
 
 
 // requeri file trong models
+
 require_once ("./models/AdminDanhMucModel.php");
 require_once ("./models/AdminDonhangModel.php");
-
+require_once ("./models/AdminSanPhamModel.php");
 
 // điều hướng
-
 
 $act = $_POST['act'] ?? $_GET['act'] ?? '/';
 
@@ -66,6 +77,19 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
      
      'donhang-chitet' => (new AdminDonHangController())->chitietdonhang(),
 
+
+     'delete-don-hang' => (new AdminDonHangController())->xoadonhang($_GET['id_don_hang']),
+
+     //sản phẩm
+     'sanpham' => (new AdminSanPhamController())->danhSachsp(),
+
+     'form-them-san-pham'=> (new AdminSanPhamController())->formAddsp(),
+
+     'sanpham-xoa' => (new AdminSanPhamController())->xoasp($_GET['id']),
+     
+     'sanpham-edit' => (new AdminSanPhamController())-> capnhatsanpham($_GET['id']),
+
+
      //tai khoan
      'taikhoan' => (new AdminTaiKhoanController())->danhsachtaikhoan(),
 
@@ -85,6 +109,16 @@ $act = $_POST['act'] ?? $_GET['act'] ?? '/';
      'binhluan' => (new AdminBinhLuanController())->danhsachbinhluan(),
      
      'binhluan-delete' => (new AdminBinhLuanController())->xoabinhluan($_GET['id']),
+
+
+     //sản phẩm
+     'sanpham' => (new AdminSanPhamController())->danhsachsanpham(),
+     'sanpham-delete' => (new  AdminSanPhamController())->deletesanpham($_GET['id']),
+     'sanpham-add-form-insert' => (new  AdminSanPhamController())->addforminsert(),
+     'sanpham-insert' => (new  AdminSanPhamController())->themmoisanpham(),
+     'chi-tiet-san-pham' => (new  AdminSanPhamController())->chiTietSanPham($_GET['id']),
+     'sanpham-edit' => (new  AdminSanPhamController())->lay1sanpham($_GET['id']),
+     'sanpham-update' => (new  AdminSanPhamController())->capnhatsanpham(),
 
 };
 ?>

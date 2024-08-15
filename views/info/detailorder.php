@@ -10,7 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -25,9 +25,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../../assets/clients/css/style.css" rel="stylesheet">
     <style>
-        .row {
-            text-align: center;
-        }
+
 
         .table table-striped {
             margin-left: 50px;
@@ -221,8 +219,8 @@
                 <nav class="breadcrumb bg-light mb-30">
 
                     <a class="breadcrumb-item text-dark" href="#">Trang chủ</a>
-                    <a class="breadcrumb-item text-dark" href="#">Cửa hàng</a>
-                    <span class="breadcrumb-item active">Thông tin khách hàng</span>
+                    <a class="breadcrumb-item text-dark" href="#">Thông tin người dùng</a>
+                    <span class="breadcrumb-item active">Chi tiết đơn hàng</span>
 
                 </nav>
             </div>
@@ -234,193 +232,150 @@
     <!-- Checkout Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
+            <div class="row">
 
-            <div class="col-xs-12 table-responsive">
-                <h4>Thông tin người dùng</h4>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Họ và tên</th>
-                            <th>Tên đăng nhập</th>
-                            <th>Email</th>
-                            <th>Địa chỉ</th>
-                            <th>TUổi</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <td><img src="<?= BASE_URL . 'uploads/' . $_SESSION['user']['img'] ?>" width="50px" alt=""></td>
-                        <td><?= $_SESSION['user']['name'] ?></td>
-                        <td><?= $_SESSION['user']['username'] ?></td>
-                        <td><?= $_SESSION['user']['email'] ?></td>
-                        <td><?= $_SESSION['user']['dia_chi'] ?></td>
-                        <td><?= $_SESSION['user']['age'] ?></td>
-                        <td>
-                            <a href="#">
-                                <button class="btn btn-primary" id="button">Sửa thông tin</button>
-                            </a>
-                            <a href="#">
-                                <button class="btn btn-primary" id="button">Đổi mật khẩu</button>
-                            </a>
-                        </td>
-                    </tbody>
-                </table>
-                <!-- <a href="#">
-                        <button class="btn btn-primary" id="button">Đăng xuất</button>
-                    </a> -->
-            </div>
+                <!-- My Account Tab Menu End -->
 
+                <!-- My Account Tab Content Start -->
+                <div class="col-lg-12 col-md-12">
+                    <div class="tab-content" id="myaccountContent">
+                        <!-- Single Tab Content Start -->
+                        <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                            <div class="myaccount-content">
+                                
 
-            <div class="col-xs-12 table-responsive">
-                <h4>Thông tin đơn hàng</h4>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Mã đơn hàng</th>
-                            <th>Ngày đặt</th>
-                            <th>Tổng tiền</th>
-                            <th>Trạng thái</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach($listDonHang as $donHang): ?>
-                        <tr>
-                        <td><?=$donHang['id']?></td>
-                        <td><?=$donHang['ma_don_hang']?></td>
-                        <td><?=$donHang['ngay_dat']?></td>
-                        <td><?=$donHang['tong_tien']?></td>
-                        <td><?=$donHang['ten_trang_thai']?></td>
-                        <td>
-                            <a href="<?=BASE_URL . '?act=ct-donhang&id='.$donHang['id']?>">
-                                <button class="btn btn-primary">Chi tiết</button>
-                            </a>
-                        </td>
-                        </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table><br><br><br><br>
-            </div>
+                                <div class="row p-2 border rounded mb-3 " style="background-color: white;">
+                                    <!-- Địa chỉ giao hàng -->
+                                    <div class="col-12 border-end">
+                                        <div>
+                                            <div class="border-bottom fs-6 pb-3 mb-3 fw-bold d-flex justify-content-between">
+                                                <h6>Địa chỉ giao hàng</h6>
+                                                <p class="btn btn-primary"><?= $order['ten_trang_thai'] ?></p>
+                                            </div>
+                                            <p>Họ và tên: <?= $order['ten_nguoi_nhan'] ?></p>
+                                            <p>Số điện thoại: <?= $order['sđt_nguoi_nhan'] ?></p>
+                                            <p>Địa chỉ: <?= $order['dia_chi_nguoi_nhan'] ?></p>
+                                            <p>Ngày đặt hàng: <?= $order['ngay_dat'] ?></p>
+                                            <p>Phương thức thanh toán: <?=$order['ten_phuong_thuc']?></p>
+                                            <p>Ghi chú: <?= $order['ghi_chu'] ?></p>
+                                        </div>
+                                    </div>
 
-
-        </div>
-    </div>
-
-    <!-- Checkout End -->
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
-        <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Liên lạc</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i><a href="#">123 Trịnh Văn Bô ,
-                        Nam từ Liêm , Hà Nội</a></p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i><a
-                        href="#">phamvanduong2004tb@gmail.com</a></p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i><a href="#">+84988672894</a></p>
-            </div>
-            <div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Cửa hàng</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>"><i
-                                    class="fa fa-angle-right mr-2"></i>Trang
-                                chủ</a>
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=san-pham"><i
-                                    class="fa fa-angle-right mr-2"></i>Cửa hàng
-                                của chúng tôi</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Cửa hàng
-                                Detail</a>
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=gio-hang"><i
-                                    class="fa fa-angle-right mr-2"></i>Mua sắm
-                                Cart</a>
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=thanh-toan"><i
-                                    class="fa fa-angle-right mr-2"></i>Thanh
-                                toán</a>
-                            <a class="text-secondary" href="<?= BASE_URL ?>?act=lien-he"><i
-                                    class="fa fa-angle-right mr-2"></i>Liên hệ với
-                                chúng tôi</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Tài khoản của tôi</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>"><i
-                                    class="fa fa-angle-right mr-2"></i>Trang
-                                chủ</a>
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=san-pham"><i
-                                    class="fa fa-angle-right mr-2"></i>Cửa hàng
-                                của chúng tôi</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Cửa hàng
-                                Detail</a>
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=gio-hang"><i
-                                    class="fa fa-angle-right mr-2"></i>Mua sắm
-                                Cart</a>
-                            <a class="text-secondary mb-2" href="<?= BASE_URL ?>?act=thanh-toan"><i
-                                    class="fa fa-angle-right mr-2"></i>Thanh
-                                toán</a>
-                            <a class="text-secondary" href="<?= BASE_URL ?>?act=lien-he"><i
-                                    class="fa fa-angle-right mr-2"></i>Liên hệ với
-                                chúng tôi</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Bản tin</h5>
-                        <form action="<?= BASE_URL ?>?act=singin">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email Address">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary">Đăng ký</button>
+                                    <!-- End địa chỉ giao hàng -->
                                 </div>
+                                <div class="row p-2 border rounded mb-3" style="background-color: white;">
+                                    <h6 class="border-bottom fs-6 pb-3 mb-3 fw-bold">Sản phẩm</h6>
+
+                                    <?php
+                                    foreach ($details as $detail) : ?>
+
+                                        <div class="row pb-3 mb-3 border-bottom">
+                                            <!-- Sản phẩm -->
+
+                                            <div class="col-10">
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <img src="<?=BASE_URL.'uploads/'.$detail['img_sp']?>" width="100%" alt="">
+                                                    </div>
+                                                    <div class="col-10">
+                                                    <p><?= $detail['name_sp'] ?></p>
+                                                    <p>Số lượng: <?= $detail['so_luong'] ?> x <?=$detail['don_gia']?></p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-2 d-flex justify-content-between">
+                                                <h5></h5>
+                                                <h6><?= $detail['thanh_tien'] ?> đ</h6>
+                                            </div>
+                                            <!-- End sản phẩm -->
+                                        </div>
+
+                                    <?php
+                                    endforeach ?>
+                                    <div class="row m-1">
+                                        <!-- Tổng tiền -->
+                                        <div class="order-summary d-flex flex-column">
+                                            <div class="d-flex justify-content-between">
+                                                <span class="title">Tạm tính:</span>
+                                                <span><?= $order['tong_tien']-30000 ?> đ</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span class="title">Phí ship:</span>
+                                                <span>30000 đ</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-2 border-top pt-2">
+                                                <span class="title">Tổng:</span>
+                                                <span><?= $order['tong_tien'] ?> đ</span>
+                                            </div>
+                                        </div>
+                                        <!-- End tổng tiền -->
+                                    </div>
+                                </div>
+                                <!-- kiểm tra xem id trạng thái đơn hàng có nằm trong các trường hợp như dưới hay k, nếu có thì hiển thị các form thích hợp -->
+                                <?php if (in_array($order['trang_thai_id'], [1, 2, 3,  6,7, 8])) : ?>
+                                    <div class="row p-2 rounded mb-3" style="background-color: white;">
+                                        <!-- Form yêu cầu lý do hủy đơn hàng -->
+                                        <div class="d-flex gap-3">
+                                            <form id="main-form" action="" method="POST">
+                                                <?php if (in_array($order['trang_thai_id'], [1, 2, 3, 6, 8])) : ?>
+                                                    <input type="hidden" name="huyhang" value="11">
+                                                    <button type="submit" name="huyhang" class="btn btn-danger mx-auto" onclick="return confirm('Bạn có chắc chắn hủy đơn hàng không')">Hủy đơn hàng</button>
+                                                <?php else : ?>
+                                                    <input type="hidden" name="hoanhang" value="10">
+                                                    <button type="submit" name="hoanhang" class="btn btn-danger mx-auto"  onclick="return confirm('Bạn có chắc chắn hoàn đơn hàng không !!')">Hoàn hàng</button>
+                                                <?php endif; ?>
+                                            </form>
+                                            <?php if (in_array($order['trang_thai_id'], [7])) : ?>
+                                                <form id="main-form-2" action="" method="POST">
+                                                    <input type="hidden" name="hoanthanh" value="8">
+                                                    <button type="submit" name="hoanthanh" class="btn btn-success mx-auto" onclick="return confirm('Bạn có chắc chắn hoàn thành đơn hàng không !! Bạn sẽ không thể hoàn hàng nếu đồng ý !!')">Hoàn thành</button>
+                                                </form>
+                                            <?php endif; ?>
+                                            <?php if (in_array($order['trang_thai_id'], [6])) : ?>
+                                                <form id="main-form-2" action="" method="POST">
+                                                    <input type="hidden" name="thanhtoan" value="8">
+                                                    <button type="submit" name="thanhtoan" class="btn btn-success mx-auto" >Thanh toán</button>
+                                                </form>
+                                            <?php endif; ?>
+                                           
+                                                        </div>
+
+
+                                                    </div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    
+                                        <!-- Single Tab Content End -->
+                                        </div>
+                                    </div> <!-- My Account Tab Content End -->
                             </div>
-                        </form>
-                        <h6 class="text-secondary text-uppercase mt-4 mb-3">Theo dõi chúng tôi</h6>
-                        <div class="d-flex">
-                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-secondary">
-                    &copy; <a class="text-primary" href="#">Domain</a>.Mọi quyền được bảo lưu.Thiết kế bởi
-                    <a class="text-primary" href="https://htmlcodex.com">DPL Code</a>
-                    <br>Phân phối bởi: <a href="https://themewagon.com" target="_blank">DPL</a>
-                </p>
-            </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+
+                    <!-- Checkout End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/clients/lib/easing/easing.min.js"></script>
-    <script src="../../assets/clients/lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
-    <script src="../../assets/clients/mail/contact.js"></script>
+                    <!-- Back to Top -->
+                    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-    <!-- Template Javascript -->
-    <script src="../../assets/clients/js/main.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+                    <!-- JavaScript Libraries -->
+                    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+                    <script src="../../assets/clients/lib/easing/easing.min.js"></script>
+                    <script src="../../assets/clients/lib/owlcarousel/owl.carousel.min.js"></script>
+
+                    <!-- Contact Javascript File -->
+                    <script src="../../assets/clients/mail/jqBootstrapValidation.min.js"></script>
+                    <script src="../../assets/clients/mail/contact.js"></script>
+
+                    <!-- Template Javascript -->
+                    <script src="../../assets/clients/js/main.js"></script>
 </body>
 
 </html>

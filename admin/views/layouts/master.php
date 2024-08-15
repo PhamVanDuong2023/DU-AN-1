@@ -30,7 +30,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Trạng thái', 'Số đơn hàng'],
+                <?php foreach($bieuDo as $value):?>
+                ['<?=$value['ten_trang_thai']?>', <?=$value['total_orders']?>],
+                    <?php endforeach ?>
+            ]);
+
+            var options = {
+                title: 'Số lượng đơn hàng trong từng trạng thái'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
 
     <!-- Latest compiled JavaScript -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
@@ -94,7 +118,7 @@
         <!-- AdminLTE for demo purposes -->
         <script src="../../../assets/admins/dist/js/demo.js" type="text/javascript"></script>
         <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
-        
+
 
         <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 

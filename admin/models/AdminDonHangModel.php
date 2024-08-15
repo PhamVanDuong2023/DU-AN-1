@@ -18,7 +18,6 @@ class AdminDonHangModel
             $stmt->execute();
 
             return $stmt->fetchAll();
-
         } catch (Exception $e) {
             echo 'Lỗi' . $e->getMessage();
         }
@@ -34,9 +33,42 @@ class AdminDonHangModel
             $stmt->execute();
 
             return $stmt->fetchAll();
-
         } catch (Exception $e) {
             echo 'Lỗi' . $e->getMessage();
+        }
+    }
+    public function soLuongDonHang()
+    {
+        try {
+            $sql = 'SELECT COUNT(*) AS total_orders
+FROM `don_hang`
+WHERE DATE(`ngay_dat`) = CURDATE()';
+
+            $stml = $this->conn->prepare($sql);
+            $stml->execute();
+            return $stml->fetch();
+        } catch (Exception $e) {
+            echo "lỗi" . $e->getMessage();
+        }
+    }
+    public function bieuDo()
+    {
+        try {
+            $sql = 'SELECT 
+    tt.ten_trang_thai, 
+    COUNT(dh.id) AS total_orders
+FROM 
+    `don_hang` dh
+JOIN 
+    `trang_thai` tt ON dh.trang_thai_id = tt.id
+GROUP BY 
+    tt.ten_trang_thai;';
+
+            $stml = $this->conn->prepare($sql);
+            $stml->execute();
+            return $stml->fetchAll();
+        } catch (Exception $e) {
+            echo "lỗi" . $e->getMessage();
         }
     }
     public function getDetailDonHang($id)
@@ -56,7 +88,6 @@ class AdminDonHangModel
 
             // Sử dụng fetch để lấy một bản ghi
             return $stmt->fetch(PDO::FETCH_ASSOC);
-
         } catch (PDOException $e) {
             echo 'Lỗi: ' . $e->getMessage();
         }
@@ -76,7 +107,6 @@ class AdminDonHangModel
             $stmt->execute([':id' => $id]);
 
             return $stmt->fetchAll();
-
         } catch (Exception $e) {
             echo 'Lỗi' . $e->getMessage();
         }
@@ -90,7 +120,6 @@ class AdminDonHangModel
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([':id' => $id]);
-
         } catch (Exception $e) {
             echo 'Lỗi' . $e->getMessage();
         }
@@ -107,7 +136,6 @@ class AdminDonHangModel
             $stmt->execute();
 
             return $stmt->fetchAll();
-
         } catch (Exception $e) {
             echo 'Lỗi' . $e->getMessage();
         }
@@ -115,17 +143,15 @@ class AdminDonHangModel
 
     public function deleteDonHang($id)
     {
-       try {
- 
-          $sql = "DELETE FROM `don_hang` WHERE id=" . $id;
- 
-          $stmt = $this->conn->prepare($sql);
- 
-          $stmt->execute();
- 
-       } catch (Exception $e) {
-          echo 'Lỗi' . $e->getMessage();
-       }
+        try {
+
+            $sql = "DELETE FROM `don_hang` WHERE id=" . $id;
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Lỗi' . $e->getMessage();
+        }
     }
 }
-?>
