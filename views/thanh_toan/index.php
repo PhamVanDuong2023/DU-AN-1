@@ -46,12 +46,8 @@
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Tài
                             khoản của tôi</button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="<?= BASE_URL ?>?act=login"><button class="dropdown-item" type="button">Đăng
-                                    Nhập</button></a>
-                            <a href="<?= BASE_URL ?>?act=signup"><button class="dropdown-item" type="button">Đăng
-                                    Ký</button></a>
-                            <a href="<?= BASE_URL ?>?act=logout"><button class="dropdown-item" type="button">Đăng
-                                    Xuất</button></a>
+                            <button class="dropdown-item" type="button">Đăng nhập</button>
+                            <button class="dropdown-item" type="button">Đăng ký</button>
                         </div>
                     </div>
                     <div class="btn-group mx-2">
@@ -266,6 +262,17 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                        $tongPhu = 0;
+                        $shipPhu = 30000;
+                        foreach ($selected_products as $key) {
+                            $tongPhu += floatval(str_replace(',', '', $key['price_sp'])) * $key['soluong_sp'];
+                            $tongPrice = $tongPhu + $shipPhu;
+                            ?>
+                            <input type="hidden" name="tong_tien" value="<?=$tongPrice?>"> 
+                            <?php
+                        }
+                        ?>
                 </form>
             </div>
             <div class="col-lg-4">
@@ -282,12 +289,12 @@
                             $tongPhu += floatval(str_replace(',', '', $key['price_sp'])) * $key['soluong_sp'];
                             $tongPrice = $tongPhu + $shipPhu;
                             ?>
-                        <div class="d-flex justify-content-between">
-                            <p><?= $key['name_sp'] ?></p>
-                            <p><span><?= number_format(((floatval(str_replace(',', '', $key['price_sp']))) * $key['soluong_sp']), 0, '.', ',') ?>đ</span>
-                            </p>
-                        </div>
-                        <?php
+                            <div class="d-flex justify-content-between">
+                                <p><?= $key['name_sp'] ?></p>
+                                <p><span><?= number_format(((floatval(str_replace(',', '', $key['price_sp']))) * $key['soluong_sp']), 0, '.', ',') ?>đ</span>
+                                </p>
+                            </div>
+                            <?php
                         }
                         ?>
                     </div>
@@ -305,6 +312,7 @@
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Tổng cộng</h5>
                             <h5><?= number_format($tongPrice, 0, '.', ',') ?>đ</h5>
+
                         </div>
                     </div>
                 </div>
@@ -314,14 +322,14 @@
                     </h5>
                     <div class="bg-light p-30">
                         <?php foreach ($listPhuongThuc as $key) { ?>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment"
-                                    id="payment_<?= $key['id'] ?>" value="<?= $key['id'] ?>">
-                                <label class="custom-control-label"
-                                    for="payment_<?= $key['id'] ?>"><?= $key['ten_phuong_thuc'] ?></label>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment"
+                                        id="payment_<?= $key['id'] ?>" value="<?= $key['id'] ?>">
+                                    <label class="custom-control-label"
+                                        for="payment_<?= $key['id'] ?>"><?= $key['ten_phuong_thuc'] ?></label>
+                                </div>
                             </div>
-                        </div>
                         <?php } ?>
                     </div>
                     <button class="btn btn-block btn-primary font-weight-bold py-3" id="button">Đặt

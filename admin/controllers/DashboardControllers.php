@@ -3,9 +3,16 @@
 class DashboardControllers
 {
     public $login;
+    public $TaiKhoan;
+    public $modelSanPham;
+    public $modeldonhang;
     public function __construct()
     {
         $this->login = new AdminLoginModel();
+        $this->TaiKhoan = new AdminTaiKhoanModel();
+        $this->modelSanPham = new AdminSanPhamModel();
+        $this->modeldonhang = new AdminDonHangModel();
+
     }
     function dashboard()
     {
@@ -13,6 +20,10 @@ class DashboardControllers
             header("location:" . BASE_URL_ADMIN . "?act=addlogin");
             exit();
         }
+        $countSP = $this->modelSanPham->soLuongSanPham();
+        $countTK = $this->TaiKhoan->soLuongTaiKhoan();
+        $countDH = $this->modeldonhang->soLuongDonHang();
+        $bieuDo  = $this->modeldonhang->bieuDo();
         $title = 'clothes';
         $view = 'dashboard';
         require_once PATH_VIEW_ADMIN . 'layouts/master.php';

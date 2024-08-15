@@ -12,14 +12,15 @@ class AuthenControllers
     if(!empty($_POST)){
         $username = $_POST['username'];
         $password = $_POST['password']; 
-        $user = $this->authen->getTaiKhoanByUsernameAndPassword($username, $password); 
-        if(empty($user)){
+        // Lấy thông tin người dùng nhập lên
+        $user = $this->authen->getTaiKhoanByUsernameAndPassword($username, $password); // CHạy hàm kiểm tra xem có usẻ nào phù hiopwj không
+        if(empty($user)){ //Nếu không có thì thông báo cho người dùng
             $_SESSION['loi'] = 'Tài khoản hoặc mật khẩu không chính xác';
 
             header('Location: ' . BASE_URL . "?act=login");
             exit();
         }else{
-            $_SESSION['user'] = $user;
+            $_SESSION['user'] = $user; // Nếu có thì lưu thoiong tin người dùng vào sêssion
             header('Location: ' . BASE_URL);
 
             exit();

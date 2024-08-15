@@ -74,7 +74,17 @@ public function getOneSP($id){
         echo "lỗi" . $e->getMessage();
     }
  }
+ public function soLuongSanPham(){
+    try {
+        $sql = 'SELECT COUNT(*) AS total_products FROM `san_pham` WHERE 1';
 
+        $stml = $this->conn->prepare($sql);
+        $stml->execute();
+        return $stml->fetch();
+    } catch (Exception $e) {
+        echo "lỗi" . $e->getMessage();
+    }
+ }
  public function updatesp($name_sp,$price_sp,$soluong_sp,$mota_sp,$img_sp,$id_danhmuc,$id){
     {
         try {

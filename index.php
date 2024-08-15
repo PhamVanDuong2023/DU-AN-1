@@ -12,7 +12,6 @@ require_once './commons/model.php';
 
 
 require_once './controllers/DashboardControllers.php';
-require_once './controllers/AuthenControllers.php';
 require_file(PATH_CONTROLLER);
 require_file(PATH_MODEL);
 
@@ -24,10 +23,10 @@ match ($act) {
 
     //điều hướng các trang con
     'info' => (new DashboardControllers())->info(),
+    'ct-donhang' =>(new DashboardControllers())->detailOrder($_GET['id']),
     'lien-he' => (new DashboardControllers())->lienhe(),
 
-
-
+    
     //login
     'login' => (new AuthenControllers())->login(),
 
@@ -35,6 +34,7 @@ match ($act) {
     
     //singin
     'signup'=>(new AuthenControllers())->signup(),
+
 
     //trang_san_pham
     'san-pham' => (new ClientSanPhamController())->list8sp(),
@@ -54,13 +54,12 @@ match ($act) {
     'delete-product' => (new ClientGioHangController())->xoagiohang(),
     'capnhat-giohang'=>(new ClientGioHangController())->capnhatsoluong(),
 
-
     //thanh_toan
     'thanh-toan' => (new ClientThanhToanController())->thanhToan(),
     'tien-hanh-thanh-toan'=> (new ClientThanhToanController())->tienHanhThanhToan(),
-    'success-order'=>(new ClientThanhToanController())->successOrder(),
+    'success-order' =>(new ClientThanhToanController())->successOrder(),
+    'payment' =>(new ClientThanhToanController())->successPayment(),
 
     // 'online_checkout'=>(new ClientThanhToanController())->online_checkout(),
-
 };
 ?>

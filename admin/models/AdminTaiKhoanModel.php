@@ -97,7 +97,17 @@ class AdminTaiKhoanModel
             return [];
         }
     }
-
+    public function soLuongTaiKhoan(){
+        try {
+            $sql = 'SELECT COUNT(*) AS total_accounts FROM `tai_khoan` WHERE 1';
+    
+            $stml = $this->conn->prepare($sql);
+            $stml->execute();
+            return $stml->fetch();
+        } catch (Exception $e) {
+            echo "lỗi" . $e->getMessage();
+        }
+     }
     // Method to update user account details
     public function updateTaiKhoan($id, $name, $dia_chi, $age, $img, $username, $password, $email, $id_vai_tro)
     {
